@@ -14,7 +14,18 @@
 		1327112C24334D82009005C0 /* Pinny_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1327112A24334D82009005C0 /* Pinny_iOS.xcdatamodeld */; };
 		1327112E24334D83009005C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1327112D24334D83009005C0 /* Assets.xcassets */; };
 		1327113124334D83009005C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327112F24334D83009005C0 /* LaunchScreen.storyboard */; };
+		1327113F24334EBE009005C0 /* Pinny_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327113E24334EBE009005C0 /* Pinny_iOSTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1327114124334EBE009005C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1327111624334D82009005C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1327111D24334D82009005C0;
+			remoteInfo = "Pinny-iOS";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1327111E24334D82009005C0 /* Pinny-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pinny-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -26,10 +37,20 @@
 		1327112D24334D83009005C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1327113024334D83009005C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1327113224334D83009005C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1327113C24334EBE009005C0 /* Pinny-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pinny-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1327113E24334EBE009005C0 /* Pinny_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pinny_iOSTests.swift; sourceTree = "<group>"; };
+		1327114024334EBE009005C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		1327111B24334D82009005C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1327113924334EBE009005C0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -43,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				1327112024334D82009005C0 /* Pinny-iOS */,
+				1327113D24334EBE009005C0 /* Pinny-iOSTests */,
 				1327111F24334D82009005C0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				1327111E24334D82009005C0 /* Pinny-iOS.app */,
+				1327113C24334EBE009005C0 /* Pinny-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -68,6 +91,15 @@
 				1327112A24334D82009005C0 /* Pinny_iOS.xcdatamodeld */,
 			);
 			path = "Pinny-iOS";
+			sourceTree = "<group>";
+		};
+		1327113D24334EBE009005C0 /* Pinny-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				1327113E24334EBE009005C0 /* Pinny_iOSTests.swift */,
+				1327114024334EBE009005C0 /* Info.plist */,
+			);
+			path = "Pinny-iOSTests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -90,6 +122,24 @@
 			productReference = 1327111E24334D82009005C0 /* Pinny-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1327113B24334EBE009005C0 /* Pinny-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1327114524334EBE009005C0 /* Build configuration list for PBXNativeTarget "Pinny-iOSTests" */;
+			buildPhases = (
+				1327113824334EBE009005C0 /* Sources */,
+				1327113924334EBE009005C0 /* Frameworks */,
+				1327113A24334EBE009005C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1327114224334EBE009005C0 /* PBXTargetDependency */,
+			);
+			name = "Pinny-iOSTests";
+			productName = "Pinny-iOSTests";
+			productReference = 1327113C24334EBE009005C0 /* Pinny-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -102,6 +152,10 @@
 				TargetAttributes = {
 					1327111D24334D82009005C0 = {
 						CreatedOnToolsVersion = 11.4;
+					};
+					1327113B24334EBE009005C0 = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = 1327111D24334D82009005C0;
 					};
 				};
 			};
@@ -119,6 +173,7 @@
 			projectRoot = "";
 			targets = (
 				1327111D24334D82009005C0 /* Pinny-iOS */,
+				1327113B24334EBE009005C0 /* Pinny-iOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -131,6 +186,13 @@
 				1327113124334D83009005C0 /* LaunchScreen.storyboard in Resources */,
 				1327112E24334D83009005C0 /* Assets.xcassets in Resources */,
 				1327112924334D82009005C0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1327113A24334EBE009005C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,7 +210,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1327113824334EBE009005C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1327113F24334EBE009005C0 /* Pinny_iOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1327114224334EBE009005C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1327111D24334D82009005C0 /* Pinny-iOS */;
+			targetProxy = 1327114124334EBE009005C0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1327112724334D82009005C0 /* Main.storyboard */ = {
@@ -320,6 +398,46 @@
 			};
 			name = Release;
 		};
+		1327114324334EBE009005C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JY87QHRL3J;
+				INFOPLIST_FILE = "Pinny-iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "gordiig.Pinny-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pinny-iOS.app/Pinny-iOS";
+			};
+			name = Debug;
+		};
+		1327114424334EBE009005C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JY87QHRL3J;
+				INFOPLIST_FILE = "Pinny-iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "gordiig.Pinny-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pinny-iOS.app/Pinny-iOS";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -337,6 +455,15 @@
 			buildConfigurations = (
 				1327113624334D83009005C0 /* Debug */,
 				1327113724334D83009005C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1327114524334EBE009005C0 /* Build configuration list for PBXNativeTarget "Pinny-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1327114324334EBE009005C0 /* Debug */,
+				1327114424334EBE009005C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
