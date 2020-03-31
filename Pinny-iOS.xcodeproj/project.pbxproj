@@ -81,9 +81,12 @@
 		1327112024334D82009005C0 /* Pinny-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				1327114924335CAE009005C0 /* Views */,
+				1327114824335C93009005C0 /* Services */,
+				1327114724335C7F009005C0 /* Models */,
+				1327114624335C75009005C0 /* VCs */,
 				1327112124334D82009005C0 /* AppDelegate.swift */,
 				1327112324334D82009005C0 /* SceneDelegate.swift */,
-				1327112524334D82009005C0 /* ViewController.swift */,
 				1327112724334D82009005C0 /* Main.storyboard */,
 				1327112D24334D83009005C0 /* Assets.xcassets */,
 				1327112F24334D83009005C0 /* LaunchScreen.storyboard */,
@@ -100,6 +103,35 @@
 				1327114024334EBE009005C0 /* Info.plist */,
 			);
 			path = "Pinny-iOSTests";
+			sourceTree = "<group>";
+		};
+		1327114624335C75009005C0 /* VCs */ = {
+			isa = PBXGroup;
+			children = (
+				1327112524334D82009005C0 /* ViewController.swift */,
+			);
+			path = VCs;
+			sourceTree = "<group>";
+		};
+		1327114724335C7F009005C0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1327114824335C93009005C0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		1327114924335CAE009005C0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
