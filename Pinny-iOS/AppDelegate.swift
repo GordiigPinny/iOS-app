@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import YandexMapKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Getting Yandex MapKit API key
+        guard let fileURL = Bundle.main.url(forResource: "YandexAPIKey", withExtension: nil) else {
+            return false
+        }
+        guard var apiKey = try? String.init(contentsOf: fileURL) else {
+            return false
+        }
+        apiKey.removeAll {$0 == "\n"}
+        YMKMapKit.setApiKey(apiKey)
         return true
     }
 
