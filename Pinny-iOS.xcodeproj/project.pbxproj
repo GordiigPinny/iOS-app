@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,8 @@
 		1327112E24334D83009005C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1327112D24334D83009005C0 /* Assets.xcassets */; };
 		1327113124334D83009005C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327112F24334D83009005C0 /* LaunchScreen.storyboard */; };
 		1327113F24334EBE009005C0 /* Pinny_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327113E24334EBE009005C0 /* Pinny_iOSTests.swift */; };
+		1338069B24389E540014A600 /* YandexAPIKey in Resources */ = {isa = PBXBuildFile; fileRef = 1338069A24389E540014A600 /* YandexAPIKey */; };
+		A215AC73D2C9C936552AB672 /* Pods_Pinny_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240C9199E2E44AFA0E874D99 /* Pods_Pinny_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,10 @@
 		1327113C24334EBE009005C0 /* Pinny-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pinny-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1327113E24334EBE009005C0 /* Pinny_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pinny_iOSTests.swift; sourceTree = "<group>"; };
 		1327114024334EBE009005C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1338069A24389E540014A600 /* YandexAPIKey */ = {isa = PBXFileReference; lastKnownFileType = text; path = YandexAPIKey; sourceTree = "<group>"; };
+		240C9199E2E44AFA0E874D99 /* Pods_Pinny_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pinny_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DAC37D220E3F42D78F09681 /* Pods-Pinny-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinny-iOS.release.xcconfig"; path = "Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		8EC6DC99C46AC042FE467DAD /* Pods-Pinny-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinny-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A215AC73D2C9C936552AB672 /* Pods_Pinny_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +73,8 @@
 				1327112024334D82009005C0 /* Pinny-iOS */,
 				1327113D24334EBE009005C0 /* Pinny-iOSTests */,
 				1327111F24334D82009005C0 /* Products */,
+				8B71001511E1312B7A3DACC5 /* Pods */,
+				65A90629605D3ADB57034631 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +90,7 @@
 		1327112024334D82009005C0 /* Pinny-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				1338069924389E3D0014A600 /* Utils */,
 				1327114924335CAE009005C0 /* Views */,
 				1327114824335C93009005C0 /* Services */,
 				1327114724335C7F009005C0 /* Models */,
@@ -134,6 +144,31 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		1338069924389E3D0014A600 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1338069A24389E540014A600 /* YandexAPIKey */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		65A90629605D3ADB57034631 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				240C9199E2E44AFA0E874D99 /* Pods_Pinny_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8B71001511E1312B7A3DACC5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8EC6DC99C46AC042FE467DAD /* Pods-Pinny-iOS.debug.xcconfig */,
+				6DAC37D220E3F42D78F09681 /* Pods-Pinny-iOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -141,9 +176,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1327113524334D83009005C0 /* Build configuration list for PBXNativeTarget "Pinny-iOS" */;
 			buildPhases = (
+				CB3935214FFA2EC5AB63C538 /* [CP] Check Pods Manifest.lock */,
 				1327111A24334D82009005C0 /* Sources */,
 				1327111B24334D82009005C0 /* Frameworks */,
 				1327111C24334D82009005C0 /* Resources */,
+				9F355B2110FC06062E956BA1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -215,6 +252,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1338069B24389E540014A600 /* YandexAPIKey in Resources */,
 				1327113124334D83009005C0 /* LaunchScreen.storyboard in Resources */,
 				1327112E24334D83009005C0 /* Assets.xcassets in Resources */,
 				1327112924334D82009005C0 /* Main.storyboard in Resources */,
@@ -229,6 +267,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9F355B2110FC06062E956BA1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CB3935214FFA2EC5AB63C538 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Pinny-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1327111A24334D82009005C0 /* Sources */ = {
@@ -396,6 +476,7 @@
 		};
 		1327113624334D83009005C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EC6DC99C46AC042FE467DAD /* Pods-Pinny-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -414,6 +495,7 @@
 		};
 		1327113724334D83009005C0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DAC37D220E3F42D78F09681 /* Pods-Pinny-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
