@@ -16,6 +16,9 @@
 		1327113124334D83009005C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327112F24334D83009005C0 /* LaunchScreen.storyboard */; };
 		1327113F24334EBE009005C0 /* Pinny_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327113E24334EBE009005C0 /* Pinny_iOSTests.swift */; };
 		1338069B24389E540014A600 /* YandexAPIKey in Resources */ = {isa = PBXBuildFile; fileRef = 1338069A24389E540014A600 /* YandexAPIKey */; };
+		134356B0244EF92600026355 /* StarsRatingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134356AF244EF92600026355 /* StarsRatingView.xib */; };
+		134356B2244EFB6000026355 /* StarsRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B1244EFB6000026355 /* StarsRatingView.swift */; };
+		134356B5244EFDDB00026355 /* StarsRatingViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B4244EFDDB00026355 /* StarsRatingViewDelegate.swift */; };
 		A215AC73D2C9C936552AB672 /* Pods_Pinny_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240C9199E2E44AFA0E874D99 /* Pods_Pinny_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +46,9 @@
 		1327113E24334EBE009005C0 /* Pinny_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pinny_iOSTests.swift; sourceTree = "<group>"; };
 		1327114024334EBE009005C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1338069A24389E540014A600 /* YandexAPIKey */ = {isa = PBXFileReference; lastKnownFileType = text; path = YandexAPIKey; sourceTree = "<group>"; };
+		134356AF244EF92600026355 /* StarsRatingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarsRatingView.xib; sourceTree = "<group>"; };
+		134356B1244EFB6000026355 /* StarsRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsRatingView.swift; sourceTree = "<group>"; };
+		134356B4244EFDDB00026355 /* StarsRatingViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsRatingViewDelegate.swift; sourceTree = "<group>"; };
 		240C9199E2E44AFA0E874D99 /* Pods_Pinny_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pinny_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DAC37D220E3F42D78F09681 /* Pods-Pinny-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinny-iOS.release.xcconfig"; path = "Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8EC6DC99C46AC042FE467DAD /* Pods-Pinny-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinny-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +146,7 @@
 		1327114924335CAE009005C0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				134356B3244EFDC100026355 /* StarsRating */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -150,6 +157,16 @@
 				1338069A24389E540014A600 /* YandexAPIKey */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		134356B3244EFDC100026355 /* StarsRating */ = {
+			isa = PBXGroup;
+			children = (
+				134356AF244EF92600026355 /* StarsRatingView.xib */,
+				134356B1244EFB6000026355 /* StarsRatingView.swift */,
+				134356B4244EFDDB00026355 /* StarsRatingViewDelegate.swift */,
+			);
+			path = StarsRating;
 			sourceTree = "<group>";
 		};
 		65A90629605D3ADB57034631 /* Frameworks */ = {
@@ -252,6 +269,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				134356B0244EF92600026355 /* StarsRatingView.xib in Resources */,
 				1338069B24389E540014A600 /* YandexAPIKey in Resources */,
 				1327113124334D83009005C0 /* LaunchScreen.storyboard in Resources */,
 				1327112E24334D83009005C0 /* Assets.xcassets in Resources */,
@@ -315,6 +333,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				134356B5244EFDDB00026355 /* StarsRatingViewDelegate.swift in Sources */,
+				134356B2244EFB6000026355 /* StarsRatingView.swift in Sources */,
 				1327112624334D82009005C0 /* ViewController.swift in Sources */,
 				1327112224334D82009005C0 /* AppDelegate.swift in Sources */,
 				1327112C24334D82009005C0 /* Pinny_iOS.xcdatamodeld in Sources */,
