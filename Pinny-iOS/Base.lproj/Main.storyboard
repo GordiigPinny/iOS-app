@@ -83,7 +83,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="username"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Электронная почта" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WoG-fc-eao">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Электронная почта (не обязательно)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WoG-fc-eao">
                                         <rect key="frame" x="0.0" y="42" width="359" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="email"/>
@@ -98,9 +98,12 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="etX-8B-UkM">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="etX-8B-UkM">
                                         <rect key="frame" x="0.0" y="168" width="359" height="30"/>
                                         <state key="normal" title="Зарегистрироваться"/>
+                                        <connections>
+                                            <action selector="signUpButtonPressed:" destination="c1a-Wh-llH" eventType="touchUpInside" id="nMs-6H-LpV"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -114,6 +117,13 @@
                         <viewLayoutGuide key="safeArea" id="Qvd-Ce-F5m"/>
                     </view>
                     <navigationItem key="navigationItem" title="Регистрация" id="bMA-In-gxq"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="WoG-fc-eao" id="HK1-3C-ryc"/>
+                        <outlet property="passwordConfirmTextField" destination="nvu-Lr-0gb" id="vOX-oL-mKg"/>
+                        <outlet property="passwordTextField" destination="wJ4-Eq-1kr" id="1JW-ib-8pt"/>
+                        <outlet property="signUpButton" destination="etX-8B-UkM" id="gcp-De-0eE"/>
+                        <outlet property="usernameTextField" destination="ynm-cS-PyJ" id="QFz-Fr-45s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tnY-tQ-ejl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -30,6 +30,7 @@ class LogInViewController: UIViewController {
         usernameTextField.addTarget(self, action: #selector(textFieldChangeEditing), for: .editingChanged)
         passwordTextField.delegate = self
         passwordTextField.addTarget(self, action: #selector(textFieldChangeEditing), for: .editingChanged)
+        logInButton.isEnabled = canPressLogInButton
     }
 
     // MARK: - Actions
@@ -42,7 +43,7 @@ class LogInViewController: UIViewController {
     
     // MARK: - Actions for TextFields
     private var canPressLogInButton: Bool {
-        usernameTextField.isEmpty && passwordTextField.isEmpty
+        !usernameTextField.isEmpty && !passwordTextField.isEmpty
     }
     
     @objc func textFieldChangeEditing() {
@@ -52,7 +53,7 @@ class LogInViewController: UIViewController {
 }
 
 
-// MARK: - TextField extension
+// MARK: - UITextFieldDelegate
 extension LogInViewController: UITextFieldDelegate {
     
 }

@@ -9,22 +9,54 @@
 import UIKit
 
 class SignUpViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    // MARK: - Outlets
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var passwordConfirmTextField: UITextField!
+    @IBOutlet weak var signUpButton: UIButton!
+    
+    // MARK: - Outlets value getters
+    var username: String? {
+        usernameTextField.text
+    }
+    var email: String? {
+        emailTextField.text
+    }
+    var password: String? {
+        passwordTextField.text
+    }
+    var passwordConfirm: String? {
+        passwordConfirmTextField.text
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Time hooks
+    override func viewDidLoad() {
+        usernameTextField.addTarget(self, action: #selector(textFieldChangeEditing), for: .editingChanged)
+        emailTextField.addTarget(self, action: #selector(textFieldChangeEditing), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textFieldChangeEditing), for: .editingChanged)
+        passwordConfirmTextField.addTarget(self, action: #selector(textFieldChangeEditing), for: .editingChanged)
+        signUpButton.isEnabled = canPressSignUpButton
     }
-    */
+    
+    // MARK: - Actions
+    @IBAction func signUpButtonPressed(_ sender: Any) {
+        let username = self.username!
+        let email = self.email
+        let password = self.password!
+        let passwordConfirm = self.passwordConfirm!
+        let msg = "username: \(username)\nemail: \(email ?? "nil")\npassword: \(password)\nconfirm: \(passwordConfirm)"
+        let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Implement me!", msg: msg)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: - Actions for TextFields
+    private var canPressSignUpButton: Bool {
+        !usernameTextField.isEmpty && !passwordTextField.isEmpty && !passwordConfirmTextField.isEmpty && (password! == passwordConfirm!)
+    }
+    @objc func textFieldChangeEditing() {
+        signUpButton.isEnabled = canPressSignUpButton
+    }
+    
 
 }
