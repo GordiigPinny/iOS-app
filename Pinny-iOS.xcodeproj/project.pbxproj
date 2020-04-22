@@ -10,7 +10,7 @@
 		1327112224334D82009005C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327112124334D82009005C0 /* AppDelegate.swift */; };
 		1327112424334D82009005C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327112324334D82009005C0 /* SceneDelegate.swift */; };
 		1327112624334D82009005C0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327112524334D82009005C0 /* LogInViewController.swift */; };
-		1327112924334D82009005C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327112724334D82009005C0 /* Main.storyboard */; };
+		1327112924334D82009005C0 /* LogInSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327112724334D82009005C0 /* LogInSignUp.storyboard */; };
 		1327112C24334D82009005C0 /* Pinny_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1327112A24334D82009005C0 /* Pinny_iOS.xcdatamodeld */; };
 		1327112E24334D83009005C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1327112D24334D83009005C0 /* Assets.xcassets */; };
 		1327113124334D83009005C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327112F24334D83009005C0 /* LaunchScreen.storyboard */; };
@@ -24,6 +24,7 @@
 		13A56C5124502F1600584BDD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A56C5024502F1600584BDD /* SignUpViewController.swift */; };
 		13A56C53245038E000584BDD /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A56C52245038E000584BDD /* UITextFieldExtension.swift */; };
 		13CA803A24502B12006ED889 /* UIAlertControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CA803924502B12006ED889 /* UIAlertControllerBuilder.swift */; };
+		13FC27B02450431A00EB5A0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13FC27AF2450431A00EB5A0D /* Main.storyboard */; };
 		A215AC73D2C9C936552AB672 /* Pods_Pinny_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240C9199E2E44AFA0E874D99 /* Pods_Pinny_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +43,7 @@
 		1327112124334D82009005C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1327112324334D82009005C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1327112524334D82009005C0 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		1327112824334D82009005C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1327112824334D82009005C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LogInSignUp.storyboard; sourceTree = "<group>"; };
 		1327112B24334D82009005C0 /* Pinny_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pinny_iOS.xcdatamodel; sourceTree = "<group>"; };
 		1327112D24334D83009005C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1327113024334D83009005C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -59,6 +60,7 @@
 		13A56C5024502F1600584BDD /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		13A56C52245038E000584BDD /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		13CA803924502B12006ED889 /* UIAlertControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerBuilder.swift; sourceTree = "<group>"; };
+		13FC27AF2450431A00EB5A0D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		240C9199E2E44AFA0E874D99 /* Pods_Pinny_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pinny_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DAC37D220E3F42D78F09681 /* Pods-Pinny-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinny-iOS.release.xcconfig"; path = "Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8EC6DC99C46AC042FE467DAD /* Pods-Pinny-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinny-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		1327112024334D82009005C0 /* Pinny-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				13FC27B12450444900EB5A0D /* Storyboards */,
 				134356BB245029F800026355 /* Extensions */,
 				1338069924389E3D0014A600 /* Utils */,
 				1327114924335CAE009005C0 /* Views */,
@@ -114,9 +117,7 @@
 				1327114624335C75009005C0 /* VCs */,
 				1327112124334D82009005C0 /* AppDelegate.swift */,
 				1327112324334D82009005C0 /* SceneDelegate.swift */,
-				1327112724334D82009005C0 /* Main.storyboard */,
 				1327112D24334D83009005C0 /* Assets.xcassets */,
-				1327112F24334D83009005C0 /* LaunchScreen.storyboard */,
 				1327113224334D83009005C0 /* Info.plist */,
 				1327112A24334D82009005C0 /* Pinny_iOS.xcdatamodeld */,
 			);
@@ -198,6 +199,16 @@
 				13A56C52245038E000584BDD /* UITextFieldExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		13FC27B12450444900EB5A0D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				13FC27AF2450431A00EB5A0D /* Main.storyboard */,
+				1327112F24334D83009005C0 /* LaunchScreen.storyboard */,
+				1327112724334D82009005C0 /* LogInSignUp.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		65A90629605D3ADB57034631 /* Frameworks */ = {
@@ -303,8 +314,9 @@
 				134356B0244EF92600026355 /* StarsRatingView.xib in Resources */,
 				1338069B24389E540014A600 /* YandexAPIKey in Resources */,
 				1327113124334D83009005C0 /* LaunchScreen.storyboard in Resources */,
+				13FC27B02450431A00EB5A0D /* Main.storyboard in Resources */,
 				1327112E24334D83009005C0 /* Assets.xcassets in Resources */,
-				1327112924334D82009005C0 /* Main.storyboard in Resources */,
+				1327112924334D82009005C0 /* LogInSignUp.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,12 +409,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1327112724334D82009005C0 /* Main.storyboard */ = {
+		1327112724334D82009005C0 /* LogInSignUp.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				1327112824334D82009005C0 /* Base */,
 			);
-			name = Main.storyboard;
+			name = LogInSignUp.storyboard;
 			sourceTree = "<group>";
 		};
 		1327112F24334D83009005C0 /* LaunchScreen.storyboard */ = {

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sbS-Da-sMp">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Поиск-->
+        <scene sceneID="nNd-IW-FrI">
+            <objects>
+                <viewController id="xDa-My-DOM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZMB-vs-PWi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Lbv-CI-Osw"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Поиск" id="kUN-BM-ZY9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TPU-2l-dcu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1830" y="-352"/>
+        </scene>
+        <!--Поиск-->
+        <scene sceneID="H7V-jD-AxH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2M9-3C-gMP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Поиск" image="magnifyingglass" catalog="system" id="0KA-zI-Bj7"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EQU-P0-m3c">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xDa-My-DOM" kind="relationship" relationship="rootViewController" id="syX-Yc-XBW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K9k-F3-uJO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="923" y="-352"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="uER-xl-8MA">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="sbS-Da-sMp" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SjE-6Y-uOc">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="2M9-3C-gMP" kind="relationship" relationship="viewControllers" id="SL5-Ha-ZO6"/>
+                        <segue destination="Cqw-S0-Z9i" kind="relationship" relationship="viewControllers" id="zQm-zm-fjp"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d3n-nz-jiw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2.8985507246376816" y="1.3392857142857142"/>
+        </scene>
+        <!--О пользователе-->
+        <scene sceneID="5qj-tX-hvY">
+            <objects>
+                <viewController id="XRP-CP-Goc" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NFe-0Y-vVx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="aF2-5s-GxJ"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="О пользователе" id="V0e-30-3Lg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eNx-KS-Xfu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1831.8840579710147" y="316.07142857142856"/>
+        </scene>
+        <!--О пользователе-->
+        <scene sceneID="gm1-RD-UCN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Cqw-S0-Z9i" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="О пользователе" image="info.circle" catalog="system" id="MdM-Xy-qzu"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TVG-it-EeJ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="XRP-CP-Goc" kind="relationship" relationship="rootViewController" id="h3y-Pb-5NS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hcL-mU-h3W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="921.73913043478262" y="315.40178571428572"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+    </resources>
+</document>
