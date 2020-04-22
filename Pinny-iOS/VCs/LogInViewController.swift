@@ -16,11 +16,11 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     
     // MARK: - Outlet value getters
-    var username: String {
-        usernameTextField.text!
+    var username: String? {
+        usernameTextField.text
     }
-    var password: String {
-        passwordTextField.text!
+    var password: String? {
+        passwordTextField.text
     }
     
     // MARK: - Time hooks
@@ -34,6 +34,8 @@ class LogInViewController: UIViewController {
 
     // MARK: - Actions
     @IBAction func logInButtonPressed(_ sender: Any) {
+        let username = self.username!
+        let password = self.password!
         let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Implement me", msg: "username: \(username)\npassword: \(password)")
         present(alert, animated: true, completion: nil)
     }
