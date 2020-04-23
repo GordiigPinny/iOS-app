@@ -16,7 +16,6 @@
 		1327113124334D83009005C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327112F24334D83009005C0 /* LaunchScreen.storyboard */; };
 		1327113F24334EBE009005C0 /* Pinny_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327113E24334EBE009005C0 /* Pinny_iOSTests.swift */; };
 		1338069B24389E540014A600 /* YandexAPIKey in Resources */ = {isa = PBXBuildFile; fileRef = 1338069A24389E540014A600 /* YandexAPIKey */; };
-		134356B0244EF92600026355 /* StarsRatingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134356AF244EF92600026355 /* StarsRatingView.xib */; };
 		134356B2244EFB6000026355 /* StarsRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B1244EFB6000026355 /* StarsRatingView.swift */; };
 		134356B5244EFDDB00026355 /* StarsRatingViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B4244EFDDB00026355 /* StarsRatingViewDelegate.swift */; };
 		134356B8244EFF0800026355 /* AcceptButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B7244EFF0800026355 /* AcceptButton.swift */; };
@@ -24,7 +23,11 @@
 		13A56C5124502F1600584BDD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A56C5024502F1600584BDD /* SignUpViewController.swift */; };
 		13A56C53245038E000584BDD /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A56C52245038E000584BDD /* UITextFieldExtension.swift */; };
 		13CA803A24502B12006ED889 /* UIAlertControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CA803924502B12006ED889 /* UIAlertControllerBuilder.swift */; };
+		13EE6AF82451C89B00B33A34 /* PlacesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EE6AF72451C89B00B33A34 /* PlacesListViewController.swift */; };
 		13FC27B02450431A00EB5A0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13FC27AF2450431A00EB5A0D /* Main.storyboard */; };
+		13FC27B32451A64400EB5A0D /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC27B22451A64400EB5A0D /* Globals.swift */; };
+		13FC27B62451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC27B52451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift */; };
+		13FC27BA2451C78B00EB5A0D /* PlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC27B92451C78B00EB5A0D /* PlaceDetailViewController.swift */; };
 		A215AC73D2C9C936552AB672 /* Pods_Pinny_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240C9199E2E44AFA0E874D99 /* Pods_Pinny_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +55,6 @@
 		1327113E24334EBE009005C0 /* Pinny_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pinny_iOSTests.swift; sourceTree = "<group>"; };
 		1327114024334EBE009005C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1338069A24389E540014A600 /* YandexAPIKey */ = {isa = PBXFileReference; lastKnownFileType = text; path = YandexAPIKey; sourceTree = "<group>"; };
-		134356AF244EF92600026355 /* StarsRatingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarsRatingView.xib; sourceTree = "<group>"; };
 		134356B1244EFB6000026355 /* StarsRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsRatingView.swift; sourceTree = "<group>"; };
 		134356B4244EFDDB00026355 /* StarsRatingViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsRatingViewDelegate.swift; sourceTree = "<group>"; };
 		134356B7244EFF0800026355 /* AcceptButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptButton.swift; sourceTree = "<group>"; };
@@ -60,7 +62,11 @@
 		13A56C5024502F1600584BDD /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		13A56C52245038E000584BDD /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		13CA803924502B12006ED889 /* UIAlertControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerBuilder.swift; sourceTree = "<group>"; };
+		13EE6AF72451C89B00B33A34 /* PlacesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListViewController.swift; sourceTree = "<group>"; };
 		13FC27AF2450431A00EB5A0D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		13FC27B22451A64400EB5A0D /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		13FC27B52451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSearchTableViewCell.swift; sourceTree = "<group>"; };
+		13FC27B92451C78B00EB5A0D /* PlaceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailViewController.swift; sourceTree = "<group>"; };
 		240C9199E2E44AFA0E874D99 /* Pods_Pinny_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pinny_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DAC37D220E3F42D78F09681 /* Pods-Pinny-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinny-iOS.release.xcconfig"; path = "Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8EC6DC99C46AC042FE467DAD /* Pods-Pinny-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinny-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -138,6 +144,8 @@
 			children = (
 				1327112524334D82009005C0 /* LogInViewController.swift */,
 				13A56C5024502F1600584BDD /* SignUpViewController.swift */,
+				13EE6AF72451C89B00B33A34 /* PlacesListViewController.swift */,
+				13FC27B92451C78B00EB5A0D /* PlaceDetailViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -159,6 +167,7 @@
 		1327114924335CAE009005C0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				13FC27B42451A6B700EB5A0D /* TableViewCells */,
 				134356B6244EFEF000026355 /* AcceptButton */,
 				134356B3244EFDC100026355 /* StarsRating */,
 			);
@@ -170,6 +179,7 @@
 			children = (
 				1338069A24389E540014A600 /* YandexAPIKey */,
 				13CA803924502B12006ED889 /* UIAlertControllerBuilder.swift */,
+				13FC27B22451A64400EB5A0D /* Globals.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -177,7 +187,6 @@
 		134356B3244EFDC100026355 /* StarsRating */ = {
 			isa = PBXGroup;
 			children = (
-				134356AF244EF92600026355 /* StarsRatingView.xib */,
 				134356B1244EFB6000026355 /* StarsRatingView.swift */,
 				134356B4244EFDDB00026355 /* StarsRatingViewDelegate.swift */,
 			);
@@ -209,6 +218,14 @@
 				1327112724334D82009005C0 /* LogInSignUp.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		13FC27B42451A6B700EB5A0D /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				13FC27B52451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 		65A90629605D3ADB57034631 /* Frameworks */ = {
@@ -311,7 +328,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				134356B0244EF92600026355 /* StarsRatingView.xib in Resources */,
 				1338069B24389E540014A600 /* YandexAPIKey in Resources */,
 				1327113124334D83009005C0 /* LaunchScreen.storyboard in Resources */,
 				13FC27B02450431A00EB5A0D /* Main.storyboard in Resources */,
@@ -384,8 +400,12 @@
 				1327112624334D82009005C0 /* LogInViewController.swift in Sources */,
 				1327112224334D82009005C0 /* AppDelegate.swift in Sources */,
 				13A56C53245038E000584BDD /* UITextFieldExtension.swift in Sources */,
+				13FC27B32451A64400EB5A0D /* Globals.swift in Sources */,
+				13FC27BA2451C78B00EB5A0D /* PlaceDetailViewController.swift in Sources */,
 				1327112C24334D82009005C0 /* Pinny_iOS.xcdatamodeld in Sources */,
 				1327112424334D82009005C0 /* SceneDelegate.swift in Sources */,
+				13FC27B62451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift in Sources */,
+				13EE6AF82451C89B00B33A34 /* PlacesListViewController.swift in Sources */,
 				134356B8244EFF0800026355 /* AcceptButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,19 +8,14 @@
 
 import UIKit
 
-class StarsRatingView: UIView {
-    
-    // MARK: - Outlets
-    @IBOutlet var contentView: UIView!
-    @IBOutlet weak var starsStackView: UIStackView!
-    @IBOutlet weak var firstButton: UIButton!
-    @IBOutlet weak var secondButton: UIButton!
-    @IBOutlet weak var thirdButton: UIButton!
-    @IBOutlet weak var fourthButton: UIButton!
-    @IBOutlet weak var fifthButton: UIButton!
-    
+
+@IBDesignable
+class StarsRatingView: UIStackView {
     // MARK: - Variables
     weak var delegate: StarsRatingViewDelegate? = nil
+    private var buttonsArr = [UIButton]()
+    private var innerLeadingConstraint = NSLayoutConstraint()
+    private var innerTrailingConstraint = NSLayoutConstraint()
     
     // MARK: - Inits
     override init(frame: CGRect) {
@@ -28,39 +23,74 @@ class StarsRatingView: UIView {
         commonInit()
     }
     
-    required init?(coder: NSCoder) {
+    required init(coder: NSCoder) {
         super.init(coder: coder)
         commonInit()
     }
     
     private func commonInit() {
-        Bundle.main.loadNibNamed("StarsRatingView", owner: self, options: nil)
-        addSubview(contentView)
-        contentView.frame = self.bounds
-        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        let configuration = UIImage.SymbolConfiguration(pointSize: 25)
+        let starImage = UIImage(systemName: "star", withConfiguration: configuration)!
+        let starFilledImage = UIImage(systemName: "star.fill", withConfiguration: configuration)!
+        self.axis = .horizontal
+        self.distribution = .equalSpacing
+        self.spacing = 8
+        for button in buttonsArr {
+            self.removeArrangedSubview(button)
+        }
+        removeConstraints([innerLeadingConstraint, innerTrailingConstraint])
+        buttonsArr = []
+        for _ in 0 ..< 5 {
+            let button = UIButton()
+            button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+            button.addTarget(self, action: #selector(self.buttonPressed), for: .touchUpInside)
+            button.addTarget(self, action: #selector(self.buttonIsPressedNow), for: .touchDown)
+            button.addTarget(self, action: #selector(self.buttonPressDissmised), for: .touchUpOutside)
+            button.setImage(starImage, for: .normal)
+            button.setImage(starFilledImage, for: .selected)
+            button.setImage(starFilledImage, for: [.selected, .highlighted])
+            addArrangedSubview(button)
+            buttonsArr.append(button)
+        }
+        innerLeadingConstraint = NSLayoutConstraint(item: buttonsArr[0], attribute: .leading, relatedBy: .greaterThanOrEqual, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+        innerTrailingConstraint = NSLayoutConstraint(item: buttonsArr.last!, attribute: .trailing, relatedBy: .greaterThanOrEqual, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
+        self.addConstraints([innerLeadingConstraint, innerTrailingConstraint])
+        fillStars(to: self.rating)
     }
-
+    
+    // MARK: - Inspectables
+    @IBInspectable var rating: UInt = 0 {
+        didSet {
+            fillStars(to: rating)
+        }
+    }
     
     // MARK: - Actions
-    
-    @IBAction func firstButtonPressed(_ sender: Any) {
-        delegate?.ratingDidChange(self, newRating: 1)
+    @objc func buttonPressed(_ button: UIButton) {
+        guard let idx = buttonsArr.firstIndex(of: button) else {
+            fatalError("Unknown button was pressed")
+        }
+        self.rating = UInt(idx + 1)
+        self.delegate?.ratingDidChange(self, newRating: self.rating)
     }
     
-    @IBAction func secondButtonPressed(_ sender: Any) {
-        delegate?.ratingDidChange(self, newRating: 2)
+    @objc func buttonIsPressedNow(_ button: UIButton) {
+        guard let idx = buttonsArr.firstIndex(of: button) else {
+            fatalError("Unknown button was pressed")
+        }
+        let rating = UInt(idx + 1)
+        self.fillStars(to: rating)
     }
     
-    @IBAction func thirdButtonPressed(_ sender: Any) {
-        delegate?.ratingDidChange(self, newRating: 3)
+    @objc func buttonPressDissmised(_ button: UIButton) {
+        self.fillStars(to: self.rating)
     }
     
-    @IBAction func fourthButtonPressed(_ sender: Any) {
-        delegate?.ratingDidChange(self, newRating: 4)
-    }
-    
-    @IBAction func fifthButtonPressed(_ sender: Any) {
-        delegate?.ratingDidChange(self, newRating: 5)
+    // MARK: - Fill stars before tapped
+    private func fillStars(to newRating: UInt) {
+        for (i, button) in buttonsArr.enumerated() {
+            button.isSelected = i < newRating
+        }
     }
     
 }

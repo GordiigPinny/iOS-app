@@ -15,8 +15,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0qA-5z-7uB">
-                                <rect key="frame" x="8" y="349" width="359" height="114"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0qA-5z-7uB">
+                                <rect key="frame" x="8" y="347" width="359" height="118"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя пользователя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Klb-wW-U0m">
                                         <rect key="frame" x="0.0" y="0.0" width="359" height="34"/>
@@ -29,16 +29,24 @@
                                         <textInputTraits key="textInputTraits" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S01-Tk-aeq">
-                                        <rect key="frame" x="0.0" y="84" width="359" height="30"/>
+                                        <rect key="frame" x="154" y="84" width="51" height="34"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                         <state key="normal" title="Вход"/>
                                         <connections>
                                             <action selector="logInButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eb7-8L-Ydy"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Klb-wW-U0m" secondAttribute="trailing" id="4R9-nP-Vd7"/>
+                                    <constraint firstItem="ILi-ix-mfc" firstAttribute="leading" secondItem="0qA-5z-7uB" secondAttribute="leading" id="KZS-35-kvE"/>
+                                    <constraint firstItem="Klb-wW-U0m" firstAttribute="leading" secondItem="0qA-5z-7uB" secondAttribute="leading" id="nWt-vw-kpB"/>
+                                    <constraint firstAttribute="trailing" secondItem="ILi-ix-mfc" secondAttribute="trailing" id="yXe-4n-BmL"/>
+                                </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0os-P6-JlY">
-                                <rect key="frame" x="141.66666666666666" y="740" width="92" height="30"/>
+                                <rect key="frame" x="133.66666666666666" y="736" width="108" height="34"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                 <state key="normal" title="Регистрация"/>
                                 <connections>
                                     <segue destination="c1a-Wh-llH" kind="show" id="02n-zZ-Kx1"/>
@@ -75,8 +83,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tmS-JH-5cM">
-                                <rect key="frame" x="8" y="307" width="359" height="198"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tmS-JH-5cM">
+                                <rect key="frame" x="8" y="305" width="359" height="202"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя пользователя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ynm-cS-PyJ">
                                         <rect key="frame" x="0.0" y="0.0" width="359" height="34"/>
@@ -99,13 +107,24 @@
                                         <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="etX-8B-UkM">
-                                        <rect key="frame" x="0.0" y="168" width="359" height="30"/>
+                                        <rect key="frame" x="97" y="168" width="165" height="34"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                         <state key="normal" title="Зарегистрироваться"/>
                                         <connections>
                                             <action selector="signUpButtonPressed:" destination="c1a-Wh-llH" eventType="touchUpInside" id="nMs-6H-LpV"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="wJ4-Eq-1kr" secondAttribute="trailing" id="1z5-ls-stz"/>
+                                    <constraint firstItem="ynm-cS-PyJ" firstAttribute="leading" secondItem="tmS-JH-5cM" secondAttribute="leading" id="FD9-Rs-4JU"/>
+                                    <constraint firstItem="nvu-Lr-0gb" firstAttribute="leading" secondItem="tmS-JH-5cM" secondAttribute="leading" id="Mqz-Az-Pwg"/>
+                                    <constraint firstItem="WoG-fc-eao" firstAttribute="leading" secondItem="tmS-JH-5cM" secondAttribute="leading" id="NFA-9F-N0K"/>
+                                    <constraint firstAttribute="trailing" secondItem="ynm-cS-PyJ" secondAttribute="trailing" id="S75-9c-gtC"/>
+                                    <constraint firstAttribute="trailing" secondItem="WoG-fc-eao" secondAttribute="trailing" id="aC8-wE-EiE"/>
+                                    <constraint firstAttribute="trailing" secondItem="nvu-Lr-0gb" secondAttribute="trailing" id="ieH-SB-6vB"/>
+                                    <constraint firstItem="wJ4-Eq-1kr" firstAttribute="leading" secondItem="tmS-JH-5cM" secondAttribute="leading" id="ix3-Sl-SjP"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

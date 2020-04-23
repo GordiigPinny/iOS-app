@@ -14,14 +14,98 @@
                     <view key="view" contentMode="scaleToFill" id="ZMB-vs-PWi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4ta-ES-f6L">
+                                <rect key="frame" x="8" y="410" width="398" height="76"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите приблизительное название места" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gLA-jb-J1c">
+                                        <rect key="frame" x="0.0" y="0.0" width="398" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vgw-oX-1GD">
+                                        <rect key="frame" x="168.5" y="42" width="61" height="34"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                        <state key="normal" title="Найти"/>
+                                        <connections>
+                                            <segue destination="2Z6-P0-HKq" kind="show" id="X9z-NC-e1v"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="gLA-jb-J1c" firstAttribute="leading" secondItem="4ta-ES-f6L" secondAttribute="leading" id="Chp-oJ-PXB"/>
+                                    <constraint firstAttribute="trailing" secondItem="gLA-jb-J1c" secondAttribute="trailing" id="G6R-Z1-Vu0"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="4ta-ES-f6L" firstAttribute="centerY" secondItem="ZMB-vs-PWi" secondAttribute="centerY" id="5vw-7v-FEM"/>
+                            <constraint firstItem="Lbv-CI-Osw" firstAttribute="trailing" secondItem="4ta-ES-f6L" secondAttribute="trailing" constant="8" id="B4p-hv-pDZ"/>
+                            <constraint firstItem="4ta-ES-f6L" firstAttribute="leading" secondItem="Lbv-CI-Osw" secondAttribute="leading" constant="8" id="LAK-4O-oHR"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Lbv-CI-Osw"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Поиск" id="kUN-BM-ZY9"/>
+                    <navigationItem key="navigationItem" title="Поиск" largeTitleDisplayMode="always" id="kUN-BM-ZY9"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TPU-2l-dcu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1830" y="-352"/>
+        </scene>
+        <!--Найдено для: ""-->
+        <scene sceneID="cEQ-b4-QYV">
+            <objects>
+                <viewController id="2Z6-P0-HKq" customClass="PlacesListViewController" customModule="Pinny_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Sy4-8v-2oY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dds-WE-MzD">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PlacesSearchCell" textLabel="pCV-1a-YbR" style="IBUITableViewCellStyleDefault" id="dgb-lk-p4W" customClass="PlaceSearchTableViewCell" customModule="Pinny_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dgb-lk-p4W" id="3m0-M0-lOv">
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Название места" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pCV-1a-YbR">
+                                                    <rect key="frame" x="20" y="0.0" width="355" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Xcc-5A-sDS" kind="show" id="SrU-XK-Vpa"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="c3D-mG-LAl" firstAttribute="trailing" secondItem="Dds-WE-MzD" secondAttribute="trailing" id="5mH-uH-rEc"/>
+                            <constraint firstItem="Dds-WE-MzD" firstAttribute="leading" secondItem="c3D-mG-LAl" secondAttribute="leading" id="Ujx-sc-xPd"/>
+                            <constraint firstItem="c3D-mG-LAl" firstAttribute="bottom" secondItem="Dds-WE-MzD" secondAttribute="bottom" id="WdP-Us-f2w"/>
+                            <constraint firstItem="Dds-WE-MzD" firstAttribute="top" secondItem="c3D-mG-LAl" secondAttribute="top" id="eDv-dw-eQt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="c3D-mG-LAl"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Найдено для: &quot;&quot;" id="zTj-0d-8eT">
+                        <barButtonItem key="backBarButtonItem" title="Поиск" id="ry4-KB-r15"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Dds-WE-MzD" id="vXf-12-GU9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WAW-ba-orp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2677" y="-352"/>
         </scene>
         <!--Поиск-->
         <scene sceneID="H7V-jD-AxH">
@@ -48,6 +132,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="sbS-Da-sMp" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SjE-6Y-uOc">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -94,6 +179,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hcL-mU-h3W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="921.73913043478262" y="315.40178571428572"/>
+        </scene>
+        <!--Название места-->
+        <scene sceneID="Ofg-lg-MTM">
+            <objects>
+                <viewController id="Xcc-5A-sDS" customClass="PlaceDetailViewController" customModule="Pinny_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="x1K-yG-Bcw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="top" spacing="73" translatesAutoresizingMaskIntoConstraints="NO" id="qQi-ay-EaI">
+                                <rect key="frame" x="129" y="241" width="157" height="20.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McQ-yw-nUa">
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txG-ZN-M3y">
+                                        <rect key="frame" x="115" y="0.0" width="42" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BGp-RB-MEv" customClass="StarsRatingView" customModule="Pinny_iOS" customModuleProvider="target">
+                                <rect key="frame" x="70" y="425.5" width="274.5" height="45.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="BGp-RB-MEv" firstAttribute="centerY" secondItem="x1K-yG-Bcw" secondAttribute="centerY" id="4V4-6q-Qtg"/>
+                            <constraint firstItem="BGp-RB-MEv" firstAttribute="centerX" secondItem="x1K-yG-Bcw" secondAttribute="centerX" id="ARn-zk-Ayj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ke8-mH-2yl"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Название места" largeTitleDisplayMode="never" id="vC8-bE-V7c"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fgU-E0-lDR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3532" y="-352"/>
         </scene>
     </scenes>
     <resources>
