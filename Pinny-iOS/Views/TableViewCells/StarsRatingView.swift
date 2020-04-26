@@ -29,7 +29,7 @@ class StarsRatingView: UIStackView {
     }
     
     private func commonInit() {
-        let configuration = UIImage.SymbolConfiguration(pointSize: 25)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 20)
         let starImage = UIImage(systemName: "star", withConfiguration: configuration)!
         let starFilledImage = UIImage(systemName: "star.fill", withConfiguration: configuration)!
         self.axis = .horizontal
@@ -92,5 +92,12 @@ class StarsRatingView: UIStackView {
             button.isSelected = i < newRating
         }
     }
+    
+}
+
+
+// MARK: - Delegate protocol
+protocol StarsRatingViewDelegate: class {
+    func ratingDidChange(_ starsRatingView: StarsRatingView, newRating rating: UInt)
     
 }

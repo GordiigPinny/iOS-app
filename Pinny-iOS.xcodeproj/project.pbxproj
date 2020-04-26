@@ -17,8 +17,7 @@
 		1327113F24334EBE009005C0 /* Pinny_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327113E24334EBE009005C0 /* Pinny_iOSTests.swift */; };
 		1338069B24389E540014A600 /* YandexAPIKey in Resources */ = {isa = PBXBuildFile; fileRef = 1338069A24389E540014A600 /* YandexAPIKey */; };
 		134356B2244EFB6000026355 /* StarsRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B1244EFB6000026355 /* StarsRatingView.swift */; };
-		134356B5244EFDDB00026355 /* StarsRatingViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B4244EFDDB00026355 /* StarsRatingViewDelegate.swift */; };
-		134356B8244EFF0800026355 /* AcceptButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B7244EFF0800026355 /* AcceptButton.swift */; };
+		134356B8244EFF0800026355 /* AcceptButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B7244EFF0800026355 /* AcceptButtonView.swift */; };
 		134356BA245029EF00026355 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B9245029EF00026355 /* UIViewControllerExt.swift */; };
 		13A56C5124502F1600584BDD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A56C5024502F1600584BDD /* SignUpViewController.swift */; };
 		13A56C53245038E000584BDD /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A56C52245038E000584BDD /* UITextFieldExtension.swift */; };
@@ -56,8 +55,7 @@
 		1327114024334EBE009005C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1338069A24389E540014A600 /* YandexAPIKey */ = {isa = PBXFileReference; lastKnownFileType = text; path = YandexAPIKey; sourceTree = "<group>"; };
 		134356B1244EFB6000026355 /* StarsRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsRatingView.swift; sourceTree = "<group>"; };
-		134356B4244EFDDB00026355 /* StarsRatingViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsRatingViewDelegate.swift; sourceTree = "<group>"; };
-		134356B7244EFF0800026355 /* AcceptButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptButton.swift; sourceTree = "<group>"; };
+		134356B7244EFF0800026355 /* AcceptButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptButtonView.swift; sourceTree = "<group>"; };
 		134356B9245029EF00026355 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		13A56C5024502F1600584BDD /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		13A56C52245038E000584BDD /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
@@ -114,13 +112,13 @@
 		1327112024334D82009005C0 /* Pinny-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				13FC27B12450444900EB5A0D /* Storyboards */,
 				134356BB245029F800026355 /* Extensions */,
 				1338069924389E3D0014A600 /* Utils */,
 				1327114924335CAE009005C0 /* Views */,
 				1327114824335C93009005C0 /* Services */,
 				1327114724335C7F009005C0 /* Models */,
 				1327114624335C75009005C0 /* VCs */,
+				13FC27B12450444900EB5A0D /* Storyboards */,
 				1327112124334D82009005C0 /* AppDelegate.swift */,
 				1327112324334D82009005C0 /* SceneDelegate.swift */,
 				1327112D24334D83009005C0 /* Assets.xcassets */,
@@ -168,8 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				13FC27B42451A6B700EB5A0D /* TableViewCells */,
-				134356B6244EFEF000026355 /* AcceptButton */,
-				134356B3244EFDC100026355 /* StarsRating */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -182,23 +178,6 @@
 				13FC27B22451A64400EB5A0D /* Globals.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		134356B3244EFDC100026355 /* StarsRating */ = {
-			isa = PBXGroup;
-			children = (
-				134356B1244EFB6000026355 /* StarsRatingView.swift */,
-				134356B4244EFDDB00026355 /* StarsRatingViewDelegate.swift */,
-			);
-			path = StarsRating;
-			sourceTree = "<group>";
-		};
-		134356B6244EFEF000026355 /* AcceptButton */ = {
-			isa = PBXGroup;
-			children = (
-				134356B7244EFF0800026355 /* AcceptButton.swift */,
-			);
-			path = AcceptButton;
 			sourceTree = "<group>";
 		};
 		134356BB245029F800026355 /* Extensions */ = {
@@ -224,6 +203,8 @@
 			isa = PBXGroup;
 			children = (
 				13FC27B52451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift */,
+				134356B1244EFB6000026355 /* StarsRatingView.swift */,
+				134356B7244EFF0800026355 /* AcceptButtonView.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -392,7 +373,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				134356B5244EFDDB00026355 /* StarsRatingViewDelegate.swift in Sources */,
 				134356B2244EFB6000026355 /* StarsRatingView.swift in Sources */,
 				134356BA245029EF00026355 /* UIViewControllerExt.swift in Sources */,
 				13CA803A24502B12006ED889 /* UIAlertControllerBuilder.swift in Sources */,
@@ -406,7 +386,7 @@
 				1327112424334D82009005C0 /* SceneDelegate.swift in Sources */,
 				13FC27B62451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift in Sources */,
 				13EE6AF82451C89B00B33A34 /* PlacesListViewController.swift in Sources */,
-				134356B8244EFF0800026355 /* AcceptButton.swift in Sources */,
+				134356B8244EFF0800026355 /* AcceptButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

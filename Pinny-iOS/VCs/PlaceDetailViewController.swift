@@ -12,22 +12,19 @@ class PlaceDetailViewController: UIViewController {
     
     
     @IBOutlet weak var starsRatingView: StarsRatingView!
+    @IBOutlet weak var acceptButtonVew: AcceptButtonView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+
+extension PlaceDetailViewController: AcceptButtonDelegate {
+    func acceptButtonStateChanged(_ buttonView: AcceptButtonView, newState: Bool) -> Bool {
+        return true
     }
-    */
-
 }
