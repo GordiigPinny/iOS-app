@@ -11,7 +11,7 @@ import UIKit
 
 class PlaceSearchTableViewCell: UITableViewCell {
     // Reuse id
-    static let id = Globals.palcesSerachTableViewCellId
+    static let id = "PlacesSearchCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()

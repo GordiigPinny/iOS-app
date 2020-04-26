@@ -1,4 +1,91 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Accept" representedClassName="Accept" syncable="YES">
+        <attribute name="createdDt" attributeType="Date" defaultDateTimeInterval="609586560" usesScalarValueType="NO"/>
+        <attribute name="deletedFlg" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="createdBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User"/>
+        <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="accepts" inverseEntity="Place"/>
+    </entity>
+    <entity name="Achievement" representedClassName="Achievement" syncable="YES">
+        <attribute name="createdDt" attributeType="Date" defaultDateTimeInterval="609586200" usesScalarValueType="NO"/>
+        <attribute name="deletedFlg" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="descr" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" minValueString="0" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="picture" maxCount="1" deletionRule="Nullify" destinationEntity="ImageFile"/>
+    </entity>
+    <entity name="ImageFile" representedClassName="ImageFile" syncable="YES">
+        <attribute name="createdDt" attributeType="Date" defaultDateTimeInterval="609585840" usesScalarValueType="NO"/>
+        <attribute name="deletedFlg" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" minValueString="0" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="image" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="objectId" attributeType="Integer 64" minValueString="0" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="objectType" attributeType="String"/>
+        <relationship name="createdBy" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="uploadedImages" inverseEntity="User"/>
+    </entity>
+    <entity name="Pin" representedClassName="Pin" syncable="YES">
+        <attribute name="createdDt" attributeType="Date" defaultDateTimeInterval="609586260" usesScalarValueType="NO"/>
+        <attribute name="deletedFlg" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="descr" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" minValueString="0" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="price" attributeType="Integer 32" minValueString="0" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="pTypeAsString" attributeType="String"/>
+        <relationship name="picture" maxCount="1" deletionRule="Nullify" destinationEntity="ImageFile"/>
+    </entity>
+    <entity name="Place" representedClassName="Place" syncable="YES">
+        <attribute name="address" attributeType="String"/>
+        <attribute name="checkedByModerator" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="createdDt" attributeType="Date" defaultDateTimeInterval="609586500" usesScalarValueType="NO"/>
+        <attribute name="deletedFlg" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="Integer 64" minValueString="0" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="lat" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="long" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="accepts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Accept" inverseName="place" inverseEntity="Accept"/>
+        <relationship name="pictures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlaceImage" inverseName="place" inverseEntity="PlaceImage"/>
+        <relationship name="ratings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rating" inverseName="place" inverseEntity="Rating"/>
+    </entity>
+    <entity name="PlaceImage" representedClassName="PlaceImage" syncable="YES">
+        <attribute name="createdDt" attributeType="Date" defaultDateTimeInterval="609587100" usesScalarValueType="NO"/>
+        <attribute name="deletedFlg" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="Integer 64" minValueString="0" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="createdBy" maxCount="1" deletionRule="Nullify" destinationEntity="User"/>
+        <relationship name="imageFile" maxCount="1" deletionRule="Nullify" destinationEntity="ImageFile"/>
+        <relationship name="place" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="pictures" inverseEntity="Place"/>
+    </entity>
+    <entity name="Rating" representedClassName="Rating" syncable="YES">
+        <attribute name="createdDt" attributeType="Date" defaultDateTimeInterval="609586980" usesScalarValueType="NO"/>
+        <attribute name="deletedFlg" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="Integer 64" minValueString="0" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rating" attributeType="Integer 16" minValueString="0" maxValueString="5" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="createdBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User"/>
+        <relationship name="place" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="ratings" inverseEntity="Place"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="createdDt" attributeType="Date" defaultDateTimeInterval="609586680" usesScalarValueType="NO"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="money" attributeType="Integer 32" minValueString="0" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="profileId" attributeType="Integer 64" minValueString="0" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rating" attributeType="Integer 32" minValueString="0" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="username" optional="YES" attributeType="String"/>
+        <relationship name="achievements" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Achievement"/>
+        <relationship name="avatar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ImageFile"/>
+        <relationship name="geopinSprite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pin"/>
+        <relationship name="pinSprite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pin"/>
+        <relationship name="unlockedPins" toMany="YES" deletionRule="Nullify" destinationEntity="Pin"/>
+        <relationship name="uploadedImages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ImageFile" inverseName="createdBy" inverseEntity="ImageFile"/>
+    </entity>
+    <elements>
+        <element name="Accept" positionX="99" positionY="180" width="128" height="118"/>
+        <element name="Achievement" positionX="81" positionY="126" width="128" height="133"/>
+        <element name="ImageFile" positionX="72" positionY="99" width="128" height="148"/>
+        <element name="Pin" positionX="90" positionY="153" width="128" height="163"/>
+        <element name="Place" positionX="108" positionY="189" width="128" height="208"/>
+        <element name="PlaceImage" positionX="45" positionY="198" width="128" height="133"/>
+        <element name="Rating" positionX="54" positionY="135" width="128" height="133"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="238"/>
+    </elements>
 </model>
