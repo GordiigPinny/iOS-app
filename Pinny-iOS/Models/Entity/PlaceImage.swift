@@ -7,33 +7,45 @@
 //
 
 import Foundation
+import ObjectMapper
 
 
 final class PlaceImage: APIEntity {
-    typealias ListDto = PlaceImageListDto
-    typealias DetailDto = PlaceImageDetailDto
-    
     // MARK: - Variables
     var id: Int?
     var picId: Int
     var placeId: Int
-    var createdBy: Int?
+    var createdById: Int?
     var deletedFlg: Bool?
     
     var isDetailed: Bool = false
-    var detailedOnListDto: Bool = true
+    
+    // MARK: - Manager
+    class var manager: PlaceImageManager {
+        return PlaceImageManager.instance
+    }
     
     // MARK: - Inits
-    init(picId: Int, placeId: Int, createdBy: Int, deletedFlg: Bool = false, id: Int? = nil) {
+    init(id: Int? = nil, picId: Int, placeId: Int, createdById: Int? = nil, deletedFlg: Bool? = nil) {
         self.id = id
         self.picId = picId
         self.placeId = placeId
-        self.createdBy = createdBy
+        self.createdById = createdById
         self.deletedFlg = deletedFlg
     }
     
-    class var manager: PlaceImageManager {
-        return PlaceImageManager.instance
+    // MARK: - Object mapper
+    convenience init?(map: Map) {
+        self.init(JSON: map.JSON, context: map.context)
+    }
+    
+    func mapping(map: Map) {
+        id          <- map["id"]
+        picId       <- map["pic_id"]
+        placeId     <- map["place_id"]
+        createdById <- map["created_by"]
+        deletedFlg  <- map["deleted_flg"]
+        isDetailed = true
     }
     
 }

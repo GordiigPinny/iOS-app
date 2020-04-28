@@ -7,12 +7,10 @@
 //
 
 import Foundation
+import ObjectMapper
 
 
-final class Accept: APIEntity {    
-    typealias ListDto = AcceptListDto
-    typealias DetailDto = AcceptDetailDto
-    
+final class Accept: APIEntity {
     // MARK: - Variables
     var id: Int?
     var placeId: Int
@@ -20,19 +18,32 @@ final class Accept: APIEntity {
     var deletedFlg: Bool
     
     var isDetailed: Bool = false
-    var detailedOnListDto: Bool = true
+    
+    // MARK: - Manager
+    class var manager: AcceptManager {
+        AcceptManager.instance
+    }
     
     // MARK: - inits
-    init(placeId: Int, createdById: Int, deletedFlg: Bool = false, id: Int? = nil) {
+    init(id: Int? = nil, placeId: Int, createdById: Int, deletedFlg: Bool) {
         self.id = id
         self.placeId = placeId
         self.createdById = createdById
         self.deletedFlg = deletedFlg
     }
     
-    class var manager: AcceptManager {
-        AcceptManager.instance
+    
+    // MARK: - Object mapper
+    convenience init?(map: Map) {
+        self.init(JSON: map.JSON, context: map.context)
     }
     
+    func mapping(map: Map) {
+        id              <- map["id"]
+        placeId         <- map["place_id"]
+        createdById     <- map["created_by"]
+        deletedFlg      <- map["deletedFlg"]
+        isDetailed = true
+    }
     
 }

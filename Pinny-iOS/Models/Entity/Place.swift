@@ -7,12 +7,10 @@
 //
 
 import Foundation
+import ObjectMapper
 
 
 final class Place: APIEntity {
-    typealias ListDto = PlaceListDto
-    typealias DetailDto = PlaceDetailDto
-    
     // MARK: - Variables
     var id: Int?
     var name: String
@@ -28,10 +26,14 @@ final class Place: APIEntity {
     var isAcceptedByMe: Bool?
     
     var isDetailed: Bool = false
-    var detailedOnListDto: Bool = false
+    
+    // MARK: - Manager
+    static var manager: PlaceManager {
+        PlaceManager.instance
+    }
     
     // MARK: - Inits
-    internal init(id: Int? = nil, name: String, lat: Double, long: Double, address: String, checkedByModerator: Bool, rating: Double, acceptType: String, createdById: Int, deletedFlg: Bool, myRating: Int? = nil, isAcceptedByMe: Bool? = nil) {
+    init(id: Int? = nil, name: String, lat: Double, long: Double, address: String, checkedByModerator: Bool, rating: Double, acceptType: String, createdById: Int, deletedFlg: Bool, myRating: Int? = nil, isAcceptedByMe: Bool? = nil) {
         self.id = id
         self.name = name
         self.lat = lat
@@ -46,8 +48,34 @@ final class Place: APIEntity {
         self.isAcceptedByMe = isAcceptedByMe
     }
     
-    static var manager: PlaceManager {
-        PlaceManager.instance
+    // MARK: - Object mapper
+    convenience init?(map: Map) {
+        self.init(JSON: map.JSON, context: map.context)
+    }
+    
+    func mapping(map: Map) {
+        guard let context = map.context as? ContextForMapFromRequest else {
+            fatalError("Context has wrong type")
+        }
+        if context.dtoType == .page {
+            fatalError("Can't map page dto to single entity")
+        }
+        
+        id                  <- map["id"]
+        name                <- map["name"]
+        lat                 <- map["latitude"]
+        long                <- map["longitude"]
+        address             <- map["address"]
+        checkedByModerator <- map["checked_by_moderator"]
+        rating              <- map["rating"]
+        acceptType          <- map["accept_type"]
+        createdById         <- map["created_by"]
+        deletedFlg          <- map["deleted_flg"]
+        if context.dtoType == .detail {
+            myRating            <- map["my_rating"]
+            isAcceptedByMe      <- map["is_accepted_by_me"]
+            isDetailed = true
+        }
     }
     
 }

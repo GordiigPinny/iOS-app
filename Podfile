@@ -12,4 +12,6 @@ target 'Pinny-iOS' do
     pod ‘YandexMapKitPlaces’, ’3.5’ 
     pod ‘YandexMapKitSearch’, ’3.5’ 
     pod ‘YandexMapKitTransport’, ’3.5’
+    # ObjectMapper
+    pod 'ObjectMapper', '~> 3.4'
 end

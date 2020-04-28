@@ -12,8 +12,9 @@ import Combine
 
 // MARK: - Protocol
 protocol APIEntityManager: class {
-    associatedtype Entity
+    associatedtype Entity: APIEntity
     associatedtype Requester: ObjectRequester where Requester.Entity == Self.Entity
+    typealias ApiError = Requester.ApiError
     
     static var instance: Self { get }
     
@@ -58,10 +59,9 @@ extension APIEntityManager {
                 case .finished:
                     break
                 }
-            }) { dto in
-                let entity = dto.toEntity()
-                self.entities.append(entity)
-                onSuccess?(entity)
+            }) { newEntity in
+                self.entities.append(newEntity)
+                onSuccess?(newEntity)
             }
     }
     
@@ -81,9 +81,8 @@ extension APIEntityManager {
                 case .finished:
                     break
                 }
-            }) { dto in
-                let newEntity = dto.toEntity()
-                self.replace(entity, with: newEntity)
+            }) { newEntity in
+                self.replace(newEntity, with: newEntity)
                 onSuccess?(newEntity)
             }
     }
@@ -97,9 +96,8 @@ extension APIEntityManager {
                 case .finished:
                     break
                 }
-            }) { dto in
-                let newEntity = dto.toEntity()
-                self.replace(entity, with: newEntity)
+            }) { newEntity in
+                self.replace(newEntity, with: newEntity)
                 onSuccess?(newEntity)
             }
     }

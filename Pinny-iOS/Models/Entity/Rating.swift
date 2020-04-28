@@ -7,12 +7,10 @@
 //
 
 import Foundation
+import ObjectMapper
 
 
 final class Rating: APIEntity {
-    typealias ListDto = RatingListDto
-    typealias DetailDto = RatingDetailDto
-    
     // MARK: - Variables
     var id: Int?
     var rating: Int
@@ -21,10 +19,13 @@ final class Rating: APIEntity {
     var deletedFlg: Bool
     var isDetailed: Bool = false
     
-    var detailedOnListDto: Bool = true
+    // MARK: - Manager
+    class var manager: RatingManager {
+        RatingManager.instance
+    }
     
-    // MARK: - Inits
-    init(rating: Int, placeId: Int, createdById: Int, deletedFlg: Bool = false, id: Int? = nil) {
+    // MARK: - Init
+    init(id: Int? = nil, rating: Int, placeId: Int, createdById: Int, deletedFlg: Bool) {
         self.id = id
         self.rating = rating
         self.placeId = placeId
@@ -32,9 +33,18 @@ final class Rating: APIEntity {
         self.deletedFlg = deletedFlg
     }
     
-    // MARK: - Manager
-    class var manager: RatingManager {
-        RatingManager.instance
+    // MARK: - Object mapper
+    convenience init?(map: Map) {
+        self.init(JSON: map.JSON, context: map.context)
+    }
+    
+    func mapping(map: Map) {
+        id              <- map["id"]
+        rating          <- map["rating"]
+        placeId         <- map["place_id"]
+        createdById     <- map["created_by"]
+        deletedFlg      <- map["deletedFlg"]
+        isDetailed = true
     }
    
 }

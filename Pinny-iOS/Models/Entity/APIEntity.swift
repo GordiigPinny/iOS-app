@@ -7,16 +7,20 @@
 //
 
 import Foundation
+import ObjectMapper
 
 
 // MARK: - APIEntity protocol
-protocol APIEntity: ConvertableToDto {
+protocol APIEntity: Mappable {
     associatedtype ID: Equatable
     associatedtype Manager: APIEntityManager where Manager.Entity == Self
     
     var id: ID? { get set }
     
+    var isDetailed: Bool { get set }
+    
     static var manager: Manager { get }
     
 }
+
 

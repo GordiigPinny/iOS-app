@@ -8,19 +8,20 @@
 
 import Foundation
 import Combine
+import ObjectMapper
 
 
 // MARK: - ApiError enum
-enum ApiError: Error, LocalizedError {
+enum EntityApiError<Entity: APIEntity>: Error, LocalizedError {
     case requestError(err: URLRequester.RequestError)
-    case decodeError(err: DecodingError)
+    case decodeError(type: Entity.Type)
     
     var localizedDescription: String {
         switch self {
         case .requestError(let err):
             return err.localizedDescription
-        case .decodeError(let err):
-            return err.localizedDescription
+        case .decodeError(let type):
+            return "Error on decoding \(type.self) instance"
         }
     }
     
@@ -38,31 +39,40 @@ enum RequestType<T: Equatable> {
 }
 
 
+// MARK: - Context for mappable
+struct ContextForMapFromRequest: MapContext {
+    enum DtoType {
+        case list
+        case detail
+        case page
+    }
+    
+    var dtoType: DtoType
+    
+}
+
+
 // MARK: - ObjectRequester protocol
 protocol ObjectRequester {
     // Types
     associatedtype Entity: APIEntity
-    typealias ListDto = Entity.ListDto
-    typealias DetailDto = Entity.DetailDto
-    typealias PgDto = Entity.PgDto
+    typealias ApiError = EntityApiError<Entity>
     
     // Variables
     var host: URL { get }
-    var hostPostfix: String { get }
+    var resource: String { get }
     func urlFor(_ requestType: RequestType<Entity.ID>) -> URL
     
     // Get methods
-    func getList() -> AnyPublisher<[ListDto], ApiError>
-    func getPaginated(limit: UInt, offset: UInt) -> AnyPublisher<PgDto, ApiError>
-    func getObject(_ id: Entity.ID) -> AnyPublisher<DetailDto, ApiError>
+    func getList() -> AnyPublisher<[Entity], ApiError>
+    func getPaginated(limit: UInt, offset: UInt) -> AnyPublisher<Entity, ApiError>
+    func getObject(_ id: Entity.ID) -> AnyPublisher<Entity, ApiError>
     
     // Post methods
-    func postObject(entity: Entity) -> AnyPublisher<ListDto, ApiError>
-    func postObject(dto: DetailDto) -> AnyPublisher<ListDto, ApiError>
+    func postObject(entity: Entity) -> AnyPublisher<Entity, ApiError>
     
     // Patch methods
-    func patchObject(_ id: Entity.ID, entity: Entity) -> AnyPublisher<DetailDto, ApiError>
-    func patchObject(_ id: Entity.ID, dto: DetailDto) -> AnyPublisher<DetailDto, ApiError>
+    func patchObject(_ id: Entity.ID, entity: Entity) -> AnyPublisher<Entity, ApiError>
     
     // Delete methods
     func deleteObject(_ id: Entity.ID) -> AnyPublisher<Bool, ApiError>
@@ -73,7 +83,7 @@ protocol ObjectRequester {
 extension ObjectRequester {
     // URL getter
     func urlFor(_ requestType: RequestType<Entity.ID>) -> URL {
-        var ans = host.appendingPathComponent(hostPostfix)
+        var ans = host.appendingPathComponent(resource)
         switch requestType {
         case .getList, .postObject:
             break
@@ -87,122 +97,104 @@ extension ObjectRequester {
         return ans
     }
     
+    // Helpers
+    fileprivate func mapError(_ err: Error) -> ApiError {
+        if let newErr = err as? URLRequester.RequestError {
+            return ApiError.requestError(err: newErr)
+        }
+        if let newErr = err as? ApiError {
+            return newErr
+        }
+        return ApiError.requestError(err: URLRequester.RequestError.unknown)
+    }
+    
+    fileprivate func simpleTryMap(data: Data, dtoType: ContextForMapFromRequest.DtoType) throws -> Entity {
+        let jsonString = String(data: data, encoding: .utf8)!
+        guard let ans = Entity(JSONString: jsonString) else {
+            throw ApiError.decodeError(type: Entity.self)
+        }
+        return ans
+    }
+    
     // Get methods
-    func getList() -> AnyPublisher<[ListDto], ApiError> {
+    func getList() -> AnyPublisher<[Entity], ApiError> {
         let url = urlFor(.getList)
         let urlRequester = URLRequester(host: url)
-        let decoder = JSONDecoder()
         let publisher = urlRequester.get()
-            .map { data, _ in
-                return data
+            .tryMap { (data, _) -> [Entity] in
+                let jsonString = String(data: data, encoding: .utf8)!
+                let mapper = Mapper<Entity>()
+                mapper.context = ContextForMapFromRequest(dtoType: .list)
+                guard let ans = mapper.mapArray(JSONfile: jsonString) else {
+                    throw ApiError.decodeError(type: Entity.self)
+                }
+                return ans
             }
-            .decode(type: [ListDto].self, decoder: decoder)
             .mapError { (err) -> ApiError in
-                if let newErr = err as? URLRequester.RequestError {
-                    return ApiError.requestError(err: newErr)
-                }
-                if let newErr = err as? DecodingError {
-                    return ApiError.decodeError(err: newErr)
-                }
-                return ApiError.requestError(err: URLRequester.RequestError.unknown)
+                return self.mapError(err)
             }
             .eraseToAnyPublisher()
         return publisher
     }
     
-    func getPaginated(limit: UInt, offset: UInt) -> AnyPublisher<PgDto, ApiError> {
+    func getPaginated(limit: UInt, offset: UInt) -> AnyPublisher<Entity, ApiError> {
         let url = urlFor(.getPaginated(limit: limit, offset: offset))
         let urlRequester = URLRequester(host: url)
-        let decoder = JSONDecoder()
         let publisher = urlRequester.get()
-            .map { data, _ in
-                return data
+            .tryMap { (data, _) -> Entity in
+                let ans = try self.simpleTryMap(data: data, dtoType: .page)
+                return ans
+                
             }
-            .decode(type: PgDto.self, decoder: decoder)
             .mapError { (err) -> ApiError in
-                if let newErr = err as? URLRequester.RequestError {
-                    return ApiError.requestError(err: newErr)
-                }
-                if let newErr = err as? DecodingError {
-                    return ApiError.decodeError(err: newErr)
-                }
-                return ApiError.requestError(err: URLRequester.RequestError.unknown)
+                return self.mapError(err)
             }
             .eraseToAnyPublisher()
         return publisher
     }
     
-    func getObject(_ id: Entity.ID) -> AnyPublisher<DetailDto, ApiError> {
+    func getObject(_ id: Entity.ID) -> AnyPublisher<Entity, ApiError> {
         let url = urlFor(.getObject(id: id))
         let urlRequester = URLRequester(host: url)
-        let decoder = JSONDecoder()
         let publisher = urlRequester.get()
-            .map { data, _ in
-                return data
+            .tryMap { (data, _) -> Entity in
+                let ans = try self.simpleTryMap(data: data, dtoType: .detail)
+                return ans
             }
-            .decode(type: DetailDto.self, decoder: decoder)
             .mapError { (err) -> ApiError in
-                if let newErr = err as? URLRequester.RequestError {
-                    return ApiError.requestError(err: newErr)
-                }
-                if let newErr = err as? DecodingError {
-                    return ApiError.decodeError(err: newErr)
-                }
-                return ApiError.requestError(err: URLRequester.RequestError.unknown)
+                return self.mapError(err)
             }
             .eraseToAnyPublisher()
         return publisher
     }
     
     // Post methods
-    func postObject(entity: Entity) -> AnyPublisher<ListDto, ApiError> {
-        return postObject(dto: entity.toDetailDto())
-    }
-    
-    func postObject(dto: DetailDto) -> AnyPublisher<ListDto, ApiError> {
+    func postObject(entity: Entity) -> AnyPublisher<Entity, ApiError> {
         let url = urlFor(.postObject)
         let urlRequester = URLRequester(host: url)
-        let decoder = JSONDecoder()
         let publisher = urlRequester.post()
-            .map { data, _ in
-                return data
+            .tryMap { (data, _) -> Entity in
+                let ans = try self.simpleTryMap(data: data, dtoType: .list)
+                return ans
             }
-            .decode(type: ListDto.self, decoder: decoder)
             .mapError { (err) -> ApiError in
-                if let newErr = err as? URLRequester.RequestError {
-                    return ApiError.requestError(err: newErr)
-                }
-                if let newErr = err as? DecodingError {
-                    return ApiError.decodeError(err: newErr)
-                }
-                return ApiError.requestError(err: URLRequester.RequestError.unknown)
+                return self.mapError(err)
             }
             .eraseToAnyPublisher()
         return publisher
     }
 
     // Patch methods
-    func patchObject(_ id: Entity.ID, entity: Entity) -> AnyPublisher<DetailDto, ApiError> {
-        return patchObject(id, dto: entity.toDetailDto())
-    }
-    
-    func patchObject(_ id: Entity.ID, dto: DetailDto) -> AnyPublisher<DetailDto, ApiError> {
+    func patchObject(_ id: Entity.ID, entity: Entity) -> AnyPublisher<Entity, ApiError> {
         let url = urlFor(.patchObject(id: id))
         let urlRequester = URLRequester(host: url)
-        let decoder = JSONDecoder()
         let publisher = urlRequester.patch()
-            .map { data, _ in
-                return data
+            .tryMap { (data, _) -> Entity in
+                let ans = try self.simpleTryMap(data: data, dtoType: .detail)
+                return ans
             }
-            .decode(type: DetailDto.self, decoder: decoder)
             .mapError { (err) -> ApiError in
-                if let newErr = err as? URLRequester.RequestError {
-                    return ApiError.requestError(err: newErr)
-                }
-                if let newErr = err as? DecodingError {
-                    return ApiError.decodeError(err: newErr)
-                }
-                return ApiError.requestError(err: URLRequester.RequestError.unknown)
+                return self.mapError(err)
             }
             .eraseToAnyPublisher()
         return publisher
@@ -234,7 +226,7 @@ class RatingRequester: ObjectRequester {
         Hosts.placesHostUrl
     }
     
-    var hostPostfix: String {
+    var resource: String {
         "ratings"
     }
     
@@ -249,7 +241,7 @@ class AcceptRequester: ObjectRequester {
         Hosts.placesHostUrl
     }
     
-    var hostPostfix: String {
+    var resource: String {
         "accepts"
     }
     
@@ -264,7 +256,7 @@ class PlaceImageRequester: ObjectRequester {
         Hosts.awardsHostUrl
     }
     
-    var hostPostfix: String {
+    var resource: String {
         "place_images"
     }
     
@@ -279,7 +271,7 @@ class PlaceRequester: ObjectRequester {
         Hosts.awardsHostUrl
     }
     
-    var hostPostfix: String {
+    var resource: String {
         "places"
     }
     
