@@ -19,22 +19,34 @@ protocol Dto: Codable, Hashable {
 }
 
 
-// MARK: - PageDto protocol
-protocol PageDto: Codable, Hashable {
-    associatedtype Entity: ConvertableToDto
+// MARK: - PageDto struct
+struct PageDto<Entity: ConvertableToDto>: Codable {
+    var next: String?
+    var prevoius: String?
+    var count: Int
+    var results: [Entity.ListDto]
     
-    func toEntities() -> [Entity]
-    func toListDtos() -> [Entity.ListDto]
-    static func fromEntities(_ entities: [Entity]) -> Self
+    func toEntities() -> [Entity] {
+        let ans = results.map { $0.toEntity() }
+        return ans
+    }
     
+    static func fromEntities(_ entities: [Entity]) -> Self {
+        let results = entities.map { $0.toListDto() }
+        let ans = PageDto(next: nil, prevoius: nil, count: results.count, results: results)
+        return ans
+    }
 }
 
 
 // MARK: - ConvertableToDto protocol
-protocol ConvertableToDto {
+protocol ConvertableToDto: class {
     associatedtype ListDto: Dto where ListDto.Entity == Self
     associatedtype DetailDto: Dto where DetailDto.Entity == Self
-    associatedtype PgDto: PageDto where PgDto.Entity == Self
+    typealias PgDto = PageDto<Self>
+    
+    var isDetailed: Bool { get set }
+    var detailedOnListDto: Bool { get }
     
     func toListDto() -> ListDto
     func toDetailDto() -> DetailDto
@@ -62,15 +74,24 @@ extension ConvertableToDto {
     }
     
     // From dto
-    func fromListDto(_ dto: ListDto) -> Self {
-        return dto.toEntity()
+    static func fromListDto(_ dto: ListDto) -> Self {
+        let ans = dto.toEntity()
+        ans.isDetailed = ans.detailedOnListDto
+        return ans
     }
     
-    func fromDetailDto(_ dto: DetailDto) -> Self {
-        return dto.toEntity()
+    static func fromDetailDto(_ dto: DetailDto) -> Self {
+        let ans = dto.toEntity()
+        ans.isDetailed = true
+        return ans
     }
     
     static func fromPageDto(_ dto: PgDto) -> [Self] {
-        return dto.toEntities()
+        let ans = dto.toEntities()
+        for e in ans {
+            e.isDetailed = e.detailedOnListDto
+        }
+        return ans
     }
+    
 }
