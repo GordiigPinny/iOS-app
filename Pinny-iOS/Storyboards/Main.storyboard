@@ -10,7 +10,7 @@
         <!--Поиск-->
         <scene sceneID="nNd-IW-FrI">
             <objects>
-                <viewController id="xDa-My-DOM" sceneMemberID="viewController">
+                <viewController id="xDa-My-DOM" customClass="PlacesSearchViewController" customModule="Pinny_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZMB-vs-PWi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,7 +28,7 @@
                                         <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                         <state key="normal" title="Найти"/>
                                         <connections>
-                                            <segue destination="2Z6-P0-HKq" kind="show" id="X9z-NC-e1v"/>
+                                            <action selector="searchButtonPressed:" destination="xDa-My-DOM" eventType="touchUpInside" id="4zp-lL-USZ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -47,6 +47,11 @@
                         <viewLayoutGuide key="safeArea" id="Lbv-CI-Osw"/>
                     </view>
                     <navigationItem key="navigationItem" title="Поиск" largeTitleDisplayMode="always" id="kUN-BM-ZY9"/>
+                    <connections>
+                        <outlet property="searchButton" destination="Vgw-oX-1GD" id="99A-Kn-QMb"/>
+                        <outlet property="searchTextField" destination="gLA-jb-J1c" id="pGZ-0o-fxa"/>
+                        <segue destination="2Z6-P0-HKq" kind="show" id="HMw-bB-R2P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TPU-2l-dcu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -55,7 +60,7 @@
         <!--Найдено для: ""-->
         <scene sceneID="cEQ-b4-QYV">
             <objects>
-                <viewController id="2Z6-P0-HKq" customClass="PlacesListViewController" customModule="Pinny_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="PlacesListVC" storyboardIdentifier="PlacesListVC" id="2Z6-P0-HKq" customClass="PlacesListViewController" customModule="Pinny_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Sy4-8v-2oY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -80,9 +85,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="Xcc-5A-sDS" kind="show" id="SrU-XK-Vpa"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -101,6 +103,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Dds-WE-MzD" id="vXf-12-GU9"/>
+                        <segue destination="Xcc-5A-sDS" kind="show" id="bK8-8f-nNw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WAW-ba-orp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -183,7 +186,7 @@
         <!--Название места-->
         <scene sceneID="Ofg-lg-MTM">
             <objects>
-                <viewController id="Xcc-5A-sDS" customClass="PlaceDetailViewController" customModule="Pinny_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="PlaceDetailVC" storyboardIdentifier="PlaceDetailVC" id="Xcc-5A-sDS" customClass="PlaceDetailViewController" customModule="Pinny_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x1K-yG-Bcw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -264,7 +267,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytU-Ti-hj7" customClass="AcceptButtonView" customModule="Pinny_iOS" customModuleProvider="target">
-                                                <rect key="frame" x="75.5" y="274.5" width="263" height="40"/>
+                                                <rect key="frame" x="94.5" y="274.5" width="225" height="34"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </view>
                                         </subviews>

@@ -9,12 +9,18 @@
 import UIKit
 
 class PlacesListViewController: UIViewController {
-    // MARK: - Variables
-    let places = ["Place 1", "Place2"]
-    let refreshControl = UIRefreshControl()
-    
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
+
+    // MARK: - Variables
+    static let id = "PlacesListVC"
+    let places = ["Place 1", "Place2"]
+    let refreshControl = UIRefreshControl()
+    var searchQuery: String? = nil {
+        didSet {
+            self.title = "Найдено для: \"\(searchQuery ?? "")\""
+        }
+    }
     
     // MARK: - Time hooks
     override func viewDidLoad() {

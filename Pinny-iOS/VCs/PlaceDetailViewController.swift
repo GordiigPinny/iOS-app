@@ -9,11 +9,14 @@
 import UIKit
 
 class PlaceDetailViewController: UIViewController {
-    
-    
+    // MARK: - Outlets
     @IBOutlet weak var starsRatingView: StarsRatingView!
     @IBOutlet weak var acceptButtonVew: AcceptButtonView!
-    
+
+    // MARK: - Variables
+    static let id = "PlaceDetailVC"
+
+    // MARK: - Time hooks
     override func viewDidLoad() {
         super.viewDidLoad()
 
