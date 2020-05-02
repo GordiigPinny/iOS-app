@@ -46,7 +46,7 @@ final class UserManager: APIEntityManager {
             guard let newCurrentUser = newValue else {
                 return
             }
-            replace(newCurrentUser.id, with: newCurrentUser)
+            replace(newCurrentUser.id!, with: newCurrentUser)
         }
     }
     

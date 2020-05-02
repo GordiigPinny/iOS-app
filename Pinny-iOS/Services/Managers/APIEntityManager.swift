@@ -80,7 +80,7 @@ extension APIEntityManager {
     }
 
     func exists(_ entity: Entity) -> Bool {
-        self.exists(id: entity.id)
+        entity.id == nil ? false : self.exists(id: entity.id!)
     }
 
     // Creating and updating entities

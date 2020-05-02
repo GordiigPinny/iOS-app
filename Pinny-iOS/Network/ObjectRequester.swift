@@ -288,7 +288,7 @@ class PlaceRequester: ObjectRequester {
 }
 
 
-// MARK: - UserRequester
+// MARK: - User requester
 class UserRequester: ObjectRequester {
     typealias Entity = User
     
@@ -314,4 +314,19 @@ class UserRequester: ObjectRequester {
             .eraseToAnyPublisher()
         return ans
     }
+}
+
+
+// MARK: - Profile requester
+class ProfileRequester: ObjectRequester {
+    typealias Entity = Profile
+
+    var host: URL {
+        Hosts.profilesHostUrl
+    }
+
+    var resource: String {
+        "profiles/"
+    }
+
 }
