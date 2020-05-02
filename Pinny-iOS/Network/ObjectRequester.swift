@@ -51,7 +51,7 @@ protocol ObjectRequester {
     func urlFor(_ requestType: RequestType<Entity.ID>) -> URL
     
     // Get methods
-    func getList() -> AnyPublisher<[Entity], ApiError>
+    func getList(params: [String : Any]) -> AnyPublisher<[Entity], ApiError>
     func getPaginated(limit: UInt, offset: UInt) -> AnyPublisher<[Entity], ApiError>
     func getObject(_ id: Entity.ID) -> AnyPublisher<Entity, ApiError>
     
@@ -109,8 +109,8 @@ extension ObjectRequester {
     }
     
     // Get methods
-    func getList() -> AnyPublisher<[Entity], ApiError> {
-        let url = urlFor(.getList(params: [:]))
+    func getList(params: [String : Any] = [:]) -> AnyPublisher<[Entity], ApiError> {
+        let url = urlFor(.getList(params: params))
         let urlRequester = URLRequester(host: url)
         let publisher = urlRequester.get()
             .tryMap { (data, _) -> [Entity] in
@@ -263,7 +263,7 @@ class PlaceImageRequester: ObjectRequester {
     typealias Entity = PlaceImage
     
     var host: URL {
-        Hosts.awardsHostUrl
+        Hosts.placesHostUrl
     }
     
     var resource: String {
@@ -278,11 +278,16 @@ class PlaceRequester: ObjectRequester {
     typealias Entity = Place
     
     var host: URL {
-        Hosts.awardsHostUrl
+        Hosts.placesHostUrl
     }
     
     var resource: String {
         "places/"
+    }
+
+    func searchByName(_ name: String) -> AnyPublisher<[Entity], ApiError> {
+        let ans = self.getList(params: ["name": name])
+        return ans
     }
     
 }

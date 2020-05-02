@@ -37,7 +37,7 @@ class PlacesSearchViewController: UIViewController {
             present(alert, animated: true)
             return
         }
-        vc.searchQuery = searchStr
+        vc.searchQuery = searchStr!
         navigationController?.pushViewController(vc, animated: true)
     }
 

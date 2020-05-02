@@ -115,7 +115,7 @@ extension APIEntityManager {
     }
     
     func addLocaly(_ entity: Entity) {
-        if entity.id != nil {
+        if entity.id != nil && !exists(entity) {
             entities.append(entity)
         }
     }

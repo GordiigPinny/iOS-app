@@ -52,32 +52,37 @@ class Defaults {
 class Hosts {
     static let authHost = "http://127.0.0.1:8000/api/"
     static var authHostUrl: URL {
-        return URL(string: authHost)!
+        URL(string: authHost)!
     }
     
-    static let profilesHost = "http://127.0.0.1:8000/api/"
+    static let profilesHost = "http://127.0.0.1:8001/api/"
     static var profilesHostUrl: URL {
-        return URL(string: profilesHost)!
+        URL(string: profilesHost)!
     }
     
-    static let awardsHost = "http://127.0.0.1:8000/api/"
+    static let awardsHost = "http://127.0.0.1:8002/api/"
     static var awardsHostUrl: URL {
-        return URL(string: awardsHost)!
+        URL(string: awardsHost)!
     }
     
-    static let placesHost = "http://127.0.0.1:8000/api/"
+    static let placesHost = "http://127.0.0.1:8003/api/"
     static var placesHostUrl: URL {
-        return URL(string: placesHost)!
+        URL(string: placesHost)!
     }
     
-    static let statsHost = "http://127.0.0.1:8000/api/"
+    static let statsHost = "http://127.0.0.1:8004/api/"
     static var statsHostUrl: URL {
-        return URL(string: statsHost)!
+        URL(string: statsHost)!
     }
     
-    static let mediaHost = "http://127.0.0.1:8000/api/"
+    static let mediaHost = "http://127.0.0.1:8005/api/"
     static var mediaHostUrl: URL {
-        return URL(string: mediaHost)!
+        URL(string: mediaHost)!
+    }
+
+    static let gatewayHost = "http://127.0.0.1:8006/api/"
+    static var gatewayHostUrl: URL {
+        URL(string: gatewayHost)!
     }
     
     static var unauthorizedHeaders: [String : String] {

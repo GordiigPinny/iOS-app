@@ -60,8 +60,11 @@ class URLRequester {
     // MARK: - Configurations
     private func getFullUrl(urlPostfix: String?, queryParams: [String: Any]?) -> URL {
         let urlWithPostfix = self.host.appendingPathComponent(urlPostfix ?? "")
-        let ans = Self.buildUrlWithParams(url: urlWithPostfix, params: queryParams ?? [:])
-        return ans
+        if queryParams != nil {
+            let ans = Self.buildUrlWithParams(url: urlWithPostfix, params: queryParams ?? [:])
+            return ans
+        }
+        return urlWithPostfix
     }
     
     private func getRequest(method: Method, urlPostfix: String?, data: Data?, queryParams: [String: Any]?, headers: [String: String]?) -> URLRequest {
