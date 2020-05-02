@@ -15,6 +15,7 @@ class PlaceDetailViewController: UIViewController {
 
     // MARK: - Variables
     static let id = "PlaceDetailVC"
+    var place: Place?
 
     // MARK: - Time hooks
     override func viewDidLoad() {

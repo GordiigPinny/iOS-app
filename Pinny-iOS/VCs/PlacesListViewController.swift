@@ -103,6 +103,14 @@ extension PlacesListViewController: UITableViewDataSource {
 extension PlacesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
+        guard let vc = storyboard?.instantiateViewController(identifier: PlaceDetailViewController.id)
+                as? PlaceDetailViewController else {
+            let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Can't instantiate PlaceDetailVC", msg: "")
+            present(alert, animated: true)
+            return
+        }
+        vc.place = placesToShow[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }
