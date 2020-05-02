@@ -95,5 +95,12 @@ class Hosts {
         }
         return headers
     }
+
+    static var imageGetHeaders: [String : String] {
+        let ans = [
+            "Accept": "*/*"
+        ]
+        return ans
+    }
     
 }

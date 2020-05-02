@@ -48,6 +48,7 @@
 		C814734AD2572D53F165D0B7 /* RatingStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81472B33FF8A0BB747DEA80 /* RatingStats.swift */; };
 		C81473F6E7639465FF39DAA9 /* RatingStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814778BFE44C32BE396A6D6 /* RatingStatsManager.swift */; };
 		C8147460BBD75D1736BE5F6A /* AchievementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814730550786F9A5A3C12BB /* AchievementManager.swift */; };
+		C81474ED912BA6952EE15553 /* ImageFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814784E67007B36472C68C2 /* ImageFile.swift */; };
 		C8147571553134AC0778F237 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81470FB07BA842AD8D6F0D9 /* ProfileManager.swift */; };
 		C8147598D001D68528A02177 /* PinPurchaseStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81475A7014A653B886AD9A9 /* PinPurchaseStats.swift */; };
 		C81475FA5787DFB2B778A1AC /* AcceptStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147DB25D7E36559FF7A847 /* AcceptStatsManager.swift */; };
@@ -61,6 +62,7 @@
 		C8147BEB3E0CB641E6E5CF65 /* AchievementStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147EE381B1FE198E5CA587 /* AchievementStats.swift */; };
 		C8147D84AADEA15C2A24CEDF /* PlaceStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147630BD2853475FA224B3 /* PlaceStatsManager.swift */; };
 		C8147E142052CCE5FA2EC7C4 /* RequestStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147B932298EA36335B6D75 /* RequestStatsManager.swift */; };
+		C8147E7ECF6F7DCF0B28E819 /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81471084A4E9CFF67E33B98 /* ImageFileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +120,7 @@
 		8EC6DC99C46AC042FE467DAD /* Pods-Pinny-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinny-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		C8147064CE86025DECCC0F1C /* PinManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinManager.swift; sourceTree = "<group>"; };
 		C81470FB07BA842AD8D6F0D9 /* ProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
+		C81471084A4E9CFF67E33B98 /* ImageFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
 		C81472B33FF8A0BB747DEA80 /* RatingStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingStats.swift; sourceTree = "<group>"; };
 		C814730550786F9A5A3C12BB /* AchievementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementManager.swift; sourceTree = "<group>"; };
 		C81473708117BB241281D99A /* PlaceStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceStats.swift; sourceTree = "<group>"; };
@@ -127,6 +130,7 @@
 		C8147630BD2853475FA224B3 /* PlaceStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceStatsManager.swift; sourceTree = "<group>"; };
 		C814766E020DE99F8E6F576E /* PinPurchaseStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinPurchaseStatsManager.swift; sourceTree = "<group>"; };
 		C814778BFE44C32BE396A6D6 /* RatingStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingStatsManager.swift; sourceTree = "<group>"; };
+		C814784E67007B36472C68C2 /* ImageFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFile.swift; sourceTree = "<group>"; };
 		C8147996E7FD2BDD46A09F4B /* AcceptStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptStats.swift; sourceTree = "<group>"; };
 		C81479E7138A6B17767CCD50 /* AchievementStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementStatsManager.swift; sourceTree = "<group>"; };
 		C8147B4EBB54D2A25B07C305 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -326,6 +330,7 @@
 				135D9300245D64D100D6FAE0 /* Place */,
 				C8147A82DB422EFEE6203C43 /* Awards */,
 				C8147394E71BBC83AB63987D /* Stats */,
+				C814784E67007B36472C68C2 /* ImageFile.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -338,6 +343,7 @@
 				135D9305245D658500D6FAE0 /* Place */,
 				C8147F2F01C1649EB7E15245 /* Awards */,
 				C8147176A0A1D813DA1A710A /* Stats */,
+				C8147631DD881B99E5F080CE /* Media */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -401,6 +407,14 @@
 				C81475A7014A653B886AD9A9 /* PinPurchaseStats.swift */,
 			);
 			path = Stats;
+			sourceTree = "<group>";
+		};
+		C8147631DD881B99E5F080CE /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				C81471084A4E9CFF67E33B98 /* ImageFileManager.swift */,
+			);
+			path = Media;
 			sourceTree = "<group>";
 		};
 		C8147A82DB422EFEE6203C43 /* Awards */ = {
@@ -633,6 +647,8 @@
 				C8147BEB3E0CB641E6E5CF65 /* AchievementStats.swift in Sources */,
 				C8147B461CFF789DA5C37114 /* PinPurchaseStatsManager.swift in Sources */,
 				C8147598D001D68528A02177 /* PinPurchaseStats.swift in Sources */,
+				C8147E7ECF6F7DCF0B28E819 /* ImageFileManager.swift in Sources */,
+				C81474ED912BA6952EE15553 /* ImageFile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

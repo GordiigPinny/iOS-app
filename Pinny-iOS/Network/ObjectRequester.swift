@@ -406,6 +406,7 @@ class AcceptStatsRequester: ObjectRequester {
 
 }
 
+
 // MARK: - RatingStats requester
 class RatingStatsRequester: ObjectRequester {
     typealias Entity = RatingStats
@@ -419,6 +420,7 @@ class RatingStatsRequester: ObjectRequester {
     }
 
 }
+
 
 // MARK: - AchievementStats requester
 class AchievementStatsRequester: ObjectRequester {
@@ -434,6 +436,7 @@ class AchievementStatsRequester: ObjectRequester {
 
 }
 
+
 // MARK: - PinPurchaseStats requester
 class PinPurchaseStatsRequester: ObjectRequester {
     typealias Entity = PinPurchaseStats
@@ -447,4 +450,21 @@ class PinPurchaseStatsRequester: ObjectRequester {
     }
 
 }
+
+
+// MARK: - ImageFile requester
+class ImageFileRequester: ObjectRequester {
+    typealias Entity = ImageFile
+
+    var host: URL {
+        Hosts.mediaHostUrl
+    }
+
+    var resource: String {
+        "images/"
+    }
+
+}
+
+
 

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import Combine
 
 
@@ -118,44 +119,78 @@ class URLRequester {
     }
     
     // MARK: - Request methods
-    func get(urlPostfix: String? = nil, data: Data? = nil, queryParams: [String: Any]? = nil, headers: [String: String]? = nil) -> AnyPublisher<(data: Data, response: HTTPURLResponse), RequestError> {
+    func get(urlPostfix: String? = nil, data: Data? = nil, queryParams: [String: Any]? = nil,
+             headers: [String: String]? = nil) -> AnyPublisher<(data: Data, response: HTTPURLResponse), RequestError> {
         // Getting fully configured request
         let request = getRequest(method: .GET, urlPostfix: urlPostfix, data: data, queryParams: queryParams, headers: headers)
         // Getting publisher with error handling
         let publisher = getDataPublisher(request: request)
         // Returning publisher
         return publisher
-        
     }
     
-    func post(urlPostfix: String? = nil, data: Data? = nil, queryParams: [String: Any]? = nil, headers: [String: String]? = nil) -> AnyPublisher<(data: Data, response: HTTPURLResponse), RequestError> {
+    func post(urlPostfix: String? = nil, data: Data? = nil, queryParams: [String: Any]? = nil,
+              headers: [String: String]? = nil) -> AnyPublisher<(data: Data, response: HTTPURLResponse), RequestError> {
         // Getting fully configured request
         let request = getRequest(method: .POST, urlPostfix: urlPostfix, data: data, queryParams: queryParams, headers: headers)
         // Getting publisher with error handling
         let publisher = getDataPublisher(request: request)
         // Returning publisher
         return publisher
-        
     }
     
-    func patch(urlPostfix: String? = nil, data: Data? = nil, queryParams: [String: Any]? = nil, headers: [String: String]? = nil) -> AnyPublisher<(data: Data, response: HTTPURLResponse), RequestError> {
+    func patch(urlPostfix: String? = nil, data: Data? = nil, queryParams: [String: Any]? = nil,
+               headers: [String: String]? = nil) -> AnyPublisher<(data: Data, response: HTTPURLResponse), RequestError> {
         // Getting fully configured request
         let request = getRequest(method: .PATCH, urlPostfix: urlPostfix, data: data, queryParams: queryParams, headers: headers)
         // Getting publisher with error handling
         let publisher = getDataPublisher(request: request)
         // Returning publisher
         return publisher
-        
     }
     
-    func delete(urlPostfix: String? = nil, data: Data? = nil, queryParams: [String: Any]? = nil, headers: [String: String]? = nil) -> AnyPublisher<(data: Data, response: HTTPURLResponse), RequestError> {
+    func delete(urlPostfix: String? = nil, data: Data? = nil, queryParams: [String: Any]? = nil,
+                headers: [String: String]? = nil) -> AnyPublisher<(data: Data, response: HTTPURLResponse), RequestError> {
         // Getting fully configured request
         let request = getRequest(method: .DELETE, urlPostfix: urlPostfix, data: data, queryParams: queryParams, headers: headers)
         // Getting publisher with error handling
         let publisher = getDataPublisher(request: request)
         // Returning publisher
         return publisher
-        
+    }
+
+    func download(urlPostfix: String? = nil, queryParams: [String: Any]? = nil,
+                  completionHandler: @escaping (UIImage?, RequestError?) -> Void) -> URLSessionDownloadTask {
+        // Getting fully configured request
+        let request = getRequest(method: .GET, urlPostfix: urlPostfix, data: nil, queryParams: queryParams,
+                headers: Hosts.imageGetHeaders)
+        // Instantiating download task
+        let task = URLSession.shared.downloadTask(with: request) { url, response, error in
+            if let err = error {
+                if let newErr = err as? URLError {
+                    completionHandler(nil, RequestError.networkError(from: newErr))
+                } else {
+                    completionHandler(nil, RequestError.unknown)
+                }
+                return
+            }
+            let httpResponse = response as! HTTPURLResponse
+            if httpResponse.statusCode != 200 {
+                completionHandler(nil,
+                        RequestError.apiError(code: httpResponse.statusCode, descr: "Can't download image"))
+                return
+            }
+            guard let url = url else {
+                completionHandler(nil, RequestError.apiError(code: httpResponse.statusCode, descr: "Save url is nil"))
+                return
+            }
+            let data = try! Data(contentsOf: url)
+            let image = UIImage(data: data)
+            completionHandler(image, nil)
+        }
+        // Starting task and returning it
+        task.resume()
+        return task
     }
 
 }
