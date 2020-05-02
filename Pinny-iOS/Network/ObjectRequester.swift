@@ -330,3 +330,33 @@ class ProfileRequester: ObjectRequester {
     }
 
 }
+
+
+// MARK: - Pin requester
+class PinRequester: ObjectRequester {
+    typealias Entity = Pin
+
+    var host: URL {
+        Hosts.awardsHostUrl
+    }
+
+    var resource: String {
+        "pins/"
+    }
+
+}
+
+
+// MARK: - Achievement requester
+class AchievementRequester: ObjectRequester {
+    typealias Entity = Achievement
+
+    var host: URL {
+        Hosts.awardsHostUrl
+    }
+
+    var resource: String {
+        "achievements/"
+    }
+
+}

@@ -43,7 +43,11 @@
 		13FC27B62451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC27B52451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift */; };
 		13FC27BA2451C78B00EB5A0D /* PlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC27B92451C78B00EB5A0D /* PlaceDetailViewController.swift */; };
 		A215AC73D2C9C936552AB672 /* Pods_Pinny_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240C9199E2E44AFA0E874D99 /* Pods_Pinny_iOS.framework */; };
+		C8147460BBD75D1736BE5F6A /* AchievementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814730550786F9A5A3C12BB /* AchievementManager.swift */; };
 		C8147571553134AC0778F237 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81470FB07BA842AD8D6F0D9 /* ProfileManager.swift */; };
+		C81477D13A36E8F7754FFF37 /* PinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147064CE86025DECCC0F1C /* PinManager.swift */; };
+		C81478A6AF607C850B84CF49 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81475BAEF6641B1CA983BDD /* Pin.swift */; };
+		C81479AE15A8D0B8BD89DFE2 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147C90DE3221C40FDFDEAB /* Achievement.swift */; };
 		C8147BD62E780C067D660FD7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147B4EBB54D2A25B07C305 /* Profile.swift */; };
 /* End PBXBuildFile section */
 
@@ -100,8 +104,12 @@
 		240C9199E2E44AFA0E874D99 /* Pods_Pinny_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pinny_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DAC37D220E3F42D78F09681 /* Pods-Pinny-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinny-iOS.release.xcconfig"; path = "Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8EC6DC99C46AC042FE467DAD /* Pods-Pinny-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinny-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		C8147064CE86025DECCC0F1C /* PinManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinManager.swift; sourceTree = "<group>"; };
 		C81470FB07BA842AD8D6F0D9 /* ProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
+		C814730550786F9A5A3C12BB /* AchievementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementManager.swift; sourceTree = "<group>"; };
+		C81475BAEF6641B1CA983BDD /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		C8147B4EBB54D2A25B07C305 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		C8147C90DE3221C40FDFDEAB /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +300,7 @@
 				13BAE94F24582E4600BE7C99 /* APIEntity.swift */,
 				130522A8245D66E1000C02C9 /* User */,
 				135D9300245D64D100D6FAE0 /* Place */,
+				C8147A82DB422EFEE6203C43 /* Awards */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -302,6 +311,7 @@
 				13BAE95124582F1900BE7C99 /* APIEntityManager.swift */,
 				130522B2245D7B0A000C02C9 /* User */,
 				135D9305245D658500D6FAE0 /* Place */,
+				C8147F2F01C1649EB7E15245 /* Awards */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -339,6 +349,24 @@
 				6DAC37D220E3F42D78F09681 /* Pods-Pinny-iOS.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C8147A82DB422EFEE6203C43 /* Awards */ = {
+			isa = PBXGroup;
+			children = (
+				C81475BAEF6641B1CA983BDD /* Pin.swift */,
+				C8147C90DE3221C40FDFDEAB /* Achievement.swift */,
+			);
+			path = Awards;
+			sourceTree = "<group>";
+		};
+		C8147F2F01C1649EB7E15245 /* Awards */ = {
+			isa = PBXGroup;
+			children = (
+				C8147064CE86025DECCC0F1C /* PinManager.swift */,
+				C814730550786F9A5A3C12BB /* AchievementManager.swift */,
+			);
+			path = Awards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -537,6 +565,10 @@
 				134356B8244EFF0800026355 /* AcceptButtonView.swift in Sources */,
 				C8147BD62E780C067D660FD7 /* Profile.swift in Sources */,
 				C8147571553134AC0778F237 /* ProfileManager.swift in Sources */,
+				C81478A6AF607C850B84CF49 /* Pin.swift in Sources */,
+				C81477D13A36E8F7754FFF37 /* PinManager.swift in Sources */,
+				C81479AE15A8D0B8BD89DFE2 /* Achievement.swift in Sources */,
+				C8147460BBD75D1736BE5F6A /* AchievementManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
