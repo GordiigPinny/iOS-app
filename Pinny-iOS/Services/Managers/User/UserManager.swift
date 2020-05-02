@@ -38,7 +38,16 @@ final class UserManager: APIEntityManager {
 
     // MARK: - Some local funcs
     var currentUser: User? {
-        Defaults.currentUser
+        get {
+            Defaults.currentUser
+        }
+        set {
+            Defaults.currentUser = newValue
+            guard let newCurrentUser = newValue else {
+                return
+            }
+            replace(newCurrentUser.id, with: newCurrentUser)
+        }
     }
     
 }

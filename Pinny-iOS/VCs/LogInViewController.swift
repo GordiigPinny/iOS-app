@@ -94,8 +94,7 @@ class LogInViewController: UIViewController {
     }
 
     private func userRequestHandlerSuccess(_ user: User) {
-        Defaults.currentUser = user
-        User.manager.addLocaly(user)
+        User.manager.currentUser = user
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let vc = storyboard.instantiateInitialViewController() as? UITabBarController else {
             let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Can't instantiate main VC", msg: "Rebuild")

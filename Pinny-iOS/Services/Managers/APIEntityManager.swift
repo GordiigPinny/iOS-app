@@ -24,7 +24,10 @@ protocol APIEntityManager: class {
     func get(id: Entity.ID) -> Entity?
     func fetch(id: Entity.ID, onSuccess: ((Entity) -> Void)?, onError: ((ApiError) -> Void)?)
     func filter<T: Equatable>(_ keyPath: KeyPath<Entity, T>, equalsTo value: T) -> Self
-    
+
+    func exists(id: Entity.ID) -> Bool
+    func exists(_ entity: Entity) -> Bool
+
     func create(_ entity: Entity, onSuccess: ((Entity) -> Void)?, onError: ((ApiError) -> Void)?)
     func update(_ id: Entity.ID, _ entity: Entity, onSuccess: ((Entity) -> Void)?, onError: ((ApiError) -> Void)?)
     func addLocaly(_ entity: Entity)
@@ -70,7 +73,16 @@ extension APIEntityManager {
         newManager.entities = newManager.entities.filter { checkEntityWithKeyPath($0, keyPath: keyPath, value: value) }
         return newManager
     }
-    
+
+    // Existence check
+    func exists(id: Entity.ID) -> Bool {
+        self.entities.contains { $0.id == id  }
+    }
+
+    func exists(_ entity: Entity) -> Bool {
+        self.exists(id: entity.id)
+    }
+
     // Creating and updating entities
     func create(_ entity: Entity, onSuccess: ((Entity) -> Void)?, onError: ((ApiError) -> Void)?) {
         let _ = requester.postObject(entity: entity)
