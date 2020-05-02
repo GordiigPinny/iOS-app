@@ -1,5 +1,6 @@
 PODS:
-  - ObjectMapper (3.5.2)
+  - HandyJSON (5.0.1)
+  - SwiftyJSON (4.3.0)
   - YandexMapKit (3.5.0):
     - YandexRuntime (= 3.5.0)
   - YandexMapKitDirections (3.5.0):
@@ -17,7 +18,8 @@ PODS:
   - YandexRuntime (3.5.0)
 
 DEPENDENCIES:
-  - ObjectMapper (~> 3.4)
+  - HandyJSON (~> 5.0.1)
+  - SwiftyJSON (~> 4.0)
   - YandexMapKit (= 3.5)
   - YandexMapKitDirections (= 3.5)
   - YandexMapKitPlaces (= 3.5)
@@ -26,7 +28,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - ObjectMapper
+    - HandyJSON
+    - SwiftyJSON
     - YandexMapKit
     - YandexMapKitDirections
     - YandexMapKitPlaces
@@ -35,7 +38,8 @@ SPEC REPOS:
     - YandexRuntime
 
 SPEC CHECKSUMS:
-  ObjectMapper: b53ae947d370bf89423e86be7d4e2d2b2a8d3f40
+  HandyJSON: d45b8415c501e3affc59ca9762c1197ff0feb646
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   YandexMapKit: ecd4b78de34a35df63d066ac299e6fd0fe46d1ba
   YandexMapKitDirections: 4298725d34df043ec127dd6e76f457e24f378188
   YandexMapKitPlaces: 6bc38c5e6fa34870a3c718a0b7921bf159cae7ee
@@ -43,6 +47,6 @@ SPEC CHECKSUMS:
   YandexMapKitTransport: 52f64fdc16bc83f8849b47e4143a698b6be24c49
   YandexRuntime: 2d55244d06267106cf9b00c25a1e63f72a73b6fd
 
-PODFILE CHECKSUM: d820919b43bb4e871c78145111a65372e364bc6b
+PODFILE CHECKSUM: 8a4f6f801538892220d6f7b0d6ae5d447ebb9cda
 
 COCOAPODS: 1.9.1

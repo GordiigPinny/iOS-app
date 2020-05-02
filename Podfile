@@ -12,6 +12,10 @@ target 'Pinny-iOS' do
     pod ‘YandexMapKitPlaces’, ’3.5’ 
     pod ‘YandexMapKitSearch’, ’3.5’ 
     pod ‘YandexMapKitTransport’, ’3.5’
-    # ObjectMapper
-    pod 'ObjectMapper', '~> 3.4'
+
+    # Swifty JSON
+    pod 'SwiftyJSON', '~> 4.0'
+
+    # Serializer
+    pod 'HandyJSON', '~> 5.0.1'
 end

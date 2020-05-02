@@ -7,17 +7,17 @@
 //
 
 import Foundation
-import ObjectMapper
+import HandyJSON
 
 
 final class Rating: APIEntity {
     // MARK: - Variables
     var id: Int?
-    var rating: Int
-    var placeId: Int
-    var createdById: Int
-    var deletedFlg: Bool
-    var isDetailed: Bool = false
+    var rating: Int!
+    var placeId: Int!
+    var createdById: Int!
+    var deletedFlg: Bool!
+    var isDetailed: Bool = true
     
     // MARK: - Manager
     class var manager: RatingManager {
@@ -25,6 +25,10 @@ final class Rating: APIEntity {
     }
     
     // MARK: - Init
+    init() {
+        
+    }
+    
     init(id: Int? = nil, rating: Int, placeId: Int, createdById: Int, deletedFlg: Bool) {
         self.id = id
         self.rating = rating
@@ -33,18 +37,14 @@ final class Rating: APIEntity {
         self.deletedFlg = deletedFlg
     }
     
-    // MARK: - Object mapper
-    convenience init?(map: Map) {
-        self.init(JSON: map.JSON, context: map.context)
-    }
-    
-    func mapping(map: Map) {
-        id              <- map["id"]
-        rating          <- map["rating"]
-        placeId         <- map["place_id"]
-        createdById     <- map["created_by"]
-        deletedFlg      <- map["deletedFlg"]
-        isDetailed = true
+    // MARK: - Handy JSON mapper
+    func mapping(mapper: HelpingMapper) {
+        mapper <<<
+            self.placeId <-- "place_id"
+        mapper <<<
+            self.createdById <-- "created_by"
+        mapper <<<
+            self.deletedFlg <-- "deleted_flg"
     }
    
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 class LogInViewController: UIViewController {
     // MARK: - Outlets
@@ -23,6 +24,10 @@ class LogInViewController: UIViewController {
         passwordTextField.text
     }
     
+    // MARK: - Variables
+    let authRequester = AuthRequester()
+    var subscriber: AnyCancellable?
+    
     // MARK: - Time hooks
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +42,19 @@ class LogInViewController: UIViewController {
     @IBAction func logInButtonPressed(_ sender: Any) {
         let username = self.username!
         let password = self.password!
-        let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Implement me", msg: "username: \(username)\npassword: \(password)")
-        present(alert, animated: true, completion: nil)
+        
+        subscriber = authRequester.getToken(username: username, password: password)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let err):
+                    self.logInRequestHandlerFailed(err)
+                case .finished:
+                    break
+                }
+            }) { token in
+                self.logInRequestHandlerSuccess(token)
+            }
     }
     
     // MARK: - Actions for TextFields
@@ -48,6 +64,17 @@ class LogInViewController: UIViewController {
     
     @objc func textFieldChangeEditing() {
         logInButton.isEnabled = canPressLogInButton
+    }
+    
+    // MARK: - RequestHandler
+    private func logInRequestHandlerSuccess(_ token: Token) {
+        let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Got token", msg: "access: \(token.access)\nrefresh: \(token.refresh)")
+        present(alert, animated: true)
+    }
+    
+    private func logInRequestHandlerFailed(_ err: URLRequester.RequestError) {
+        let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Error came", msg: err.localizedDescription)
+        present(alert, animated: true)
     }
     
 }

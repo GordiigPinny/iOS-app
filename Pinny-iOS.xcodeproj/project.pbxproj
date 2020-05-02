@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		130522AA245D66EB000C02C9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130522A9245D66EB000C02C9 /* User.swift */; };
+		130522AF245D6947000C02C9 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130522AE245D6947000C02C9 /* Token.swift */; };
+		130522B1245D6959000C02C9 /* AuthRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130522B0245D6959000C02C9 /* AuthRequester.swift */; };
 		1327112224334D82009005C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327112124334D82009005C0 /* AppDelegate.swift */; };
 		1327112424334D82009005C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327112324334D82009005C0 /* SceneDelegate.swift */; };
 		1327112624334D82009005C0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327112524334D82009005C0 /* LogInViewController.swift */; };
@@ -52,6 +55,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		130522A9245D66EB000C02C9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		130522AE245D6947000C02C9 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		130522B0245D6959000C02C9 /* AuthRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequester.swift; sourceTree = "<group>"; };
 		1327111E24334D82009005C0 /* Pinny-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pinny-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1327112124334D82009005C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1327112324334D82009005C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +117,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		130522A8245D66E1000C02C9 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				130522A9245D66EB000C02C9 /* User.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		130522AD245D693E000C02C9 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				130522AE245D6947000C02C9 /* Token.swift */,
+				130522B0245D6959000C02C9 /* AuthRequester.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		1327111524334D82009005C0 = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +157,7 @@
 		1327112024334D82009005C0 /* Pinny-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				130522AD245D693E000C02C9 /* Auth */,
 				1397BAF32455B15D005B2C75 /* Network */,
 				134356BB245029F800026355 /* Extensions */,
 				1338069924389E3D0014A600 /* Utils */,
@@ -215,11 +239,33 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		135D9300245D64D100D6FAE0 /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				1380D7472458583C0007EBEA /* Rating.swift */,
+				1380D751245861D00007EBEA /* Accept.swift */,
+				1380D757245867780007EBEA /* PlaceImage.swift */,
+				1380D75D24586BDA0007EBEA /* Place.swift */,
+			);
+			path = Place;
+			sourceTree = "<group>";
+		};
+		135D9305245D658500D6FAE0 /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				1380D7492458594A0007EBEA /* RatingManager.swift */,
+				1380D753245863EE0007EBEA /* AcceptManager.swift */,
+				1380D759245867E80007EBEA /* PlaceImagesManager.swift */,
+				1380D75F24586C2B0007EBEA /* PlaceManager.swift */,
+			);
+			path = Place;
+			sourceTree = "<group>";
+		};
 		1397BAF32455B15D005B2C75 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				1397BAF82455B212005B2C75 /* ObjectRequester.swift */,
 				1397BAF12455A338005B2C75 /* URLRequester.swift */,
+				1397BAF82455B212005B2C75 /* ObjectRequester.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -228,10 +274,8 @@
 			isa = PBXGroup;
 			children = (
 				13BAE94F24582E4600BE7C99 /* APIEntity.swift */,
-				1380D7472458583C0007EBEA /* Rating.swift */,
-				1380D751245861D00007EBEA /* Accept.swift */,
-				1380D757245867780007EBEA /* PlaceImage.swift */,
-				1380D75D24586BDA0007EBEA /* Place.swift */,
+				130522A8245D66E1000C02C9 /* User */,
+				135D9300245D64D100D6FAE0 /* Place */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -240,10 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				13BAE95124582F1900BE7C99 /* APIEntityManager.swift */,
-				1380D7492458594A0007EBEA /* RatingManager.swift */,
-				1380D753245863EE0007EBEA /* AcceptManager.swift */,
-				1380D759245867E80007EBEA /* PlaceImagesManager.swift */,
-				1380D75F24586C2B0007EBEA /* PlaceManager.swift */,
+				135D9305245D658500D6FAE0 /* Place */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -452,6 +493,7 @@
 				134356B2244EFB6000026355 /* StarsRatingView.swift in Sources */,
 				134356BA245029EF00026355 /* UIViewControllerExt.swift in Sources */,
 				1380D74A2458594A0007EBEA /* RatingManager.swift in Sources */,
+				130522AA245D66EB000C02C9 /* User.swift in Sources */,
 				1397BAF92455B212005B2C75 /* ObjectRequester.swift in Sources */,
 				13BAE95024582E4600BE7C99 /* APIEntity.swift in Sources */,
 				13CA803A24502B12006ED889 /* UIAlertControllerBuilder.swift in Sources */,
@@ -461,11 +503,13 @@
 				1327112624334D82009005C0 /* LogInViewController.swift in Sources */,
 				1327112224334D82009005C0 /* AppDelegate.swift in Sources */,
 				1380D76024586C2B0007EBEA /* PlaceManager.swift in Sources */,
+				130522AF245D6947000C02C9 /* Token.swift in Sources */,
 				1380D758245867780007EBEA /* PlaceImage.swift in Sources */,
 				13A56C53245038E000584BDD /* UITextFieldExtension.swift in Sources */,
 				13FC27B32451A64400EB5A0D /* Globals.swift in Sources */,
 				13FC27BA2451C78B00EB5A0D /* PlaceDetailViewController.swift in Sources */,
 				1397BAF22455A338005B2C75 /* URLRequester.swift in Sources */,
+				130522B1245D6959000C02C9 /* AuthRequester.swift in Sources */,
 				1380D7482458583C0007EBEA /* Rating.swift in Sources */,
 				1327112424334D82009005C0 /* SceneDelegate.swift in Sources */,
 				13FC27B62451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift in Sources */,

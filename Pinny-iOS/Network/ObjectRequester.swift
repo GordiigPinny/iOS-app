@@ -8,7 +8,7 @@
 
 import Foundation
 import Combine
-import ObjectMapper
+import SwiftyJSON
 
 
 // MARK: - ApiError enum
@@ -30,25 +30,12 @@ enum EntityApiError<Entity: APIEntity>: Error, LocalizedError {
 
 // MARK: - Enum for request type
 enum RequestType<T: Equatable> {
-    case getList
-    case getPaginated(limit: UInt, offset: UInt)
-    case getObject(id: T)
+    case getList(params: [String : Any] = [:])
+    case getPaginated(limit: UInt, offset: UInt, params: [String : Any] = [:])
+    case getObject(id: T, params: [String : Any] = [:])
     case postObject
     case patchObject(id: T)
     case deleteObject(id: T)
-}
-
-
-// MARK: - Context for mappable
-struct ContextForMapFromRequest: MapContext {
-    enum DtoType {
-        case list
-        case detail
-        case page
-    }
-    
-    var dtoType: DtoType
-    
 }
 
 
@@ -65,7 +52,7 @@ protocol ObjectRequester {
     
     // Get methods
     func getList() -> AnyPublisher<[Entity], ApiError>
-    func getPaginated(limit: UInt, offset: UInt) -> AnyPublisher<Entity, ApiError>
+    func getPaginated(limit: UInt, offset: UInt) -> AnyPublisher<[Entity], ApiError>
     func getObject(_ id: Entity.ID) -> AnyPublisher<Entity, ApiError>
     
     // Post methods
@@ -85,20 +72,25 @@ extension ObjectRequester {
     func urlFor(_ requestType: RequestType<Entity.ID>) -> URL {
         var ans = host.appendingPathComponent(resource)
         switch requestType {
-        case .getList, .postObject:
+        case .getList(let params):
+            ans = URLRequester.buildUrlWithParams(url: ans, params: params)
+        case .getObject(let id, let params):
+            ans = host.appendingPathComponent("\(id)/")
+            ans = URLRequester.buildUrlWithParams(url: ans, params: params)
+        case .patchObject(let id), .deleteObject(let id):
+            ans = ans.appendingPathComponent("\(id)/")
+        case .getPaginated(let limit, let offset, let params):
+            var allParams = params
+            allParams["limit"] = limit; allParams["offset"] = offset
+            ans = URLRequester.buildUrlWithParams(url: ans, params: allParams)
+        case .postObject:
             break
-        case .getObject(let id), .patchObject(let id), .deleteObject(let id):
-            ans = ans.appendingPathComponent("\(id)")
-        case .getPaginated(let limit, let offset):
-            var ansStr = ans.absoluteString
-            ansStr += "?limit=\(limit)&offset=\(offset)"
-            ans = URL(string: ansStr)!
         }
         return ans
     }
     
     // Helpers
-    fileprivate func mapError(_ err: Error) -> ApiError {
+    func mapError(_ err: Error) -> ApiError {
         if let newErr = err as? URLRequester.RequestError {
             return ApiError.requestError(err: newErr)
         }
@@ -108,9 +100,9 @@ extension ObjectRequester {
         return ApiError.requestError(err: URLRequester.RequestError.unknown)
     }
     
-    fileprivate func simpleTryMap(data: Data, dtoType: ContextForMapFromRequest.DtoType) throws -> Entity {
-        let jsonString = String(data: data, encoding: .utf8)!
-        guard let ans = Entity(JSONString: jsonString) else {
+    func simpleTryMap(data: Data) throws -> Entity {
+        let json = try JSON(data: data)
+        guard let ans = Entity.fromJson(json: json) else {
             throw ApiError.decodeError(type: Entity.self)
         }
         return ans
@@ -118,17 +110,21 @@ extension ObjectRequester {
     
     // Get methods
     func getList() -> AnyPublisher<[Entity], ApiError> {
-        let url = urlFor(.getList)
+        let url = urlFor(.getList(params: [:]))
         let urlRequester = URLRequester(host: url)
         let publisher = urlRequester.get()
             .tryMap { (data, _) -> [Entity] in
                 let jsonString = String(data: data, encoding: .utf8)!
-                let mapper = Mapper<Entity>()
-                mapper.context = ContextForMapFromRequest(dtoType: .list)
-                guard let ans = mapper.mapArray(JSONfile: jsonString) else {
+                guard let ans = [Entity].deserialize(from: jsonString) else {
                     throw ApiError.decodeError(type: Entity.self)
                 }
-                return ans
+                let nonNilAns = try ans.map { e -> Entity in
+                    guard let e = e else {
+                        throw ApiError.decodeError(type: Entity.self)
+                    }
+                    return e
+                }
+                return nonNilAns
             }
             .mapError { (err) -> ApiError in
                 return self.mapError(err)
@@ -137,13 +133,22 @@ extension ObjectRequester {
         return publisher
     }
     
-    func getPaginated(limit: UInt, offset: UInt) -> AnyPublisher<Entity, ApiError> {
+    func getPaginated(limit: UInt, offset: UInt) -> AnyPublisher<[Entity], ApiError> {
         let url = urlFor(.getPaginated(limit: limit, offset: offset))
         let urlRequester = URLRequester(host: url)
         let publisher = urlRequester.get()
-            .tryMap { (data, _) -> Entity in
-                let ans = try self.simpleTryMap(data: data, dtoType: .page)
-                return ans
+            .tryMap { (data, _) -> [Entity] in
+                let jsonString = String(data: data, encoding: .utf8)
+                guard let ans = [Entity].deserialize(from: jsonString, designatedPath: "results") else {
+                    throw ApiError.decodeError(type: Entity.self)
+                }
+                let nonNilAns = try ans.map({ e -> Entity in
+                    guard let e = e else {
+                        throw ApiError.decodeError(type: Entity.self)
+                    }
+                    return e
+                })
+                return nonNilAns
                 
             }
             .mapError { (err) -> ApiError in
@@ -158,7 +163,7 @@ extension ObjectRequester {
         let urlRequester = URLRequester(host: url)
         let publisher = urlRequester.get()
             .tryMap { (data, _) -> Entity in
-                let ans = try self.simpleTryMap(data: data, dtoType: .detail)
+                let ans = try self.simpleTryMap(data: data)
                 return ans
             }
             .mapError { (err) -> ApiError in
@@ -174,7 +179,7 @@ extension ObjectRequester {
         let urlRequester = URLRequester(host: url)
         let publisher = urlRequester.post()
             .tryMap { (data, _) -> Entity in
-                let ans = try self.simpleTryMap(data: data, dtoType: .list)
+                let ans = try self.simpleTryMap(data: data)
                 return ans
             }
             .mapError { (err) -> ApiError in
@@ -190,7 +195,7 @@ extension ObjectRequester {
         let urlRequester = URLRequester(host: url)
         let publisher = urlRequester.patch()
             .tryMap { (data, _) -> Entity in
-                let ans = try self.simpleTryMap(data: data, dtoType: .detail)
+                let ans = try self.simpleTryMap(data: data)
                 return ans
             }
             .mapError { (err) -> ApiError in

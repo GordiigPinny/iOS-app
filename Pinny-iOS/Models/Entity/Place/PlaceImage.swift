@@ -7,18 +7,18 @@
 //
 
 import Foundation
-import ObjectMapper
+import HandyJSON
 
 
 final class PlaceImage: APIEntity {
     // MARK: - Variables
     var id: Int?
-    var picId: Int
-    var placeId: Int
+    var picId: Int!
+    var placeId: Int!
     var createdById: Int?
     var deletedFlg: Bool?
     
-    var isDetailed: Bool = false
+    var isDetailed: Bool = true
     
     // MARK: - Manager
     class var manager: PlaceImageManager {
@@ -26,6 +26,10 @@ final class PlaceImage: APIEntity {
     }
     
     // MARK: - Inits
+    init() {
+        
+    }
+    
     init(id: Int? = nil, picId: Int, placeId: Int, createdById: Int? = nil, deletedFlg: Bool? = nil) {
         self.id = id
         self.picId = picId
@@ -34,18 +38,16 @@ final class PlaceImage: APIEntity {
         self.deletedFlg = deletedFlg
     }
     
-    // MARK: - Object mapper
-    convenience init?(map: Map) {
-        self.init(JSON: map.JSON, context: map.context)
-    }
-    
-    func mapping(map: Map) {
-        id          <- map["id"]
-        picId       <- map["pic_id"]
-        placeId     <- map["place_id"]
-        createdById <- map["created_by"]
-        deletedFlg  <- map["deleted_flg"]
-        isDetailed = true
+    // MARK: - HandyJSON mappings
+    func mapping(mapper: HelpingMapper) {
+        mapper <<<
+            self.placeId <-- "place_id"
+        mapper <<<
+            self.createdById <-- "created_by"
+        mapper <<<
+            self.deletedFlg <-- "deleted_flg"
+        mapper <<<
+            self.picId <-- "pic_id"
     }
     
 }

@@ -9,6 +9,37 @@
 import Foundation
 
 
+// MARK: - User defaults store
+class Defaults {
+    private enum UDKeys: String {
+        case currentUser
+        case currentToken
+    }
+    
+    private static let ud = UserDefaults.standard
+    
+    static var currentUser: User? {
+        get {
+            ud.object(forKey: UDKeys.currentUser.rawValue) as? User
+        }
+        set {
+            ud.set(newValue, forKey: UDKeys.currentUser.rawValue)
+        }
+    }
+    
+    static var currentToken: Token? {
+        get {
+            ud.object(forKey: UDKeys.currentToken.rawValue) as? Token
+        }
+        set {
+            ud.set(newValue, forKey: UDKeys.currentToken.rawValue)
+        }
+    }
+    
+}
+
+
+// MARK: - Hosts
 class Hosts {
     static let authHost = "http://127.0.0.1:8000/"
     static var authHostUrl: URL {
@@ -38,6 +69,17 @@ class Hosts {
     static let mediaHost = "http://127.0.0.1:8000/"
     static var mediaHostUrl: URL {
         return URL(string: mediaHost)!
+    }
+    
+    static var defaultHeaders: [String : String] {
+        var defaultDict = [
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        ]
+        if let token = Defaults.currentToken {
+            defaultDict["Authorization"] = "Bearer \(token)"
+        }
+        return defaultDict
     }
     
 }

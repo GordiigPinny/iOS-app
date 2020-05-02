@@ -10,7 +10,7 @@
         <!--Вход-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LogInViewController" customModule="Pinny_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="LogInVC" storyboardIdentifier="LogInVC" id="BYZ-38-t0r" customClass="LogInViewController" customModule="Pinny_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

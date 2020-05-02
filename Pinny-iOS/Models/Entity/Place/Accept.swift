@@ -7,17 +7,17 @@
 //
 
 import Foundation
-import ObjectMapper
+import HandyJSON
 
 
 final class Accept: APIEntity {
     // MARK: - Variables
     var id: Int?
-    var placeId: Int
-    var createdById: Int
-    var deletedFlg: Bool
+    var placeId: Int!
+    var createdById: Int!
+    var deletedFlg: Bool!
     
-    var isDetailed: Bool = false
+    var isDetailed: Bool = true
     
     // MARK: - Manager
     class var manager: AcceptManager {
@@ -25,6 +25,10 @@ final class Accept: APIEntity {
     }
     
     // MARK: - inits
+    init() {
+        
+    }
+    
     init(id: Int? = nil, placeId: Int, createdById: Int, deletedFlg: Bool) {
         self.id = id
         self.placeId = placeId
@@ -33,17 +37,14 @@ final class Accept: APIEntity {
     }
     
     
-    // MARK: - Object mapper
-    convenience init?(map: Map) {
-        self.init(JSON: map.JSON, context: map.context)
-    }
-    
-    func mapping(map: Map) {
-        id              <- map["id"]
-        placeId         <- map["place_id"]
-        createdById     <- map["created_by"]
-        deletedFlg      <- map["deletedFlg"]
-        isDetailed = true
+    // MARK: - HandyJSON mapping
+    func mapping(mapper: HelpingMapper) {
+        mapper <<<
+            self.createdById <-- "created_by"
+        mapper <<<
+            self.deletedFlg <-- "deleted_flg"
+        mapper <<<
+            self.placeId <-- "place_id"
     }
     
 }

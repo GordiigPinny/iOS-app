@@ -48,21 +48,19 @@ class URLRequester {
         self.host = host
     }
     
+    // MARK: - Some utils
+    static func buildUrlWithParams(url: URL, params: [String : Any]) -> URL {
+        let queryItems = params.map { URLQueryItem(name: $0, value: "\($1)") }
+        var comps = URLComponents(string: url.absoluteString)!
+        comps.queryItems = queryItems
+        return comps.url!
+    }
+    
     // MARK: - Configurations
     private func getFullUrl(urlPostfix: String?, queryParams: [String: Any]?) -> URL {
-        // Transforming dict to array with elements like "key=value"
-        let paramsAsString = queryParams?.map({ (key: String, value: Any) -> String in
-            return "\(key)=\(value)"
-        }) ?? []
-        // Transforming prev array to string like "key1=value1&key2=value2..."
-        let paramsStr = paramsAsString.joined(separator: "&")
-        // Getting full url
-        var urlStr = host.absoluteString + (urlPostfix ?? "")
-        if !paramsStr.isEmpty {
-            urlStr += "?" + paramsStr
-        }
-        let url = URL(string: urlStr)!
-        return url
+        let urlWithPostfix = self.host.appendingPathComponent(urlPostfix ?? "")
+        let ans = Self.buildUrlWithParams(url: urlWithPostfix, params: queryParams ?? [:])
+        return ans
     }
     
     private func getRequest(method: Method, urlPostfix: String?, data: Data?, queryParams: [String: Any]?, headers: [String: String]?) -> URLRequest {
@@ -74,7 +72,7 @@ class URLRequester {
         request.httpMethod = method.rawValue
         request.httpBody = data
         // Setting headers
-        for (key, val) in (headers ?? [String: String]()) {
+        for (key, val) in (headers ?? Hosts.defaultHeaders) {
             request.addValue(val, forHTTPHeaderField: key)
         }
         return request
