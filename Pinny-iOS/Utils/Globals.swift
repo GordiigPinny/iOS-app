@@ -13,26 +13,35 @@ import Foundation
 class Defaults {
     private enum UDKeys: String {
         case currentUser
-        case currentToken
+        case accessToken
+        case refreshToken
     }
     
     private static let ud = UserDefaults.standard
     
     static var currentUser: User? {
         get {
-            ud.object(forKey: UDKeys.currentUser.rawValue) as? User
+            let userStr = ud.string(forKey: UDKeys.currentUser.rawValue)
+            return User.deserialize(from: userStr)
         }
         set {
-            ud.set(newValue, forKey: UDKeys.currentUser.rawValue)
+            let userStr = newValue?.toJSONString(prettyPrint: true)
+            ud.set(userStr, forKey: UDKeys.currentUser.rawValue)
         }
     }
     
     static var currentToken: Token? {
         get {
-            ud.object(forKey: UDKeys.currentToken.rawValue) as? Token
+            let access = ud.string(forKey: UDKeys.accessToken.rawValue)
+            let refresh = ud.string(forKey: UDKeys.refreshToken.rawValue)
+            if let access = access, let refresh = refresh {
+                return Token(access: access, refresh: refresh)
+            }
+            return nil
         }
         set {
-            ud.set(newValue, forKey: UDKeys.currentToken.rawValue)
+            ud.set(newValue?.access, forKey: UDKeys.accessToken.rawValue)
+            ud.set(newValue?.refresh, forKey: UDKeys.refreshToken.rawValue)
         }
     }
     
@@ -41,45 +50,50 @@ class Defaults {
 
 // MARK: - Hosts
 class Hosts {
-    static let authHost = "http://127.0.0.1:8000/"
+    static let authHost = "http://127.0.0.1:8000/api/"
     static var authHostUrl: URL {
         return URL(string: authHost)!
     }
     
-    static let profilesHost = "http://127.0.0.1:8000/"
+    static let profilesHost = "http://127.0.0.1:8000/api/"
     static var profilesHostUrl: URL {
         return URL(string: profilesHost)!
     }
     
-    static let awardsHost = "http://127.0.0.1:8000/"
+    static let awardsHost = "http://127.0.0.1:8000/api/"
     static var awardsHostUrl: URL {
         return URL(string: awardsHost)!
     }
     
-    static let placesHost = "http://127.0.0.1:8000/"
+    static let placesHost = "http://127.0.0.1:8000/api/"
     static var placesHostUrl: URL {
         return URL(string: placesHost)!
     }
     
-    static let statsHost = "http://127.0.0.1:8000/"
+    static let statsHost = "http://127.0.0.1:8000/api/"
     static var statsHostUrl: URL {
         return URL(string: statsHost)!
     }
     
-    static let mediaHost = "http://127.0.0.1:8000/"
+    static let mediaHost = "http://127.0.0.1:8000/api/"
     static var mediaHostUrl: URL {
         return URL(string: mediaHost)!
     }
     
-    static var defaultHeaders: [String : String] {
-        var defaultDict = [
+    static var unauthorizedHeaders: [String : String] {
+        let ans = [
             "Accept": "application/json",
             "Content-Type": "application/json"
         ]
+        return ans
+    }
+
+    static var defaultHeaders: [String : String] {
+        var headers = unauthorizedHeaders
         if let token = Defaults.currentToken {
-            defaultDict["Authorization"] = "Bearer \(token)"
+            headers["Authorization"] = "Bearer \(token.access)"
         }
-        return defaultDict
+        return headers
     }
     
 }

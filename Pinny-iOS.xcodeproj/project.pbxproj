@@ -10,6 +10,7 @@
 		130522AA245D66EB000C02C9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130522A9245D66EB000C02C9 /* User.swift */; };
 		130522AF245D6947000C02C9 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130522AE245D6947000C02C9 /* Token.swift */; };
 		130522B1245D6959000C02C9 /* AuthRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130522B0245D6959000C02C9 /* AuthRequester.swift */; };
+		130522B4245D7B19000C02C9 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130522B3245D7B19000C02C9 /* UserManager.swift */; };
 		1327112224334D82009005C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327112124334D82009005C0 /* AppDelegate.swift */; };
 		1327112424334D82009005C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327112324334D82009005C0 /* SceneDelegate.swift */; };
 		1327112624334D82009005C0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327112524334D82009005C0 /* LogInViewController.swift */; };
@@ -58,6 +59,7 @@
 		130522A9245D66EB000C02C9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		130522AE245D6947000C02C9 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		130522B0245D6959000C02C9 /* AuthRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequester.swift; sourceTree = "<group>"; };
+		130522B3245D7B19000C02C9 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		1327111E24334D82009005C0 /* Pinny-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pinny-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1327112124334D82009005C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1327112324334D82009005C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +134,14 @@
 				130522B0245D6959000C02C9 /* AuthRequester.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		130522B2245D7B0A000C02C9 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				130522B3245D7B19000C02C9 /* UserManager.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		1327111524334D82009005C0 = {
@@ -284,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				13BAE95124582F1900BE7C99 /* APIEntityManager.swift */,
+				130522B2245D7B0A000C02C9 /* User */,
 				135D9305245D658500D6FAE0 /* Place */,
 			);
 			path = Managers;
@@ -496,6 +507,7 @@
 				130522AA245D66EB000C02C9 /* User.swift in Sources */,
 				1397BAF92455B212005B2C75 /* ObjectRequester.swift in Sources */,
 				13BAE95024582E4600BE7C99 /* APIEntity.swift in Sources */,
+				130522B4245D7B19000C02C9 /* UserManager.swift in Sources */,
 				13CA803A24502B12006ED889 /* UIAlertControllerBuilder.swift in Sources */,
 				13A56C5124502F1600584BDD /* SignUpViewController.swift in Sources */,
 				1380D752245861D00007EBEA /* Accept.swift in Sources */,

@@ -127,7 +127,8 @@ extension ObjectRequester {
                 return nonNilAns
             }
             .mapError { (err) -> ApiError in
-                return self.mapError(err)
+                let ans = self.mapError(err)
+                return ans
             }
             .eraseToAnyPublisher()
         return publisher
@@ -152,7 +153,8 @@ extension ObjectRequester {
                 
             }
             .mapError { (err) -> ApiError in
-                return self.mapError(err)
+                let ans = self.mapError(err)
+                return ans
             }
             .eraseToAnyPublisher()
         return publisher
@@ -167,7 +169,8 @@ extension ObjectRequester {
                 return ans
             }
             .mapError { (err) -> ApiError in
-                return self.mapError(err)
+                let ans = self.mapError(err)
+                return ans
             }
             .eraseToAnyPublisher()
         return publisher
@@ -183,7 +186,8 @@ extension ObjectRequester {
                 return ans
             }
             .mapError { (err) -> ApiError in
-                return self.mapError(err)
+                let ans = self.mapError(err)
+                return ans
             }
             .eraseToAnyPublisher()
         return publisher
@@ -199,7 +203,8 @@ extension ObjectRequester {
                 return ans
             }
             .mapError { (err) -> ApiError in
-                return self.mapError(err)
+                let ans = self.mapError(err)
+                return ans
             }
             .eraseToAnyPublisher()
         return publisher
@@ -211,10 +216,10 @@ extension ObjectRequester {
         let urlRequester = URLRequester(host: url)
         let publisher = urlRequester.delete()
             .map { _, response in
-                return response.statusCode == 204
+                response.statusCode == 204
             }
             .mapError { (err) -> ApiError in
-                return ApiError.requestError(err: err)
+                ApiError.requestError(err: err)
             }
             .eraseToAnyPublisher()
         return publisher
@@ -232,7 +237,7 @@ class RatingRequester: ObjectRequester {
     }
     
     var resource: String {
-        "ratings"
+        "ratings/"
     }
     
 }
@@ -247,7 +252,7 @@ class AcceptRequester: ObjectRequester {
     }
     
     var resource: String {
-        "accepts"
+        "accepts/"
     }
     
 }
@@ -262,7 +267,7 @@ class PlaceImageRequester: ObjectRequester {
     }
     
     var resource: String {
-        "place_images"
+        "place_images/"
     }
     
 }
@@ -277,7 +282,36 @@ class PlaceRequester: ObjectRequester {
     }
     
     var resource: String {
-        "places"
+        "places/"
     }
     
+}
+
+
+// MARK: - UserRequester
+class UserRequester: ObjectRequester {
+    typealias Entity = User
+    
+    var host: URL {
+        Hosts.authHostUrl
+    }
+    
+    var resource: String {
+        "users/"
+    }
+
+    func getCurrentUser() -> AnyPublisher<User, ApiError> {
+        let requester = URLRequester(host: host)
+        let ans = requester.get(urlPostfix: "user_info/") 
+            .tryMap { data, _ -> User in
+                let ans = try self.simpleTryMap(data: data)
+                return ans
+            }
+            .mapError { err -> ApiError in
+                let ans = self.mapError(err)
+                return ans
+            }
+            .eraseToAnyPublisher()
+        return ans
+    }
 }

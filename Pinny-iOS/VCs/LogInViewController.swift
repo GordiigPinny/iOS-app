@@ -26,7 +26,8 @@ class LogInViewController: UIViewController {
     
     // MARK: - Variables
     let authRequester = AuthRequester()
-    var subscriber: AnyCancellable?
+    var tokenSubscriber: AnyCancellable?
+    var userSubscriber: AnyCancellable?
     
     // MARK: - Time hooks
     override func viewDidLoad() {
@@ -36,6 +37,10 @@ class LogInViewController: UIViewController {
         passwordTextField.delegate = self
         passwordTextField.addTarget(self, action: #selector(textFieldChangeEditing), for: .editingChanged)
         logInButton.isEnabled = canPressLogInButton
+
+        usernameTextField.text = "gordiig"
+        passwordTextField.text = "Qweasdzxc123"
+        logInButton.isEnabled = true
     }
 
     // MARK: - Actions
@@ -43,7 +48,7 @@ class LogInViewController: UIViewController {
         let username = self.username!
         let password = self.password!
         
-        subscriber = authRequester.getToken(username: username, password: password)
+        tokenSubscriber = authRequester.getToken(username: username, password: password)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -68,12 +73,40 @@ class LogInViewController: UIViewController {
     
     // MARK: - RequestHandler
     private func logInRequestHandlerSuccess(_ token: Token) {
-        let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Got token", msg: "access: \(token.access)\nrefresh: \(token.refresh)")
-        present(alert, animated: true)
+        Defaults.currentToken = token
+        userSubscriber = UserRequester().getCurrentUser()
+        .receive(on: DispatchQueue.main)
+        .sink(receiveCompletion: { completion in
+            switch completion {
+            case .failure(let err):
+                self.userRequestHandlerFailed(err)
+            case .finished:
+                break
+            }
+        }, receiveValue: { user in
+            self.userRequestHandlerSuccess(user)
+        })
     }
     
     private func logInRequestHandlerFailed(_ err: URLRequester.RequestError) {
         let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Error came", msg: err.localizedDescription)
+        present(alert, animated: true)
+    }
+
+    private func userRequestHandlerSuccess(_ user: User) {
+        Defaults.currentUser = user
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = storyboard.instantiateInitialViewController() as? UITabBarController else {
+            let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Can't instantiate main VC", msg: "Rebuild")
+            present(alert, animated: true)
+            return
+        }
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
+
+    private func userRequestHandlerFailed(_ err: UserRequester.ApiError) {
+        let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Error", msg: err.localizedDescription)
         present(alert, animated: true)
     }
     

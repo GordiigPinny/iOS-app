@@ -17,7 +17,7 @@ class AuthRequester {
     func getToken(username: String, password: String) -> AnyPublisher<Token, URLRequester.RequestError> {
         let authDict = ["username": username, "password": password]
         let data = try! JSONSerialization.data(withJSONObject: authDict, options: [.prettyPrinted])
-        let ans = requester.post(urlPostfix: "api/api-token-auth/", data: data)
+        let ans = requester.post(urlPostfix: "api-token-auth/", data: data, headers: Hosts.unauthorizedHeaders)
             .tryMap { (data: Data, _) -> Token in
                 let json = try JSON(data: data)
                 let access = json["access"].stringValue
