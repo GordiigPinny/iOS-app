@@ -35,5 +35,10 @@ final class UserManager: APIEntityManager {
     func checkEntityWithKeyPath<T>(_ entity: User, keyPath: KeyPath<User, T>, value: T) -> Bool where T : Equatable {
         return entity[keyPath: keyPath] == value
     }
+
+    // MARK: - Some local funcs
+    var currentUser: User? {
+        Defaults.currentUser
+    }
     
 }
