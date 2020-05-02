@@ -360,3 +360,91 @@ class AchievementRequester: ObjectRequester {
     }
 
 }
+
+
+// MARK: - RequestStats requester
+class RequestStatsRequester: ObjectRequester {
+    typealias Entity = RequestStats
+
+    var host: URL {
+        Hosts.statsHostUrl
+    }
+
+    var resource: String {
+        "requests/"
+    }
+
+}
+
+
+// MARK: - PlaceStats requester
+class PlaceStatsRequester: ObjectRequester {
+    typealias Entity = PlaceStats
+
+    var host: URL {
+        Hosts.statsHostUrl
+    }
+
+    var resource: String {
+        "places/"
+    }
+
+}
+
+
+// MARK: - AcceptStats requester
+class AcceptStatsRequester: ObjectRequester {
+    typealias Entity = AcceptStats
+
+    var host: URL {
+        Hosts.statsHostUrl
+    }
+
+    var resource: String {
+        "accepts/"
+    }
+
+}
+
+// MARK: - RatingStats requester
+class RatingStatsRequester: ObjectRequester {
+    typealias Entity = RatingStats
+
+    var host: URL {
+        Hosts.statsHostUrl
+    }
+
+    var resource: String {
+        "ratings/"
+    }
+
+}
+
+// MARK: - AchievementStats requester
+class AchievementStatsRequester: ObjectRequester {
+    typealias Entity = AchievementStats
+
+    var host: URL {
+        Hosts.statsHostUrl
+    }
+
+    var resource: String {
+        "achievements/"
+    }
+
+}
+
+// MARK: - PinPurchaseStats requester
+class PinPurchaseStatsRequester: ObjectRequester {
+    typealias Entity = PinPurchaseStats
+
+    var host: URL {
+        Hosts.statsHostUrl
+    }
+
+    var resource: String {
+        "pin_purchases/"
+    }
+
+}
+

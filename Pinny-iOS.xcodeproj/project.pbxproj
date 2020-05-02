@@ -43,12 +43,24 @@
 		13FC27B62451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC27B52451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift */; };
 		13FC27BA2451C78B00EB5A0D /* PlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC27B92451C78B00EB5A0D /* PlaceDetailViewController.swift */; };
 		A215AC73D2C9C936552AB672 /* Pods_Pinny_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240C9199E2E44AFA0E874D99 /* Pods_Pinny_iOS.framework */; };
+		C81470D13BA9F6D2602C4546 /* RequestStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814754DED8A989A2D4C7BF1 /* RequestStats.swift */; };
+		C814725946DC2AC2AEF17C8C /* PlaceStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81473708117BB241281D99A /* PlaceStats.swift */; };
+		C814734AD2572D53F165D0B7 /* RatingStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81472B33FF8A0BB747DEA80 /* RatingStats.swift */; };
+		C81473F6E7639465FF39DAA9 /* RatingStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814778BFE44C32BE396A6D6 /* RatingStatsManager.swift */; };
 		C8147460BBD75D1736BE5F6A /* AchievementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814730550786F9A5A3C12BB /* AchievementManager.swift */; };
 		C8147571553134AC0778F237 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81470FB07BA842AD8D6F0D9 /* ProfileManager.swift */; };
+		C8147598D001D68528A02177 /* PinPurchaseStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81475A7014A653B886AD9A9 /* PinPurchaseStats.swift */; };
+		C81475FA5787DFB2B778A1AC /* AcceptStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147DB25D7E36559FF7A847 /* AcceptStatsManager.swift */; };
+		C8147645427479ACCE94EED4 /* AcceptStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147996E7FD2BDD46A09F4B /* AcceptStats.swift */; };
 		C81477D13A36E8F7754FFF37 /* PinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147064CE86025DECCC0F1C /* PinManager.swift */; };
 		C81478A6AF607C850B84CF49 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81475BAEF6641B1CA983BDD /* Pin.swift */; };
+		C814791A6E2A827FAB2E1C38 /* AchievementStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81479E7138A6B17767CCD50 /* AchievementStatsManager.swift */; };
 		C81479AE15A8D0B8BD89DFE2 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147C90DE3221C40FDFDEAB /* Achievement.swift */; };
+		C8147B461CFF789DA5C37114 /* PinPurchaseStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814766E020DE99F8E6F576E /* PinPurchaseStatsManager.swift */; };
 		C8147BD62E780C067D660FD7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147B4EBB54D2A25B07C305 /* Profile.swift */; };
+		C8147BEB3E0CB641E6E5CF65 /* AchievementStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147EE381B1FE198E5CA587 /* AchievementStats.swift */; };
+		C8147D84AADEA15C2A24CEDF /* PlaceStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147630BD2853475FA224B3 /* PlaceStatsManager.swift */; };
+		C8147E142052CCE5FA2EC7C4 /* RequestStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147B932298EA36335B6D75 /* RequestStatsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,10 +118,22 @@
 		8EC6DC99C46AC042FE467DAD /* Pods-Pinny-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinny-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		C8147064CE86025DECCC0F1C /* PinManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinManager.swift; sourceTree = "<group>"; };
 		C81470FB07BA842AD8D6F0D9 /* ProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
+		C81472B33FF8A0BB747DEA80 /* RatingStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingStats.swift; sourceTree = "<group>"; };
 		C814730550786F9A5A3C12BB /* AchievementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementManager.swift; sourceTree = "<group>"; };
+		C81473708117BB241281D99A /* PlaceStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceStats.swift; sourceTree = "<group>"; };
+		C814754DED8A989A2D4C7BF1 /* RequestStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestStats.swift; sourceTree = "<group>"; };
+		C81475A7014A653B886AD9A9 /* PinPurchaseStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinPurchaseStats.swift; sourceTree = "<group>"; };
 		C81475BAEF6641B1CA983BDD /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		C8147630BD2853475FA224B3 /* PlaceStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceStatsManager.swift; sourceTree = "<group>"; };
+		C814766E020DE99F8E6F576E /* PinPurchaseStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinPurchaseStatsManager.swift; sourceTree = "<group>"; };
+		C814778BFE44C32BE396A6D6 /* RatingStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingStatsManager.swift; sourceTree = "<group>"; };
+		C8147996E7FD2BDD46A09F4B /* AcceptStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptStats.swift; sourceTree = "<group>"; };
+		C81479E7138A6B17767CCD50 /* AchievementStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementStatsManager.swift; sourceTree = "<group>"; };
 		C8147B4EBB54D2A25B07C305 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		C8147B932298EA36335B6D75 /* RequestStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestStatsManager.swift; sourceTree = "<group>"; };
 		C8147C90DE3221C40FDFDEAB /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
+		C8147DB25D7E36559FF7A847 /* AcceptStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptStatsManager.swift; sourceTree = "<group>"; };
+		C8147EE381B1FE198E5CA587 /* AchievementStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementStats.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +325,7 @@
 				130522A8245D66E1000C02C9 /* User */,
 				135D9300245D64D100D6FAE0 /* Place */,
 				C8147A82DB422EFEE6203C43 /* Awards */,
+				C8147394E71BBC83AB63987D /* Stats */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -312,6 +337,7 @@
 				130522B2245D7B0A000C02C9 /* User */,
 				135D9305245D658500D6FAE0 /* Place */,
 				C8147F2F01C1649EB7E15245 /* Awards */,
+				C8147176A0A1D813DA1A710A /* Stats */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -349,6 +375,32 @@
 				6DAC37D220E3F42D78F09681 /* Pods-Pinny-iOS.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C8147176A0A1D813DA1A710A /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				C8147B932298EA36335B6D75 /* RequestStatsManager.swift */,
+				C8147630BD2853475FA224B3 /* PlaceStatsManager.swift */,
+				C8147DB25D7E36559FF7A847 /* AcceptStatsManager.swift */,
+				C814778BFE44C32BE396A6D6 /* RatingStatsManager.swift */,
+				C81479E7138A6B17767CCD50 /* AchievementStatsManager.swift */,
+				C814766E020DE99F8E6F576E /* PinPurchaseStatsManager.swift */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		C8147394E71BBC83AB63987D /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				C814754DED8A989A2D4C7BF1 /* RequestStats.swift */,
+				C81473708117BB241281D99A /* PlaceStats.swift */,
+				C8147996E7FD2BDD46A09F4B /* AcceptStats.swift */,
+				C81472B33FF8A0BB747DEA80 /* RatingStats.swift */,
+				C8147EE381B1FE198E5CA587 /* AchievementStats.swift */,
+				C81475A7014A653B886AD9A9 /* PinPurchaseStats.swift */,
+			);
+			path = Stats;
 			sourceTree = "<group>";
 		};
 		C8147A82DB422EFEE6203C43 /* Awards */ = {
@@ -569,6 +621,18 @@
 				C81477D13A36E8F7754FFF37 /* PinManager.swift in Sources */,
 				C81479AE15A8D0B8BD89DFE2 /* Achievement.swift in Sources */,
 				C8147460BBD75D1736BE5F6A /* AchievementManager.swift in Sources */,
+				C81470D13BA9F6D2602C4546 /* RequestStats.swift in Sources */,
+				C8147E142052CCE5FA2EC7C4 /* RequestStatsManager.swift in Sources */,
+				C814725946DC2AC2AEF17C8C /* PlaceStats.swift in Sources */,
+				C8147D84AADEA15C2A24CEDF /* PlaceStatsManager.swift in Sources */,
+				C8147645427479ACCE94EED4 /* AcceptStats.swift in Sources */,
+				C81475FA5787DFB2B778A1AC /* AcceptStatsManager.swift in Sources */,
+				C814734AD2572D53F165D0B7 /* RatingStats.swift in Sources */,
+				C81473F6E7639465FF39DAA9 /* RatingStatsManager.swift in Sources */,
+				C814791A6E2A827FAB2E1C38 /* AchievementStatsManager.swift in Sources */,
+				C8147BEB3E0CB641E6E5CF65 /* AchievementStats.swift in Sources */,
+				C8147B461CFF789DA5C37114 /* PinPurchaseStatsManager.swift in Sources */,
+				C8147598D001D68528A02177 /* PinPurchaseStats.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
