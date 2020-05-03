@@ -19,7 +19,7 @@ final class ImageFile: APIEntity {
 
     // MARK: - Variables
     var id: Int?
-    var image: UIImage? = nil
+    var _image: UIImage? = nil
     var imageUrl: String? = nil
     var objectId: Int!
     var objectType: ObjectType!
@@ -28,6 +28,19 @@ final class ImageFile: APIEntity {
 
     var isDetailed: Bool {
         image != nil
+    }
+
+    var image: UIImage? {
+        get {
+            _image == nil ? Self.defaultImage : _image
+        }
+        set {
+            _image = newValue
+        }
+    }
+
+    static var defaultImage: UIImage {
+        UIImage(systemName: "questionmark.circle")!
     }
 
     // MARK: - Manager

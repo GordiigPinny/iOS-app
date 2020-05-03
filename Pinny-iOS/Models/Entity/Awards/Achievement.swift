@@ -16,7 +16,7 @@ final class Achievement: APIEntity {
     var deletedFlg: Bool = false
 
     var isDetailed: Bool {
-        true
+        descr != nil
     }
 
     // MARK: - Manager

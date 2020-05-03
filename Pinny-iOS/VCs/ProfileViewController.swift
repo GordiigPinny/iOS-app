@@ -43,6 +43,12 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func achievementsButtonPressed(_ sender: Any) {
+        guard let vc = storyboard?.instantiateViewController(identifier: AchievementListViewController.id)
+                as? AchievementListViewController else {
+            presentDefaultOKAlert(title: "Error on instantiating achievement list vc", msg: nil)
+            return
+        }
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func logOutButtonPressed(_ sender: Any) {
