@@ -43,6 +43,7 @@
 		13A56C5124502F1600584BDD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A56C5024502F1600584BDD /* SignUpViewController.swift */; };
 		13A56C53245038E000584BDD /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A56C52245038E000584BDD /* UITextFieldExtension.swift */; };
 		13B392A2245F1E21002FDA9F /* AchievementDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B392A1245F1E21002FDA9F /* AchievementDetailViewController.swift */; };
+		13B392A4245F3356002FDA9F /* PinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B392A3245F3356002FDA9F /* PinDetailViewController.swift */; };
 		13BAE95024582E4600BE7C99 /* APIEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BAE94F24582E4600BE7C99 /* APIEntity.swift */; };
 		13BAE95224582F1900BE7C99 /* APIEntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BAE95124582F1900BE7C99 /* APIEntityManager.swift */; };
 		13C5FFD5245DD40300EB0F4B /* PlacesSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C5FFD4245DD40300EB0F4B /* PlacesSearchViewController.swift */; };
@@ -126,6 +127,7 @@
 		13A56C5024502F1600584BDD /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		13A56C52245038E000584BDD /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		13B392A1245F1E21002FDA9F /* AchievementDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementDetailViewController.swift; sourceTree = "<group>"; };
+		13B392A3245F3356002FDA9F /* PinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinDetailViewController.swift; sourceTree = "<group>"; };
 		13BAE94F24582E4600BE7C99 /* APIEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEntity.swift; sourceTree = "<group>"; };
 		13BAE95124582F1900BE7C99 /* APIEntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEntityManager.swift; sourceTree = "<group>"; };
 		13C5FFD4245DD40300EB0F4B /* PlacesSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesSearchViewController.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				1365DDA3245F0C2A00481B9D /* PinListViewController.swift */,
 				1365DDA5245F0C3700481B9D /* AchievementListViewController.swift */,
 				13B392A1245F1E21002FDA9F /* AchievementDetailViewController.swift */,
+				13B392A3245F3356002FDA9F /* PinDetailViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				C81473F6E7639465FF39DAA9 /* RatingStatsManager.swift in Sources */,
 				1365DDA6245F0C3700481B9D /* AchievementListViewController.swift in Sources */,
 				C814791A6E2A827FAB2E1C38 /* AchievementStatsManager.swift in Sources */,
+				13B392A4245F3356002FDA9F /* PinDetailViewController.swift in Sources */,
 				C8147BEB3E0CB641E6E5CF65 /* AchievementStats.swift in Sources */,
 				C8147B461CFF789DA5C37114 /* PinPurchaseStatsManager.swift in Sources */,
 				1365DDA4245F0C2A00481B9D /* PinListViewController.swift in Sources */,

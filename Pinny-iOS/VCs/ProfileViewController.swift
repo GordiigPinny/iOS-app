@@ -40,6 +40,12 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func pinsButtonPressed(_ sender: Any) {
+        guard let vc = storyboard?.instantiateViewController(identifier: PinListViewController.id)
+                as? PinListViewController else {
+            presentDefaultOKAlert(title: "Error on instantiating pin list vc", msg: nil)
+            return
+        }
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     @IBAction func achievementsButtonPressed(_ sender: Any) {

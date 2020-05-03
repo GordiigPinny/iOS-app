@@ -8,8 +8,8 @@ import HandyJSON
 
 
 enum PinType: String, HandyJSONEnum {
-    case place = "Место"
-    case user = "Юзер"
+    case place = "p"
+    case user = "g"
 }
 
 
@@ -24,7 +24,7 @@ final class Pin: APIEntity {
     var deletedFlg: Bool = false
 
     var isDetailed: Bool {
-        true
+        descr != nil
     }
 
     // MARK: - Manager

@@ -38,7 +38,7 @@ class AchievementListViewController: UIViewController {
 
     // MARK: - Actions
     @objc func refreshControllerValueChanged() {
-        if refreshController.isRefreshing { return }
+        if !refreshController.isRefreshing { return }
         getAchievements()
     }
 
