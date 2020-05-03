@@ -63,7 +63,7 @@ extension APIEntityManager {
                     break
                 }
             }) { newEntity in
-                self.entities.append(newEntity)
+                self.replace(newEntity, with: newEntity)
                 onSuccess?(newEntity)
             }
     }

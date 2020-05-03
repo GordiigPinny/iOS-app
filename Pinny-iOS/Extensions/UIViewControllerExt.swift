@@ -14,5 +14,10 @@ extension UIViewController {
     func isTextFieldEmpty(_ textField: UITextField) -> Bool {
         return textField.isEmpty
     }
+
+    func presentDefaultOKAlert(title: String, msg: String?) {
+        let alert = UIAlertControllerBuilder.defaultOkAlert(title: title, msg: msg)
+        present(alert, animated: true)
+    }
     
 }

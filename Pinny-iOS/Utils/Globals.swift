@@ -44,6 +44,11 @@ class Defaults {
             ud.set(newValue?.refresh, forKey: UDKeys.refreshToken.rawValue)
         }
     }
+
+    static func clearAuthData() {
+        currentUser = nil
+        currentToken = nil
+    }
     
 }
 
