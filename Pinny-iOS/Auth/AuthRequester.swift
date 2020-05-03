@@ -51,6 +51,35 @@ class AuthRequester {
         return ans
     }
 
+    // MARK: - Change password
+    func changePassword(_ old: String, _ new: String, _ newConfirm: String) ->
+            AnyPublisher<Token, URLRequester.RequestError> {
+        let dict = ["old_password": old, "password": new, "password_confirm": newConfirm]
+        let dictData = try! JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+        let ans = requester.patch(urlPostfix: "change_password/", data: dictData, headers: Hosts.defaultHeaders)
+            .tryMap { data, _ -> Token in
+                let ans = try self.dataToTokens(data)
+                return ans
+            }
+            .mapError { err -> URLRequester.RequestError in
+                if let _ = err as? DecodingError {
+                    return URLRequester.RequestError.apiError(code: 400, descr: "Can't decode tokens")
+                }
+                if let newErr = err as? URLRequester.RequestError {
+                    switch newErr {
+                    case .apiError(let code, let descr):
+                        return URLRequester.RequestError.apiError(code: code, descr: descr +
+                                "Maybe old password is wrong?")
+                    default:
+                        return newErr
+                    }
+                }
+                return URLRequester.RequestError.unknown
+            }
+            .eraseToAnyPublisher()
+        return ans
+    }
+
     // MARK: - Handy privates
     private func dataToTokens(_ data: Data) throws -> Token {
         let json = try JSON(data: data)

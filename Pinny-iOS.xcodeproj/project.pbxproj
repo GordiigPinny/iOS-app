@@ -24,6 +24,8 @@
 		134356BA245029EF00026355 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B9245029EF00026355 /* UIViewControllerExt.swift */; };
 		1365DD98245ECA4D00481B9D /* PlaceImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DD97245ECA4D00481B9D /* PlaceImageCollectionViewCell.swift */; };
 		1365DD9A245ECA9A00481B9D /* PlaceImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DD99245ECA9A00481B9D /* PlaceImagesViewController.swift */; };
+		1365DD9C245EF20700481B9D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DD9B245EF20700481B9D /* ProfileViewController.swift */; };
+		1365DD9E245F00BA00481B9D /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DD9D245F00BA00481B9D /* ChangePasswordViewController.swift */; };
 		1380D7482458583C0007EBEA /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D7472458583C0007EBEA /* Rating.swift */; };
 		1380D74A2458594A0007EBEA /* RatingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D7492458594A0007EBEA /* RatingManager.swift */; };
 		1380D752245861D00007EBEA /* Accept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D751245861D00007EBEA /* Accept.swift */; };
@@ -100,6 +102,8 @@
 		134356B9245029EF00026355 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		1365DD97245ECA4D00481B9D /* PlaceImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		1365DD99245ECA9A00481B9D /* PlaceImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImagesViewController.swift; sourceTree = "<group>"; };
+		1365DD9B245EF20700481B9D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1365DD9D245F00BA00481B9D /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		1380D7472458583C0007EBEA /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
 		1380D7492458594A0007EBEA /* RatingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingManager.swift; sourceTree = "<group>"; };
 		1380D751245861D00007EBEA /* Accept.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accept.swift; sourceTree = "<group>"; };
@@ -250,6 +254,8 @@
 				13FC27B92451C78B00EB5A0D /* PlaceDetailViewController.swift */,
 				13C5FFD4245DD40300EB0F4B /* PlacesSearchViewController.swift */,
 				1365DD99245ECA9A00481B9D /* PlaceImagesViewController.swift */,
+				1365DD9B245EF20700481B9D /* ProfileViewController.swift */,
+				1365DD9D245F00BA00481B9D /* ChangePasswordViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -649,12 +655,14 @@
 				1380D75A245867E80007EBEA /* PlaceImagesManager.swift in Sources */,
 				134356B8244EFF0800026355 /* AcceptButtonView.swift in Sources */,
 				C8147BD62E780C067D660FD7 /* Profile.swift in Sources */,
+				1365DD9C245EF20700481B9D /* ProfileViewController.swift in Sources */,
 				1365DD9A245ECA9A00481B9D /* PlaceImagesViewController.swift in Sources */,
 				C8147571553134AC0778F237 /* ProfileManager.swift in Sources */,
 				C81478A6AF607C850B84CF49 /* Pin.swift in Sources */,
 				C81477D13A36E8F7754FFF37 /* PinManager.swift in Sources */,
 				C81479AE15A8D0B8BD89DFE2 /* Achievement.swift in Sources */,
 				C8147460BBD75D1736BE5F6A /* AchievementManager.swift in Sources */,
+				1365DD9E245F00BA00481B9D /* ChangePasswordViewController.swift in Sources */,
 				C81470D13BA9F6D2602C4546 /* RequestStats.swift in Sources */,
 				C8147E142052CCE5FA2EC7C4 /* RequestStatsManager.swift in Sources */,
 				C814725946DC2AC2AEF17C8C /* PlaceStats.swift in Sources */,

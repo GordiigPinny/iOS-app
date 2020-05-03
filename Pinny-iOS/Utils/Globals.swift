@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 // MARK: - User defaults store
@@ -15,6 +16,9 @@ class Defaults {
         case currentUser
         case accessToken
         case refreshToken
+        case currentProfile
+        case avatarFile
+        case avatar
     }
     
     private static let ud = UserDefaults.standard
@@ -45,9 +49,40 @@ class Defaults {
         }
     }
 
+    static var currentProfile: Profile? {
+        get {
+            let profileStr = ud.string(forKey: UDKeys.currentProfile.rawValue)
+            return Profile.deserialize(from: profileStr)
+        }
+        set {
+            let profileStr = newValue?.toJSONString(prettyPrint: true)
+            ud.set(profileStr, forKey: UDKeys.currentProfile.rawValue)
+        }
+    }
+
+    static var currentAvatar: ImageFile? {
+        get {
+            let avatarData = ud.data(forKey: UDKeys.avatar.rawValue)
+            let image = avatarData == nil ? nil : UIImage(data: avatarData!)
+            let imageFileStr = ud.string(forKey: UDKeys.avatarFile.rawValue)
+            let avatarFile = ImageFile.deserialize(from: imageFileStr)
+            avatarFile?.image = image
+            return avatarFile
+        }
+        set {
+            let img = newValue?.image
+            newValue?.image = nil
+            let avatarStr = newValue?.toJSONString(prettyPrint: true)
+            ud.set(avatarStr, forKey: UDKeys.avatarFile.rawValue)
+            ud.set(img?.pngData(), forKey: UDKeys.avatar.rawValue)
+        }
+    }
+
     static func clearAuthData() {
         currentUser = nil
         currentToken = nil
+        currentProfile = nil
+        currentAvatar = nil
     }
     
 }

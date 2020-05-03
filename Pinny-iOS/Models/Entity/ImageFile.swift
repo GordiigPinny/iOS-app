@@ -65,4 +65,10 @@ final class ImageFile: APIEntity {
                 self.deletedFlg <-- "deleted_flg"
     }
 
+    var imageUrlForPostfix: String? {
+        var str = self.imageUrl
+        str?.removeFirst()
+        return str
+    }
+
 }

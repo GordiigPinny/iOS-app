@@ -25,6 +25,7 @@ class LogInViewController: UIViewController {
     }
     
     // MARK: - Variables
+    static let id = "LogInVC"
     let authRequester = AuthRequester()
     var tokenSubscriber: AnyCancellable?
     var userSubscriber: AnyCancellable?
