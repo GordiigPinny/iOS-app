@@ -16,7 +16,8 @@ class PlaceDetailViewController: UIViewController {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var globalRatingLabel: UILabel!
     @IBOutlet weak var photosButton: UIButton!
-
+    @IBOutlet weak var placeImagesActivityIndicator: UIActivityIndicatorView!
+    
     // MARK: - Variables
     static let id = "PlaceDetailVC"
     var placeSubscriber: AnyCancellable?
@@ -51,11 +52,24 @@ class PlaceDetailViewController: UIViewController {
         super.viewDidLoad()
         starsRatingView.delegate = self
         acceptButtonVew.delegate = self
+        placeImagesActivityIndicator.stopAnimating()
         fillViewController()
     }
 
     // MARK: - Actions
     @IBAction func photosButtonPressed(_ sender: Any) {
+        placeImagesActivityIndicator.startAnimating()
+        photosButton.isEnabled = false
+        DispatchQueue.main.asyncAfter(wallDeadline: .now()) {
+            self.placeImagesActivityIndicator.stopAnimating()
+            self.photosButton.isEnabled = true
+            guard let vc = self.storyboard?.instantiateViewController(identifier: PlaceImagesViewController.id)
+                    as? PlaceImagesViewController else {
+                self.presentDefaultOKAlert(title: "Can't instantiate place images vc", msg: nil)
+                return
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     // MARK: - Fill view with values

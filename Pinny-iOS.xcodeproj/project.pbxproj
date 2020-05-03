@@ -22,6 +22,8 @@
 		134356B2244EFB6000026355 /* StarsRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B1244EFB6000026355 /* StarsRatingView.swift */; };
 		134356B8244EFF0800026355 /* AcceptButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B7244EFF0800026355 /* AcceptButtonView.swift */; };
 		134356BA245029EF00026355 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B9245029EF00026355 /* UIViewControllerExt.swift */; };
+		1365DD98245ECA4D00481B9D /* PlaceImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DD97245ECA4D00481B9D /* PlaceImageCollectionViewCell.swift */; };
+		1365DD9A245ECA9A00481B9D /* PlaceImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DD99245ECA9A00481B9D /* PlaceImagesViewController.swift */; };
 		1380D7482458583C0007EBEA /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D7472458583C0007EBEA /* Rating.swift */; };
 		1380D74A2458594A0007EBEA /* RatingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D7492458594A0007EBEA /* RatingManager.swift */; };
 		1380D752245861D00007EBEA /* Accept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D751245861D00007EBEA /* Accept.swift */; };
@@ -96,6 +98,8 @@
 		134356B1244EFB6000026355 /* StarsRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsRatingView.swift; sourceTree = "<group>"; };
 		134356B7244EFF0800026355 /* AcceptButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptButtonView.swift; sourceTree = "<group>"; };
 		134356B9245029EF00026355 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
+		1365DD97245ECA4D00481B9D /* PlaceImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		1365DD99245ECA9A00481B9D /* PlaceImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImagesViewController.swift; sourceTree = "<group>"; };
 		1380D7472458583C0007EBEA /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
 		1380D7492458594A0007EBEA /* RatingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingManager.swift; sourceTree = "<group>"; };
 		1380D751245861D00007EBEA /* Accept.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accept.swift; sourceTree = "<group>"; };
@@ -245,6 +249,7 @@
 				13EE6AF72451C89B00B33A34 /* PlacesListViewController.swift */,
 				13FC27B92451C78B00EB5A0D /* PlaceDetailViewController.swift */,
 				13C5FFD4245DD40300EB0F4B /* PlacesSearchViewController.swift */,
+				1365DD99245ECA9A00481B9D /* PlaceImagesViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 			children = (
 				134356B1244EFB6000026355 /* StarsRatingView.swift */,
 				134356B7244EFF0800026355 /* AcceptButtonView.swift */,
+				1365DD96245ECA2D00481B9D /* CollectionViewCells */,
 				13FC27B42451A6B700EB5A0D /* TableViewCells */,
 			);
 			path = Views;
@@ -314,6 +320,14 @@
 				1380D75F24586C2B0007EBEA /* PlaceManager.swift */,
 			);
 			path = Place;
+			sourceTree = "<group>";
+		};
+		1365DD96245ECA2D00481B9D /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				1365DD97245ECA4D00481B9D /* PlaceImageCollectionViewCell.swift */,
+			);
+			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 		1397BAF32455B15D005B2C75 /* Network */ = {
@@ -608,6 +622,7 @@
 				134356BA245029EF00026355 /* UIViewControllerExt.swift in Sources */,
 				1380D74A2458594A0007EBEA /* RatingManager.swift in Sources */,
 				130522AA245D66EB000C02C9 /* User.swift in Sources */,
+				1365DD98245ECA4D00481B9D /* PlaceImageCollectionViewCell.swift in Sources */,
 				1397BAF92455B212005B2C75 /* ObjectRequester.swift in Sources */,
 				13BAE95024582E4600BE7C99 /* APIEntity.swift in Sources */,
 				130522B4245D7B19000C02C9 /* UserManager.swift in Sources */,
@@ -634,6 +649,7 @@
 				1380D75A245867E80007EBEA /* PlaceImagesManager.swift in Sources */,
 				134356B8244EFF0800026355 /* AcceptButtonView.swift in Sources */,
 				C8147BD62E780C067D660FD7 /* Profile.swift in Sources */,
+				1365DD9A245ECA9A00481B9D /* PlaceImagesViewController.swift in Sources */,
 				C8147571553134AC0778F237 /* ProfileManager.swift in Sources */,
 				C81478A6AF607C850B84CF49 /* Pin.swift in Sources */,
 				C81477D13A36E8F7754FFF37 /* PinManager.swift in Sources */,
