@@ -10,6 +10,10 @@ import UIKit
 
 
 class PlaceSearchTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var placeNamelabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     // Reuse id
     static let id = "PlacesSearchCell"
     

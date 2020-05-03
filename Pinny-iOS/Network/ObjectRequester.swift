@@ -75,7 +75,7 @@ extension ObjectRequester {
         case .getList(let params):
             ans = URLRequester.buildUrlWithParams(url: ans, params: params)
         case .getObject(let id, let params):
-            ans = host.appendingPathComponent("\(id)/")
+            ans = ans.appendingPathComponent("\(id)/")
             ans = URLRequester.buildUrlWithParams(url: ans, params: params)
         case .patchObject(let id), .deleteObject(let id):
             ans = ans.appendingPathComponent("\(id)/")

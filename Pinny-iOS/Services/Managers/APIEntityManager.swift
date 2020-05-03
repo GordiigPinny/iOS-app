@@ -22,14 +22,14 @@ protocol APIEntityManager: class {
     var requester: Requester { get }
     
     func get(id: Entity.ID) -> Entity?
-    func fetch(id: Entity.ID, onSuccess: ((Entity) -> Void)?, onError: ((ApiError) -> Void)?)
+    func fetch(id: Entity.ID) -> AnyPublisher<Entity, ApiError>
     func filter<T: Equatable>(_ keyPath: KeyPath<Entity, T>, equalsTo value: T) -> Self
 
     func exists(id: Entity.ID) -> Bool
     func exists(_ entity: Entity) -> Bool
 
-    func create(_ entity: Entity, onSuccess: ((Entity) -> Void)?, onError: ((ApiError) -> Void)?)
-    func update(_ id: Entity.ID, _ entity: Entity, onSuccess: ((Entity) -> Void)?, onError: ((ApiError) -> Void)?)
+    func create(_ entity: Entity) -> AnyPublisher<Entity, ApiError>
+    func update(_ id: Entity.ID, _ entity: Entity) -> AnyPublisher<Entity, ApiError>
     func addLocaly(_ entity: Entity)
     func replace(_ id: Entity.ID, with newEntity: Entity)
     func replace(_ entity: Entity, with newEntity: Entity)
@@ -37,8 +37,8 @@ protocol APIEntityManager: class {
     func delete(_ id: Entity.ID)
     func delete(_ entity: Entity)
     
-    func deleteRemotely(_ id: Entity.ID, onSuccess: ((Bool) -> Void)?, onError: ((ApiError) -> Void)?)
-    func deleteRemotely(_ entity: Entity, onSuccess: ((Bool) -> Void)?, onError: ((ApiError) -> Void)?)
+    func deleteRemotely(_ id: Entity.ID) -> AnyPublisher<Bool, ApiError>
+    func deleteRemotely(_ entity: Entity) -> AnyPublisher<Bool, ApiError>
     
     func checkEntityWithKeyPath<T: Equatable>(_ entity: Entity, keyPath: KeyPath<Entity, T>, value: T) -> Bool
     
@@ -53,19 +53,14 @@ extension APIEntityManager {
         return filtered.first
     }
     
-    func fetch(id: Entity.ID, onSuccess: ((Entity) -> Void)?, onError: ((ApiError) -> Void)?) {
-        let _ = self.requester.getObject(id)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let err):
-                    onError?(err)
-                case .finished:
-                    break
-                }
-            }) { newEntity in
-                self.replace(newEntity, with: newEntity)
-                onSuccess?(newEntity)
+    func fetch(id: Entity.ID) -> AnyPublisher<Entity, ApiError> {
+        let ans = self.requester.getObject(id)
+            .map { entity -> Entity in
+                self.replace(entity, with: entity)
+                return entity
             }
+            .eraseToAnyPublisher()
+        return ans
     }
     
     func filter<T: Equatable>(_ keyPath: KeyPath<Entity, T>, equalsTo value: T) -> Self {
@@ -84,34 +79,24 @@ extension APIEntityManager {
     }
 
     // Creating and updating entities
-    func create(_ entity: Entity, onSuccess: ((Entity) -> Void)?, onError: ((ApiError) -> Void)?) {
-        let _ = requester.postObject(entity: entity)
-            .sink(receiveCompletion: {completion in
-                switch completion {
-                case .failure(let err):
-                    onError?(err)
-                case .finished:
-                    break
-                }
-            }) { newEntity in
+    func create(_ entity: Entity) -> AnyPublisher<Entity, ApiError> {
+        let ans = requester.postObject(entity: entity)
+            .map { newEntity -> Entity in
                 self.replace(newEntity, with: newEntity)
-                onSuccess?(newEntity)
+                return newEntity
             }
+            .eraseToAnyPublisher()
+        return ans
     }
     
-    func update(_ id: Entity.ID, _ entity: Entity, onSuccess: ((Entity) -> Void)?, onError: ((ApiError) -> Void)?) {
-        let _ = requester.patchObject(id, entity: entity)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let err):
-                    onError?(err)
-                case .finished:
-                    break
-                }
-            }) { newEntity in
+    func update(_ id: Entity.ID, _ entity: Entity) -> AnyPublisher<Entity, ApiError> {
+        let ans = requester.patchObject(id, entity: entity)
+            .map { newEntity -> Entity in
                 self.replace(newEntity, with: newEntity)
-                onSuccess?(newEntity)
+                return entity
             }
+            .eraseToAnyPublisher()
+        return ans
     }
     
     func addLocaly(_ entity: Entity) {
@@ -145,28 +130,25 @@ extension APIEntityManager {
     }
     
     // Deleting remotely
-    func deleteRemotely(_ id: Entity.ID, onSuccess: ((Bool) -> Void)?, onError: ((ApiError) -> Void)?) {
-        let _ = requester.deleteObject(id)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let err):
-                    onError?(err)
-                case .finished:
-                    break
-                }
-            }) { didDelete in
+    func deleteRemotely(_ id: Entity.ID) -> AnyPublisher<Bool, ApiError> {
+        let ans = requester.deleteObject(id)
+            .map { didDelete -> Bool in
                 if didDelete {
                     self.delete(id)
                 }
-                onSuccess?(didDelete)
+                return didDelete
             }
+            .eraseToAnyPublisher()
+        return ans
     }
     
-    func deleteRemotely(_ entity: Entity, onSuccess: ((Bool) -> Void)?, onError: ((ApiError) -> Void)?) {
+    func deleteRemotely(_ entity: Entity) -> AnyPublisher<Bool, ApiError> {
         guard let id = entity.id else {
-            return
+            return Future<Bool, ApiError> { promise in
+                return promise(.success(false))
+            }.eraseToAnyPublisher()
         }
-        deleteRemotely(id, onSuccess: onSuccess, onError: onError)
+        return deleteRemotely(id)
     }
     
 }

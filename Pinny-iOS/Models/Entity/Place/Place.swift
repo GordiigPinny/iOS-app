@@ -68,6 +68,9 @@ final class Place: APIEntity {
             self.myRating <-- "my_rating"
         mapper <<<
             self.isAcceptedByMe <-- "is_accepted_by_me"
+        mapper <<<
+                self.lat <-- "latitude"
+        mapper <<< self.long <-- "longitude"
     }
     
 }

@@ -15,17 +15,22 @@ class PlacesListViewController: UIViewController {
 
     // MARK: - Variables
     static let id = "PlacesListVC"
-    var placesToShow = [Place]()
-    let refreshControl = UIRefreshControl()
-    var placesSubscriber: AnyCancellable?
-    let requester = PlaceRequester()
-    var searchQuery: String = "" {
+    var placesToShow = [Place]() {
         didSet {
-            if searchQuery.isEmpty { return }
-            self.title = "Найдено для: \"\(searchQuery)\""
-            self.startSearching()
+            if isViewLoaded {
+                tableView.reloadData()
+            }
         }
     }
+    var searchQuery: String = "" {
+        didSet {
+            title = "Найдено для: \"\(searchQuery)\""
+        }
+    }
+    let refreshControl = UIRefreshControl()
+    var placesSubscriber: AnyCancellable?
+    var fetchSubscriber: AnyCancellable?
+    let requester = PlaceRequester()
     
     // MARK: - Time hooks
     override func viewDidLoad() {
@@ -34,9 +39,9 @@ class PlacesListViewController: UIViewController {
         tableView.dataSource = self
         refreshControl.addTarget(self, action: #selector(refreshControlValueChanged), for: .valueChanged)
         tableView.refreshControl = refreshControl
-        
+        tableView.reloadData()
     }
-    
+
     // MARK: - Refresh control action
     @objc func refreshControlValueChanged(_ refreshController: UIRefreshControl) {
         if refreshController.isRefreshing {
@@ -66,15 +71,52 @@ class PlacesListViewController: UIViewController {
 
     private func searchSuccess(_ places: [Place]) {
         let manager = Place.manager
-        places.forEach { manager.addLocaly($0) }
+        places.forEach { manager.replace($0, with: $0) }
         self.placesToShow = places
-        self.tableView.reloadData()
     }
 
     private func searchFailure(_ err: PlaceRequester.ApiError) {
-        let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Error on getting places", 
-                msg: err.localizedDescription)
-        present(alert, animated: true)
+        presentDefaultOKAlert(title: "Error on getting places", msg: err.localizedDescription)
+    }
+
+    // MARK: - Fetching single place
+    private func startFetching(_ place: Place, tappedCell cell: PlaceSearchTableViewCell) {
+        fetchSubscriber = Place.manager.fetch(id: place.id!)
+        .receive(on: DispatchQueue.main)
+        .sink(receiveCompletion: { completion in
+            cell.activityIndicator.stopAnimating()
+            switch completion {
+            case .failure(let err):
+                self.fetchFailure(err)
+            case .finished:
+                break
+            }
+        }, receiveValue: { place in
+            self.fetchSuccess(place)
+        })
+    }
+
+    private func fetchSuccess(_ place: Place) {
+        // Changing place in placesToShow
+        let idx = placesToShow.firstIndex { $0.id == place.id }!
+        placesToShow.remove(at: idx)
+        placesToShow.insert(place, at: idx)
+        presentDetailVC(withPlace: place)
+    }
+
+    private func fetchFailure(_ err: PlaceRequester.ApiError) {
+        presentDefaultOKAlert(title: "Error on getting place", msg: err.localizedDescription)
+    }
+
+    // MARK: - Present VCs
+    private func presentDetailVC(withPlace place: Place) {
+        guard let vc = storyboard?.instantiateViewController(identifier: PlaceDetailViewController.id)
+                as? PlaceDetailViewController else {
+            presentDefaultOKAlert(title: "Can't instantiate PlaceDetailVC", msg: "")
+            return
+        }
+        vc.place = place
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }
@@ -92,7 +134,8 @@ extension PlacesListViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId) as? PlaceSearchTableViewCell else {
             return UITableViewCell()
         }
-        cell.textLabel?.text = place.name
+        cell.textLabel?.text = nil
+        cell.placeNamelabel?.text = place.name
         return cell
     }
     
@@ -102,15 +145,17 @@ extension PlacesListViewController: UITableViewDataSource {
 // MARK: - Table view delegate
 extension PlacesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
-        guard let vc = storyboard?.instantiateViewController(identifier: PlaceDetailViewController.id)
-                as? PlaceDetailViewController else {
-            let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Can't instantiate PlaceDetailVC", msg: "")
-            present(alert, animated: true)
+        guard let selectedCell = tableView.cellForRow(at: indexPath) as? PlaceSearchTableViewCell else {
+            presentDefaultOKAlert(title: "Can't transform cell to needet type", msg: "")
             return
         }
-        vc.place = placesToShow[indexPath.row]
-        navigationController?.pushViewController(vc, animated: true)
+        selectedCell.setSelected(false, animated: true)
+        if placesToShow[indexPath.row].isDetailed {
+            presentDetailVC(withPlace: placesToShow[indexPath.row])
+            return
+        }
+        selectedCell.activityIndicator.startAnimating()
+        startFetching(placesToShow[indexPath.row], tappedCell: selectedCell)
     }
     
 }
