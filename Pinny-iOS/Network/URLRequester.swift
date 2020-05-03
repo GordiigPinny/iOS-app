@@ -162,8 +162,8 @@ class URLRequester {
         return publisher
     }
 
-    func download(urlPostfix: String? = nil, queryParams: [String: Any]? = nil,
-                  completionHandler: @escaping (UIImage?, RequestError?) -> Void) -> URLSessionDownloadTask {
+    func download(urlPostfix: String? = nil, queryParams: [String: Any]? = nil, forObject: Any? = nil,
+                  completionHandler: @escaping (Any?, UIImage?, RequestError?) -> Void) -> URLSessionDownloadTask {
         // Getting fully configured request
         let request = getRequest(method: .GET, urlPostfix: urlPostfix, data: nil, queryParams: queryParams,
                 headers: Hosts.imageGetHeaders)
@@ -171,25 +171,26 @@ class URLRequester {
         let task = URLSession.shared.downloadTask(with: request) { url, response, error in
             if let err = error {
                 if let newErr = err as? URLError {
-                    completionHandler(nil, RequestError.networkError(from: newErr))
+                    completionHandler(forObject, nil, RequestError.networkError(from: newErr))
                 } else {
-                    completionHandler(nil, RequestError.unknown)
+                    completionHandler(forObject, nil, RequestError.unknown)
                 }
                 return
             }
             let httpResponse = response as! HTTPURLResponse
             if httpResponse.statusCode != 200 {
-                completionHandler(nil,
+                completionHandler(forObject, nil,
                         RequestError.apiError(code: httpResponse.statusCode, descr: "Can't download image"))
                 return
             }
             guard let url = url else {
-                completionHandler(nil, RequestError.apiError(code: httpResponse.statusCode, descr: "Save url is nil"))
+                completionHandler(forObject, nil,
+                        RequestError.apiError(code: httpResponse.statusCode, descr: "Save url is nil"))
                 return
             }
             let data = try! Data(contentsOf: url)
             let image = UIImage(data: data)
-            completionHandler(image, nil)
+            completionHandler(forObject, image, nil)
         }
         // Starting task and returning it
         task.resume()

@@ -85,6 +85,11 @@ class Hosts {
         URL(string: mediaHost)!
     }
 
+    static let mediaHostNoApi = "http://127.0.0.1:8005/"
+    static var mediaHostNoApiUrl: URL {
+        URL(string: mediaHostNoApi)!
+    }
+
     static let gatewayHost = "http://127.0.0.1:8006/api/"
     static var gatewayHostUrl: URL {
         URL(string: gatewayHost)!

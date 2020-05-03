@@ -465,9 +465,13 @@ class ImageFileRequester: ObjectRequester {
         Hosts.mediaHostUrl
     }
 
+    var resourcePostfix: String = ""
+
     var resource: String {
-        "images/"
+        "images/" + resourcePostfix 
     }
+
+
 
 }
 

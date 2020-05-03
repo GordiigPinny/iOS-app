@@ -20,7 +20,7 @@ final class ImageFile: APIEntity {
     // MARK: - Variables
     var id: Int?
     var image: UIImage? = nil
-    var imageUrl: URL? = nil
+    var imageUrl: String? = nil
     var objectId: Int!
     var objectType: ObjectType!
     var createdById: Int!
@@ -40,7 +40,7 @@ final class ImageFile: APIEntity {
 
     }
 
-    init(id: Int? = nil, image: UIImage? = nil, imageUrl: URL? = nil, objectId: Int, objectType: ObjectType,
+    init(id: Int? = nil, image: UIImage? = nil, imageUrl: String? = nil, objectId: Int, objectType: ObjectType,
          createdById: Int, deletedFlg: Bool = false) {
         self.id = id
         self.image = image

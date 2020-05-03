@@ -60,16 +60,17 @@ class PlaceDetailViewController: UIViewController {
     @IBAction func photosButtonPressed(_ sender: Any) {
         placeImagesActivityIndicator.startAnimating()
         photosButton.isEnabled = false
-        DispatchQueue.main.asyncAfter(wallDeadline: .now()) {
-            self.placeImagesActivityIndicator.stopAnimating()
-            self.photosButton.isEnabled = true
-            guard let vc = self.storyboard?.instantiateViewController(identifier: PlaceImagesViewController.id)
-                    as? PlaceImagesViewController else {
-                self.presentDefaultOKAlert(title: "Can't instantiate place images vc", msg: nil)
-                return
-            }
-            self.navigationController?.pushViewController(vc, animated: true)
+
+        guard let vc = self.storyboard?.instantiateViewController(identifier: PlaceImagesViewController.id)
+                as? PlaceImagesViewController else {
+            self.presentDefaultOKAlert(title: "Can't instantiate place images vc", msg: nil)
+            return
         }
+        vc.place = place
+        self.navigationController?.pushViewController(vc, animated: true)
+
+        self.placeImagesActivityIndicator.stopAnimating()
+        self.photosButton.isEnabled = true
     }
 
     // MARK: - Fill view with values
@@ -90,7 +91,7 @@ class PlaceDetailViewController: UIViewController {
     private func placeGetFailure(_ err: PlaceRequester.ApiError) {
         presentDefaultOKAlert(title: "Error on fetching place", msg: err.localizedDescription)
     }
-    
+
 }
 
 
