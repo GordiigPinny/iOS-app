@@ -930,10 +930,25 @@
                     <view key="view" contentMode="scaleToFill" id="ImF-4u-dH5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sq7-hW-sPh" customClass="YMKMapView">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Sq7-hW-sPh" firstAttribute="top" secondItem="XZK-tr-MBX" secondAttribute="top" id="9Ua-sh-t0c"/>
+                            <constraint firstItem="XZK-tr-MBX" firstAttribute="bottom" secondItem="Sq7-hW-sPh" secondAttribute="bottom" id="KPK-tV-Jxt"/>
+                            <constraint firstItem="XZK-tr-MBX" firstAttribute="trailing" secondItem="Sq7-hW-sPh" secondAttribute="trailing" id="WaR-fv-a7F"/>
+                            <constraint firstItem="Sq7-hW-sPh" firstAttribute="leading" secondItem="XZK-tr-MBX" secondAttribute="leading" id="jhC-wo-hGF"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="XZK-tr-MBX"/>
                     </view>
                     <navigationItem key="navigationItem" title="Yandex карты" id="9Uc-Xh-jRr"/>
+                    <connections>
+                        <outlet property="mapView" destination="Sq7-hW-sPh" id="A8K-5I-qCV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q3H-ON-2T8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
