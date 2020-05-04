@@ -54,6 +54,12 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func statsButtonPressed(_ sender: Any) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: StatsViewController.id)
+                as? StatsViewController else {
+            presentDefaultOKAlert(title: "Can't instantiate stats vc", msg: nil)
+            return
+        }
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func pinsButtonPressed(_ sender: Any) {
