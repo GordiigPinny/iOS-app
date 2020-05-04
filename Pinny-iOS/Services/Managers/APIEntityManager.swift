@@ -23,7 +23,6 @@ protocol APIEntityManager: class {
     
     func get(id: Entity.ID) -> Entity?
     func fetch(id: Entity.ID) -> AnyPublisher<Entity, ApiError>
-    func filter<T: Equatable>(_ keyPath: KeyPath<Entity, T>, equalsTo value: T) -> Self
 
     func exists(id: Entity.ID) -> Bool
     func exists(_ entity: Entity) -> Bool
@@ -49,7 +48,7 @@ protocol APIEntityManager: class {
 extension APIEntityManager {
     // Geting entities
     func get(id: Entity.ID) -> Entity? {
-        let filtered = filter(\Entity.id, equalsTo: id).entities
+        let filtered = entities.filter { $0.id == id }
         return filtered.first
     }
     
@@ -61,12 +60,6 @@ extension APIEntityManager {
             }
             .eraseToAnyPublisher()
         return ans
-    }
-    
-    func filter<T: Equatable>(_ keyPath: KeyPath<Entity, T>, equalsTo value: T) -> Self {
-        let newManager = self
-        newManager.entities = newManager.entities.filter { checkEntityWithKeyPath($0, keyPath: keyPath, value: value) }
-        return newManager
     }
 
     // Existence check

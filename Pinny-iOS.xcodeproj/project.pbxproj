@@ -13,7 +13,6 @@
 		130522B4245D7B19000C02C9 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130522B3245D7B19000C02C9 /* UserManager.swift */; };
 		1327112224334D82009005C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327112124334D82009005C0 /* AppDelegate.swift */; };
 		1327112424334D82009005C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327112324334D82009005C0 /* SceneDelegate.swift */; };
-		1327112624334D82009005C0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327112524334D82009005C0 /* LogInViewController.swift */; };
 		1327112924334D82009005C0 /* LogInSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327112724334D82009005C0 /* LogInSignUp.storyboard */; };
 		1327112E24334D83009005C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1327112D24334D83009005C0 /* Assets.xcassets */; };
 		1327113124334D83009005C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327112F24334D83009005C0 /* LaunchScreen.storyboard */; };
@@ -23,13 +22,9 @@
 		134356B8244EFF0800026355 /* AcceptButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B7244EFF0800026355 /* AcceptButtonView.swift */; };
 		134356BA245029EF00026355 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B9245029EF00026355 /* UIViewControllerExt.swift */; };
 		1365DD98245ECA4D00481B9D /* PlaceImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DD97245ECA4D00481B9D /* PlaceImageCollectionViewCell.swift */; };
-		1365DD9A245ECA9A00481B9D /* PlaceImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DD99245ECA9A00481B9D /* PlaceImagesViewController.swift */; };
 		1365DD9C245EF20700481B9D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DD9B245EF20700481B9D /* ProfileViewController.swift */; };
-		1365DD9E245F00BA00481B9D /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DD9D245F00BA00481B9D /* ChangePasswordViewController.swift */; };
 		1365DDA0245F0BE100481B9D /* PinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DD9F245F0BE100481B9D /* PinTableViewCell.swift */; };
 		1365DDA2245F0BEE00481B9D /* AchievementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DDA1245F0BEE00481B9D /* AchievementTableViewCell.swift */; };
-		1365DDA4245F0C2A00481B9D /* PinListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DDA3245F0C2A00481B9D /* PinListViewController.swift */; };
-		1365DDA6245F0C3700481B9D /* AchievementListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DDA5245F0C3700481B9D /* AchievementListViewController.swift */; };
 		1380D7482458583C0007EBEA /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D7472458583C0007EBEA /* Rating.swift */; };
 		1380D74A2458594A0007EBEA /* RatingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D7492458594A0007EBEA /* RatingManager.swift */; };
 		1380D752245861D00007EBEA /* Accept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D751245861D00007EBEA /* Accept.swift */; };
@@ -40,38 +35,48 @@
 		1380D76024586C2B0007EBEA /* PlaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D75F24586C2B0007EBEA /* PlaceManager.swift */; };
 		1397BAF22455A338005B2C75 /* URLRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1397BAF12455A338005B2C75 /* URLRequester.swift */; };
 		1397BAF92455B212005B2C75 /* ObjectRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1397BAF82455B212005B2C75 /* ObjectRequester.swift */; };
-		13A56C5124502F1600584BDD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A56C5024502F1600584BDD /* SignUpViewController.swift */; };
 		13A56C53245038E000584BDD /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A56C52245038E000584BDD /* UITextFieldExtension.swift */; };
-		13B392A2245F1E21002FDA9F /* AchievementDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B392A1245F1E21002FDA9F /* AchievementDetailViewController.swift */; };
-		13B392A4245F3356002FDA9F /* PinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B392A3245F3356002FDA9F /* PinDetailViewController.swift */; };
+		13B392A7246001F1002FDA9F /* AppleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B392A6246001F1002FDA9F /* AppleMapsViewController.swift */; };
+		13B392A92460024A002FDA9F /* YandexMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B392A82460024A002FDA9F /* YandexMapsViewController.swift */; };
 		13BAE95024582E4600BE7C99 /* APIEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BAE94F24582E4600BE7C99 /* APIEntity.swift */; };
 		13BAE95224582F1900BE7C99 /* APIEntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BAE95124582F1900BE7C99 /* APIEntityManager.swift */; };
-		13C5FFD5245DD40300EB0F4B /* PlacesSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C5FFD4245DD40300EB0F4B /* PlacesSearchViewController.swift */; };
 		13CA803A24502B12006ED889 /* UIAlertControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CA803924502B12006ED889 /* UIAlertControllerBuilder.swift */; };
-		13EE6AF82451C89B00B33A34 /* PlacesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EE6AF72451C89B00B33A34 /* PlacesListViewController.swift */; };
 		13FC27B02450431A00EB5A0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13FC27AF2450431A00EB5A0D /* Main.storyboard */; };
 		13FC27B32451A64400EB5A0D /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC27B22451A64400EB5A0D /* Globals.swift */; };
 		13FC27B62451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC27B52451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift */; };
-		13FC27BA2451C78B00EB5A0D /* PlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC27B92451C78B00EB5A0D /* PlaceDetailViewController.swift */; };
 		A215AC73D2C9C936552AB672 /* Pods_Pinny_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240C9199E2E44AFA0E874D99 /* Pods_Pinny_iOS.framework */; };
+		C81470ACA755AFA6A565BCDF /* UserMapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147AC8743044AE37E1CB69 /* UserMapMarker.swift */; };
 		C81470D13BA9F6D2602C4546 /* RequestStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814754DED8A989A2D4C7BF1 /* RequestStats.swift */; };
+		C81470E15546FDC38F649624 /* PlaceImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814791DC2C420C853A17CA2 /* PlaceImagesViewController.swift */; };
+		C8147243879F63CB2EDC400D /* PlacesSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814778AE7FED4F526723CDE /* PlacesSearchViewController.swift */; };
 		C814725946DC2AC2AEF17C8C /* PlaceStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81473708117BB241281D99A /* PlaceStats.swift */; };
+		C814727AF23E4AB3D69E90B0 /* PlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81477A0D87BAF2AB2A18BF7 /* PlaceDetailViewController.swift */; };
 		C814734AD2572D53F165D0B7 /* RatingStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81472B33FF8A0BB747DEA80 /* RatingStats.swift */; };
+		C81473D038E53B3AE3B59851 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81477C2767D580A9A1959A9 /* LogInViewController.swift */; };
+		C81473E2FD6555A69C4C6AF3 /* PlaceMapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814762EFDF2831D80DFDCBA /* PlaceMapMarker.swift */; };
 		C81473F6E7639465FF39DAA9 /* RatingStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814778BFE44C32BE396A6D6 /* RatingStatsManager.swift */; };
 		C8147460BBD75D1736BE5F6A /* AchievementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814730550786F9A5A3C12BB /* AchievementManager.swift */; };
+		C814749C574F8F78056982E1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147615F6E54DA71041C439 /* SignUpViewController.swift */; };
+		C81474C1AE6B726CD254984F /* PlacesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814761E5BE2044DD863398E /* PlacesListViewController.swift */; };
+		C81474E4ECEC1EB015ABEA5A /* PinListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81476BCFDC16DF7BDCC06BB /* PinListViewController.swift */; };
 		C81474ED912BA6952EE15553 /* ImageFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814784E67007B36472C68C2 /* ImageFile.swift */; };
 		C8147571553134AC0778F237 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81470FB07BA842AD8D6F0D9 /* ProfileManager.swift */; };
 		C8147598D001D68528A02177 /* PinPurchaseStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81475A7014A653B886AD9A9 /* PinPurchaseStats.swift */; };
 		C81475FA5787DFB2B778A1AC /* AcceptStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147DB25D7E36559FF7A847 /* AcceptStatsManager.swift */; };
 		C8147645427479ACCE94EED4 /* AcceptStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147996E7FD2BDD46A09F4B /* AcceptStats.swift */; };
+		C81476A4FE18747510421F66 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814794F0599A6145C25CD83 /* ChangePasswordViewController.swift */; };
 		C81477D13A36E8F7754FFF37 /* PinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147064CE86025DECCC0F1C /* PinManager.swift */; };
 		C81478A6AF607C850B84CF49 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81475BAEF6641B1CA983BDD /* Pin.swift */; };
 		C814791A6E2A827FAB2E1C38 /* AchievementStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81479E7138A6B17767CCD50 /* AchievementStatsManager.swift */; };
 		C81479AE15A8D0B8BD89DFE2 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147C90DE3221C40FDFDEAB /* Achievement.swift */; };
+		C8147A9B613DEC89C7F6F055 /* PinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147FFB77182E11B2DEDF15 /* PinDetailViewController.swift */; };
 		C8147B461CFF789DA5C37114 /* PinPurchaseStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814766E020DE99F8E6F576E /* PinPurchaseStatsManager.swift */; };
 		C8147BD62E780C067D660FD7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147B4EBB54D2A25B07C305 /* Profile.swift */; };
 		C8147BEB3E0CB641E6E5CF65 /* AchievementStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147EE381B1FE198E5CA587 /* AchievementStats.swift */; };
+		C8147C550C3B2F95F16EBF52 /* AchievementDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147322DEA4532DE4C1AF37 /* AchievementDetailViewController.swift */; };
+		C8147D52679C7E42B31747E2 /* AchievementListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147108707280032830E3C3 /* AchievementListViewController.swift */; };
 		C8147D84AADEA15C2A24CEDF /* PlaceStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147630BD2853475FA224B3 /* PlaceStatsManager.swift */; };
+		C8147E07E4030801D1F60782 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81475AC0CBC8C0FAD7C9203 /* MKMapViewExtension.swift */; };
 		C8147E142052CCE5FA2EC7C4 /* RequestStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147B932298EA36335B6D75 /* RequestStatsManager.swift */; };
 		C8147E7ECF6F7DCF0B28E819 /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81471084A4E9CFF67E33B98 /* ImageFileManager.swift */; };
 /* End PBXBuildFile section */
@@ -94,7 +99,6 @@
 		1327111E24334D82009005C0 /* Pinny-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pinny-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1327112124334D82009005C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1327112324334D82009005C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1327112524334D82009005C0 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		1327112824334D82009005C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LogInSignUp.storyboard; sourceTree = "<group>"; };
 		1327112D24334D83009005C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1327113024334D83009005C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -107,13 +111,9 @@
 		134356B7244EFF0800026355 /* AcceptButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptButtonView.swift; sourceTree = "<group>"; };
 		134356B9245029EF00026355 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		1365DD97245ECA4D00481B9D /* PlaceImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		1365DD99245ECA9A00481B9D /* PlaceImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImagesViewController.swift; sourceTree = "<group>"; };
 		1365DD9B245EF20700481B9D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		1365DD9D245F00BA00481B9D /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		1365DD9F245F0BE100481B9D /* PinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinTableViewCell.swift; sourceTree = "<group>"; };
 		1365DDA1245F0BEE00481B9D /* AchievementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementTableViewCell.swift; sourceTree = "<group>"; };
-		1365DDA3245F0C2A00481B9D /* PinListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinListViewController.swift; sourceTree = "<group>"; };
-		1365DDA5245F0C3700481B9D /* AchievementListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementListViewController.swift; sourceTree = "<group>"; };
 		1380D7472458583C0007EBEA /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
 		1380D7492458594A0007EBEA /* RatingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingManager.swift; sourceTree = "<group>"; };
 		1380D751245861D00007EBEA /* Accept.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accept.swift; sourceTree = "<group>"; };
@@ -124,42 +124,52 @@
 		1380D75F24586C2B0007EBEA /* PlaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceManager.swift; sourceTree = "<group>"; };
 		1397BAF12455A338005B2C75 /* URLRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequester.swift; sourceTree = "<group>"; };
 		1397BAF82455B212005B2C75 /* ObjectRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectRequester.swift; sourceTree = "<group>"; };
-		13A56C5024502F1600584BDD /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		13A56C52245038E000584BDD /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
-		13B392A1245F1E21002FDA9F /* AchievementDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementDetailViewController.swift; sourceTree = "<group>"; };
-		13B392A3245F3356002FDA9F /* PinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinDetailViewController.swift; sourceTree = "<group>"; };
+		13B392A6246001F1002FDA9F /* AppleMapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMapsViewController.swift; sourceTree = "<group>"; };
+		13B392A82460024A002FDA9F /* YandexMapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexMapsViewController.swift; sourceTree = "<group>"; };
 		13BAE94F24582E4600BE7C99 /* APIEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEntity.swift; sourceTree = "<group>"; };
 		13BAE95124582F1900BE7C99 /* APIEntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEntityManager.swift; sourceTree = "<group>"; };
-		13C5FFD4245DD40300EB0F4B /* PlacesSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesSearchViewController.swift; sourceTree = "<group>"; };
 		13CA803924502B12006ED889 /* UIAlertControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerBuilder.swift; sourceTree = "<group>"; };
-		13EE6AF72451C89B00B33A34 /* PlacesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListViewController.swift; sourceTree = "<group>"; };
 		13FC27AF2450431A00EB5A0D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		13FC27B22451A64400EB5A0D /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		13FC27B52451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSearchTableViewCell.swift; sourceTree = "<group>"; };
-		13FC27B92451C78B00EB5A0D /* PlaceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailViewController.swift; sourceTree = "<group>"; };
 		240C9199E2E44AFA0E874D99 /* Pods_Pinny_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pinny_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DAC37D220E3F42D78F09681 /* Pods-Pinny-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinny-iOS.release.xcconfig"; path = "Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8EC6DC99C46AC042FE467DAD /* Pods-Pinny-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinny-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		C8147064CE86025DECCC0F1C /* PinManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinManager.swift; sourceTree = "<group>"; };
 		C81470FB07BA842AD8D6F0D9 /* ProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		C81471084A4E9CFF67E33B98 /* ImageFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
+		C8147108707280032830E3C3 /* AchievementListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementListViewController.swift; sourceTree = "<group>"; };
 		C81472B33FF8A0BB747DEA80 /* RatingStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingStats.swift; sourceTree = "<group>"; };
 		C814730550786F9A5A3C12BB /* AchievementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementManager.swift; sourceTree = "<group>"; };
+		C8147322DEA4532DE4C1AF37 /* AchievementDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementDetailViewController.swift; sourceTree = "<group>"; };
 		C81473708117BB241281D99A /* PlaceStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceStats.swift; sourceTree = "<group>"; };
 		C814754DED8A989A2D4C7BF1 /* RequestStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestStats.swift; sourceTree = "<group>"; };
 		C81475A7014A653B886AD9A9 /* PinPurchaseStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinPurchaseStats.swift; sourceTree = "<group>"; };
+		C81475AC0CBC8C0FAD7C9203 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
 		C81475BAEF6641B1CA983BDD /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		C8147615F6E54DA71041C439 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		C814761E5BE2044DD863398E /* PlacesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesListViewController.swift; sourceTree = "<group>"; };
+		C814762EFDF2831D80DFDCBA /* PlaceMapMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceMapMarker.swift; sourceTree = "<group>"; };
 		C8147630BD2853475FA224B3 /* PlaceStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceStatsManager.swift; sourceTree = "<group>"; };
 		C814766E020DE99F8E6F576E /* PinPurchaseStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinPurchaseStatsManager.swift; sourceTree = "<group>"; };
+		C81476BCFDC16DF7BDCC06BB /* PinListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinListViewController.swift; sourceTree = "<group>"; };
+		C814778AE7FED4F526723CDE /* PlacesSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesSearchViewController.swift; sourceTree = "<group>"; };
 		C814778BFE44C32BE396A6D6 /* RatingStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingStatsManager.swift; sourceTree = "<group>"; };
+		C81477A0D87BAF2AB2A18BF7 /* PlaceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetailViewController.swift; sourceTree = "<group>"; };
+		C81477C2767D580A9A1959A9 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		C814784E67007B36472C68C2 /* ImageFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFile.swift; sourceTree = "<group>"; };
+		C814791DC2C420C853A17CA2 /* PlaceImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceImagesViewController.swift; sourceTree = "<group>"; };
+		C814794F0599A6145C25CD83 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		C8147996E7FD2BDD46A09F4B /* AcceptStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptStats.swift; sourceTree = "<group>"; };
 		C81479E7138A6B17767CCD50 /* AchievementStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementStatsManager.swift; sourceTree = "<group>"; };
+		C8147AC8743044AE37E1CB69 /* UserMapMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMapMarker.swift; sourceTree = "<group>"; };
 		C8147B4EBB54D2A25B07C305 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		C8147B932298EA36335B6D75 /* RequestStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestStatsManager.swift; sourceTree = "<group>"; };
 		C8147C90DE3221C40FDFDEAB /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		C8147DB25D7E36559FF7A847 /* AcceptStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptStatsManager.swift; sourceTree = "<group>"; };
 		C8147EE381B1FE198E5CA587 /* AchievementStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementStats.swift; sourceTree = "<group>"; };
+		C8147FFB77182E11B2DEDF15 /* PinDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,18 +270,11 @@
 		1327114624335C75009005C0 /* VCs */ = {
 			isa = PBXGroup;
 			children = (
-				1327112524334D82009005C0 /* LogInViewController.swift */,
-				13A56C5024502F1600584BDD /* SignUpViewController.swift */,
-				13EE6AF72451C89B00B33A34 /* PlacesListViewController.swift */,
-				13FC27B92451C78B00EB5A0D /* PlaceDetailViewController.swift */,
-				13C5FFD4245DD40300EB0F4B /* PlacesSearchViewController.swift */,
-				1365DD99245ECA9A00481B9D /* PlaceImagesViewController.swift */,
 				1365DD9B245EF20700481B9D /* ProfileViewController.swift */,
-				1365DD9D245F00BA00481B9D /* ChangePasswordViewController.swift */,
-				1365DDA3245F0C2A00481B9D /* PinListViewController.swift */,
-				1365DDA5245F0C3700481B9D /* AchievementListViewController.swift */,
-				13B392A1245F1E21002FDA9F /* AchievementDetailViewController.swift */,
-				13B392A3245F3356002FDA9F /* PinDetailViewController.swift */,
+				C8147C0B8A3E5E0916D24CC4 /* Place */,
+				C8147955AF26E77847020050 /* Pin */,
+				C81470B30CE50C15200DB487 /* Achievement */,
+				C8147B4F5BD860C63CD13357 /* LogInSignUp */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				134356B7244EFF0800026355 /* AcceptButtonView.swift */,
 				1365DD96245ECA2D00481B9D /* CollectionViewCells */,
 				13FC27B42451A6B700EB5A0D /* TableViewCells */,
+				C8147E5809247CFDE3D6D882 /* Map markers */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,6 +322,7 @@
 			children = (
 				134356B9245029EF00026355 /* UIViewControllerExt.swift */,
 				13A56C52245038E000584BDD /* UITextFieldExtension.swift */,
+				C81475AC0CBC8C0FAD7C9203 /* MKMapViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -359,6 +364,15 @@
 				1397BAF82455B212005B2C75 /* ObjectRequester.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		13B392A5246001E2002FDA9F /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				13B392A6246001F1002FDA9F /* AppleMapsViewController.swift */,
+				13B392A82460024A002FDA9F /* YandexMapsViewController.swift */,
+			);
+			path = Maps;
 			sourceTree = "<group>";
 		};
 		13BAE94E24582E3200BE7C99 /* Entity */ = {
@@ -424,6 +438,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C81470B30CE50C15200DB487 /* Achievement */ = {
+			isa = PBXGroup;
+			children = (
+				C8147108707280032830E3C3 /* AchievementListViewController.swift */,
+				C8147322DEA4532DE4C1AF37 /* AchievementDetailViewController.swift */,
+			);
+			path = Achievement;
+			sourceTree = "<group>";
+		};
 		C8147176A0A1D813DA1A710A /* Stats */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +481,15 @@
 			path = Media;
 			sourceTree = "<group>";
 		};
+		C8147955AF26E77847020050 /* Pin */ = {
+			isa = PBXGroup;
+			children = (
+				C81476BCFDC16DF7BDCC06BB /* PinListViewController.swift */,
+				C8147FFB77182E11B2DEDF15 /* PinDetailViewController.swift */,
+			);
+			path = Pin;
+			sourceTree = "<group>";
+		};
 		C8147A82DB422EFEE6203C43 /* Awards */ = {
 			isa = PBXGroup;
 			children = (
@@ -465,6 +497,37 @@
 				C8147C90DE3221C40FDFDEAB /* Achievement.swift */,
 			);
 			path = Awards;
+			sourceTree = "<group>";
+		};
+		C8147B4F5BD860C63CD13357 /* LogInSignUp */ = {
+			isa = PBXGroup;
+			children = (
+				C8147615F6E54DA71041C439 /* SignUpViewController.swift */,
+				C814794F0599A6145C25CD83 /* ChangePasswordViewController.swift */,
+				C81477C2767D580A9A1959A9 /* LogInViewController.swift */,
+			);
+			path = LogInSignUp;
+			sourceTree = "<group>";
+		};
+		C8147C0B8A3E5E0916D24CC4 /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				13B392A5246001E2002FDA9F /* Maps */,
+				C81477A0D87BAF2AB2A18BF7 /* PlaceDetailViewController.swift */,
+				C814761E5BE2044DD863398E /* PlacesListViewController.swift */,
+				C814778AE7FED4F526723CDE /* PlacesSearchViewController.swift */,
+				C814791DC2C420C853A17CA2 /* PlaceImagesViewController.swift */,
+			);
+			path = Place;
+			sourceTree = "<group>";
+		};
+		C8147E5809247CFDE3D6D882 /* Map markers */ = {
+			isa = PBXGroup;
+			children = (
+				C814762EFDF2831D80DFDCBA /* PlaceMapMarker.swift */,
+				C8147AC8743044AE37E1CB69 /* UserMapMarker.swift */,
+			);
+			path = "Map markers";
 			sourceTree = "<group>";
 		};
 		C8147F2F01C1649EB7E15245 /* Awards */ = {
@@ -651,38 +714,31 @@
 				13BAE95024582E4600BE7C99 /* APIEntity.swift in Sources */,
 				130522B4245D7B19000C02C9 /* UserManager.swift in Sources */,
 				13CA803A24502B12006ED889 /* UIAlertControllerBuilder.swift in Sources */,
-				13A56C5124502F1600584BDD /* SignUpViewController.swift in Sources */,
-				13C5FFD5245DD40300EB0F4B /* PlacesSearchViewController.swift in Sources */,
 				1380D752245861D00007EBEA /* Accept.swift in Sources */,
 				1380D75E24586BDA0007EBEA /* Place.swift in Sources */,
-				1327112624334D82009005C0 /* LogInViewController.swift in Sources */,
 				1327112224334D82009005C0 /* AppDelegate.swift in Sources */,
 				1380D76024586C2B0007EBEA /* PlaceManager.swift in Sources */,
 				130522AF245D6947000C02C9 /* Token.swift in Sources */,
 				1380D758245867780007EBEA /* PlaceImage.swift in Sources */,
+				13B392A92460024A002FDA9F /* YandexMapsViewController.swift in Sources */,
 				13A56C53245038E000584BDD /* UITextFieldExtension.swift in Sources */,
 				13FC27B32451A64400EB5A0D /* Globals.swift in Sources */,
-				13FC27BA2451C78B00EB5A0D /* PlaceDetailViewController.swift in Sources */,
 				1397BAF22455A338005B2C75 /* URLRequester.swift in Sources */,
 				130522B1245D6959000C02C9 /* AuthRequester.swift in Sources */,
 				1380D7482458583C0007EBEA /* Rating.swift in Sources */,
 				1327112424334D82009005C0 /* SceneDelegate.swift in Sources */,
 				13FC27B62451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift in Sources */,
-				13EE6AF82451C89B00B33A34 /* PlacesListViewController.swift in Sources */,
 				13BAE95224582F1900BE7C99 /* APIEntityManager.swift in Sources */,
 				1380D75A245867E80007EBEA /* PlaceImagesManager.swift in Sources */,
 				134356B8244EFF0800026355 /* AcceptButtonView.swift in Sources */,
-				13B392A2245F1E21002FDA9F /* AchievementDetailViewController.swift in Sources */,
 				C8147BD62E780C067D660FD7 /* Profile.swift in Sources */,
 				1365DD9C245EF20700481B9D /* ProfileViewController.swift in Sources */,
-				1365DD9A245ECA9A00481B9D /* PlaceImagesViewController.swift in Sources */,
 				C8147571553134AC0778F237 /* ProfileManager.swift in Sources */,
 				C81478A6AF607C850B84CF49 /* Pin.swift in Sources */,
 				1365DDA0245F0BE100481B9D /* PinTableViewCell.swift in Sources */,
 				C81477D13A36E8F7754FFF37 /* PinManager.swift in Sources */,
 				C81479AE15A8D0B8BD89DFE2 /* Achievement.swift in Sources */,
 				C8147460BBD75D1736BE5F6A /* AchievementManager.swift in Sources */,
-				1365DD9E245F00BA00481B9D /* ChangePasswordViewController.swift in Sources */,
 				C81470D13BA9F6D2602C4546 /* RequestStats.swift in Sources */,
 				C8147E142052CCE5FA2EC7C4 /* RequestStatsManager.swift in Sources */,
 				C814725946DC2AC2AEF17C8C /* PlaceStats.swift in Sources */,
@@ -692,15 +748,27 @@
 				C81475FA5787DFB2B778A1AC /* AcceptStatsManager.swift in Sources */,
 				C814734AD2572D53F165D0B7 /* RatingStats.swift in Sources */,
 				C81473F6E7639465FF39DAA9 /* RatingStatsManager.swift in Sources */,
-				1365DDA6245F0C3700481B9D /* AchievementListViewController.swift in Sources */,
 				C814791A6E2A827FAB2E1C38 /* AchievementStatsManager.swift in Sources */,
-				13B392A4245F3356002FDA9F /* PinDetailViewController.swift in Sources */,
 				C8147BEB3E0CB641E6E5CF65 /* AchievementStats.swift in Sources */,
 				C8147B461CFF789DA5C37114 /* PinPurchaseStatsManager.swift in Sources */,
-				1365DDA4245F0C2A00481B9D /* PinListViewController.swift in Sources */,
 				C8147598D001D68528A02177 /* PinPurchaseStats.swift in Sources */,
 				C8147E7ECF6F7DCF0B28E819 /* ImageFileManager.swift in Sources */,
 				C81474ED912BA6952EE15553 /* ImageFile.swift in Sources */,
+				C814727AF23E4AB3D69E90B0 /* PlaceDetailViewController.swift in Sources */,
+				C81474C1AE6B726CD254984F /* PlacesListViewController.swift in Sources */,
+				C8147243879F63CB2EDC400D /* PlacesSearchViewController.swift in Sources */,
+				C81470E15546FDC38F649624 /* PlaceImagesViewController.swift in Sources */,
+				C81474E4ECEC1EB015ABEA5A /* PinListViewController.swift in Sources */,
+				13B392A7246001F1002FDA9F /* AppleMapsViewController.swift in Sources */,
+				C8147A9B613DEC89C7F6F055 /* PinDetailViewController.swift in Sources */,
+				C8147D52679C7E42B31747E2 /* AchievementListViewController.swift in Sources */,
+				C8147C550C3B2F95F16EBF52 /* AchievementDetailViewController.swift in Sources */,
+				C814749C574F8F78056982E1 /* SignUpViewController.swift in Sources */,
+				C81476A4FE18747510421F66 /* ChangePasswordViewController.swift in Sources */,
+				C81473D038E53B3AE3B59851 /* LogInViewController.swift in Sources */,
+				C8147E07E4030801D1F60782 /* MKMapViewExtension.swift in Sources */,
+				C81473E2FD6555A69C4C6AF3 /* PlaceMapMarker.swift in Sources */,
+				C81470ACA755AFA6A565BCDF /* UserMapMarker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@
 
 import Foundation
 import HandyJSON
-
+import MapKit
 
 final class Place: APIEntity {
     // MARK: - Variables
@@ -32,6 +32,19 @@ final class Place: APIEntity {
     // MARK: - Manager
     static var manager: PlaceManager {
         PlaceManager.instance
+    }
+
+    // MARK: - Some defaults
+    static var kremlinCoord: (lat: Double, long: Double) {
+        (lat: 55.751694, long: 37.617218)
+    }
+
+    static var moscowRadiusForPinch: (lat: Int, long: Int) {
+        (lat: 10_000, long: 15_000)
+    }
+
+    static var maxDistanceForPinch: Double {
+        100_000
     }
     
     // MARK: - Inits
@@ -71,6 +84,24 @@ final class Place: APIEntity {
         mapper <<<
                 self.lat <-- "latitude"
         mapper <<< self.long <-- "longitude"
+    }
+
+    // MARK: - For Apple MapKit
+    class PlaceMapKitAnnotation: NSObject, MKAnnotation {
+        var title: String?
+        var subtitle: String?
+        private(set) var coordinate: CLLocationCoordinate2D
+
+        init(place: Place) {
+            self.title = place.name
+            self.subtitle = place.address
+            self.coordinate = CLLocationCoordinate2D(latitude: place.lat, longitude: place.long)
+            super.init()
+        }
+    }
+
+    var mkAnnotation: PlaceMapKitAnnotation {
+        PlaceMapKitAnnotation(place: self)
     }
     
 }

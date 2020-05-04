@@ -5,6 +5,7 @@
 
 import Foundation
 import HandyJSON
+import MapKit
 
 final class Profile: APIEntity {
     // MARK: - Variables
@@ -60,6 +61,21 @@ final class Profile: APIEntity {
                 self.unlockedPinsId <-- "unlocked_pins"
         mapper <<<
                 self.achievementsId <-- "achievements"
+    }
+
+    // MARK: - For Apple Map Kit
+    class UserMapKitAnnotation: NSObject, MKAnnotation {
+        var title: String? = "Me"
+        private(set) var coordinate: CLLocationCoordinate2D
+
+        init(coordinate: CLLocationCoordinate2D) {
+            self.coordinate = coordinate
+        }
+
+    }
+
+    static func mkAnnotation(coordinate: CLLocationCoordinate2D) -> UserMapKitAnnotation {
+        UserMapKitAnnotation(coordinate: coordinate)
     }
 
 }

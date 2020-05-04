@@ -17,6 +17,8 @@ class PlaceDetailViewController: UIViewController {
     @IBOutlet weak var globalRatingLabel: UILabel!
     @IBOutlet weak var photosButton: UIButton!
     @IBOutlet weak var placeImagesActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var appleMapsButton: UIButton!
+    @IBOutlet weak var yandexMapsButton: UIButton!
     
     // MARK: - Variables
     static let id = "PlaceDetailVC"
@@ -72,6 +74,27 @@ class PlaceDetailViewController: UIViewController {
         self.placeImagesActivityIndicator.stopAnimating()
         self.photosButton.isEnabled = true
     }
+    
+    @IBAction func appleMapsButtonPressed(_ sender: Any) {
+        guard let vc = storyboard?.instantiateViewController(identifier: AppleMapsViewController.id)
+                as? AppleMapsViewController else {
+            presentDefaultOKAlert(title: "Can't instantiate apple maps vc", msg: nil)
+            return
+        }
+        vc.place = place
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func yandexMapsButtonPressed(_ sender: Any) {
+        guard let vc = storyboard?.instantiateViewController(identifier: YandexMapsViewController.id)
+                as? YandexMapsViewController else {
+            presentDefaultOKAlert(title: "Can't instantiate yandex maps vc", msg: nil)
+            return
+        }
+        vc.place = place
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
 
     // MARK: - Fill view with values
     private func fillViewController() {
