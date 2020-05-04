@@ -18,7 +18,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var pinsButton: UIButton!
     @IBOutlet weak var achievementsButton: UIButton!
     @IBOutlet weak var logOutButton: UIButton!
-
+    @IBOutlet weak var statsButton: UIButton!
+    
     // MARK: - Variables
     private var profileGetter: ProfileGetter?
 
@@ -26,15 +27,33 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         avatarImageView.layer.cornerRadius = 30
-        guard let _ = Defaults.currentProfile else {
-            self.getProfile()
-            return
+        NotificationCenter.default.addObserver(self, selector: #selector(accessLevelChanged), name: .accessLevelChanged, object: nil)
+        if Defaults.currentAccessLevel != AccessLevel.anon {
+            guard let _ = Defaults.currentProfile else {
+                self.getProfile()
+                return
+            }
         }
         fillView()
     }
 
     // MARK: - Actions
+    @objc func accessLevelChanged() {
+        if Defaults.currentAccessLevel == .anon {
+            fillAnonView()
+        } else {
+            guard let _ = Defaults.currentProfile else {
+                self.getProfile()
+                return
+            }
+            fillView()
+        }
+    }
+
     @IBAction func changePasswordButtonPressed(_ sender: Any) {
+    }
+    
+    @IBAction func statsButtonPressed(_ sender: Any) {
     }
     
     @IBAction func pinsButtonPressed(_ sender: Any) {
@@ -100,12 +119,49 @@ class ProfileViewController: UIViewController {
 
     // MARK: - Filling view
     private func fillView() {
+        switch Defaults.currentAccessLevel {
+        case .anon:
+            fillAnonView()
+            break
+        case .admin:
+            fillAdminView()
+            break
+        default:
+            fillAuthView()
+        }
+    }
+
+    private func fillAuthView() {
         let profile = Defaults.currentProfile
-        let avatar = Defaults.currentAvatar
         let user = Defaults.currentUser
         usernameLabel.text = user?.username
         emailLabel.text = user?.email
-        avatarImageView.image = avatar?.image
+        var avatar: UIImage? = ImageFile.defaultImage
+        if let picId = profile?.picId {
+            avatar = ImageFile.manager.get(id: picId)?.image
+        }
+        avatarImageView.image = avatar
+        pinsButton.isHidden = false
+        achievementsButton.isHidden = false
+        changePasswordButton.isHidden = false
+        statsButton.isHidden = true
+        logOutButton.setTitle("Выйти", for: .normal)
+    }
+
+    private func fillAdminView() {
+        fillAuthView()
+        statsButton.isHidden = false
+    }
+
+    private func fillAnonView() {
+        usernameLabel.text = "Anon"
+        emailLabel.text = "anon"
+        pinsButton.isHidden = true
+        achievementsButton.isHidden = true
+        changePasswordButton.isHidden = true
+        statsButton.isHidden = true
+        logOutButton.setTitle("Войти", for: .normal)
+        avatarImageView.image = ImageFile.defaultImage
     }
 
 }

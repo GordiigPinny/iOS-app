@@ -39,8 +39,8 @@ class PlaceGetter {
                 })
     }
 
-    func getPlaces(search: String, completion: CompletionList = nil) {
-        entitiesSubscriber = PlaceRequester().searchByName(search)
+    func getPlaces(search: String, onlyMine: Bool? = nil, withDeleted: Bool? = nil, completion: CompletionList = nil) {
+        entitiesSubscriber = PlaceRequester().searchByName(search, onlyMine: onlyMine, deletedFlg: withDeleted)
             .sink(receiveCompletion: { c in
                 switch c {
                 case .failure(let err):

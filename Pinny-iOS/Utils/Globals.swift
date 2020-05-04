@@ -9,8 +9,14 @@
 import Foundation
 import UIKit
 
-
 // MARK: - User defaults store
+enum AccessLevel: Int {
+    case anon
+    case authorized
+    case moderator
+    case admin
+}
+
 class Defaults {
     private enum UDKeys: String {
         case currentUser
@@ -83,6 +89,19 @@ class Defaults {
         currentToken = nil
         currentProfile = nil
         currentAvatar = nil
+    }
+
+    static var currentAccessLevel: AccessLevel {
+        if currentToken == nil || currentUser == nil {
+            return .anon
+        }
+        if currentUser!.isSuperuser {
+            return .admin
+        }
+        if currentUser!.isModerator {
+            return .moderator
+        }
+        return .authorized
     }
     
 }

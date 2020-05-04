@@ -52,19 +52,29 @@
                                     <segue destination="c1a-Wh-llH" kind="show" id="02n-zZ-Kx1"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lg-be-A1A">
+                                <rect key="frame" x="127.66666666666669" y="473" width="120" height="30"/>
+                                <state key="normal" title="Войти анонимно"/>
+                                <connections>
+                                    <action selector="anonButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6qP-eI-f3A"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="0qA-5z-7uB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="Bgg-bK-0D5"/>
+                            <constraint firstItem="4lg-be-A1A" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="J8Q-Xe-sJR"/>
                             <constraint firstItem="0qA-5z-7uB" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="QrM-XQ-kBB"/>
                             <constraint firstItem="0os-P6-JlY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XoQ-Y7-TZP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0os-P6-JlY" secondAttribute="bottom" constant="8" id="dXO-ya-OdV"/>
+                            <constraint firstItem="4lg-be-A1A" firstAttribute="top" secondItem="0qA-5z-7uB" secondAttribute="bottom" constant="8" id="sjz-nF-OH5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0qA-5z-7uB" secondAttribute="trailing" constant="8" id="xhr-2X-G52"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Вход" id="hbG-DG-jic"/>
                     <connections>
+                        <outlet property="anonButton" destination="4lg-be-A1A" id="5bQ-Ji-KuM"/>
                         <outlet property="logInButton" destination="S01-Tk-aeq" id="edd-51-pIY"/>
                         <outlet property="passwordTextField" destination="ILi-ix-mfc" id="Atp-St-Lwk"/>
                         <outlet property="signUpButton" destination="0os-P6-JlY" id="nOE-lB-BgG"/>

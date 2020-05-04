@@ -102,6 +102,7 @@ class SignUpViewController: UIViewController {
         profileGetter?.getProfile(user.id!, completion: {entity, error in
             DispatchQueue.main.async {
                 Profile.manager.currentProfile = entity
+                NotificationCenter.default.post(name: .accessLevelChanged, object: nil)
                 if let err = error {
                     self.presentDefaultOKAlert(title: "Error on getting profile", msg: err.localizedDescription)
                     return

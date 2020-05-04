@@ -12,7 +12,8 @@ import Combine
 class PlaceImagesViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
-
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
     // MARK: - Variables
     static let id = "PlaceImagesVC"
     var itemsPerRow: CGFloat = 3
@@ -32,15 +33,26 @@ class PlaceImagesViewController: UIViewController {
     // MARK: - Time hooks
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(accessLevelChanged), name: .accessLevelChanged, object: nil)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.reloadData()
+        accessLevelChanged()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         imageGetter?.cancel()
     }
+
+    // MARK: - Actions
+    @objc func accessLevelChanged() {
+        addButton.isEnabled = Defaults.currentAccessLevel.rawValue >= AccessLevel.moderator.rawValue
+    }
+
+    @IBAction func addButtonPressed(_ sender: Any) {
+    }
+    
 
     // MARK: - Request handlers
     private func getImages(_ place: Place) {
@@ -108,4 +120,14 @@ extension PlaceImagesViewController: UICollectionViewDelegateFlowLayout {
         sectionInsets.left
     }
 
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let image = imagesToShow[indexPath.item]
+        guard let vc = storyboard?.instantiateViewController(identifier: PlaceImageDetailViewController.id)
+                as? PlaceImageDetailViewController else {
+            presentDefaultOKAlert(title: "Can't instantiate image detail vc", msg: nil)
+            return
+        }
+        vc.imageFile = image
+        present(vc, animated: true)
+    }
 }

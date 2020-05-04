@@ -285,8 +285,15 @@ class PlaceRequester: ObjectRequester {
         "places/"
     }
 
-    func searchByName(_ name: String) -> AnyPublisher<[Entity], ApiError> {
-        let ans = self.getList(params: ["name": name])
+    func searchByName(_ name: String, onlyMine: Bool? = nil, deletedFlg: Bool? = nil) -> AnyPublisher<[Entity], ApiError> {
+        var params: [String : Any] = ["name": name]
+        if onlyMine != nil {
+            params["only_mine"] = onlyMine!
+        }
+        if deletedFlg != nil {
+            params["with_deleted"] = deletedFlg!
+        }
+        let ans = self.getList(params: params)
         return ans
     }
     

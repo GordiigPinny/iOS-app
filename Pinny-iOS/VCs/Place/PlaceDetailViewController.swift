@@ -19,6 +19,7 @@ class PlaceDetailViewController: UIViewController {
     @IBOutlet weak var placeImagesActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var appleMapsButton: UIButton!
     @IBOutlet weak var yandexMapsButton: UIButton!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     // MARK: - Variables
     static let id = "PlaceDetailVC"
@@ -41,6 +42,7 @@ class PlaceDetailViewController: UIViewController {
     // MARK: - Time hooks
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(accessLevelChanged), name: .accessLevelChanged, object: nil)
         starsRatingView.delegate = self
         acceptButtonVew.delegate = self
         placeImagesActivityIndicator.stopAnimating()
@@ -48,6 +50,13 @@ class PlaceDetailViewController: UIViewController {
     }
 
     // MARK: - Actions
+    @objc func accessLevelChanged() {
+        fillViewController()
+    }
+
+    @IBAction func editButtonPressed(_ sender: Any) {
+    }
+    
     @IBAction func photosButtonPressed(_ sender: Any) {
         placeImagesActivityIndicator.startAnimating()
         photosButton.isEnabled = false
@@ -102,11 +111,39 @@ class PlaceDetailViewController: UIViewController {
     // MARK: - Fill view with values
     private func fillViewController() {
         if !isViewLoaded { return }
+        switch Defaults.currentAccessLevel {
+        case .anon:
+            fillAnonViewController()
+            break
+        case .admin:
+            fillAdminViewController()
+            break
+        case .moderator, .authorized:
+            fillAuthViewController()
+            break
+        }
+    }
+
+    private func fillAuthViewController() {
         title = place.name
         addressLabel.text = place.address
+        starsRatingView.isHidden = false
+        acceptButtonVew.isHidden = false
         globalRatingLabel.text = "\(place.rating ?? 0)"
         starsRatingView.rating = UInt(place.myRating!)
         acceptButtonVew.isAccepted = place.isAcceptedByMe!
+        editButton.isEnabled = false
+    }
+
+    private func fillAdminViewController() {
+        fillAuthViewController()
+        editButton.isEnabled = true
+    }
+
+    private func fillAnonViewController() {
+        fillAuthViewController()
+        starsRatingView.isHidden = true
+        acceptButtonVew.isHidden = true
     }
 
 }

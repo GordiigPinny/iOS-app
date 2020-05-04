@@ -15,6 +15,7 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var anonButton: UIButton!
     
     // MARK: - Outlet value getters
     var username: String? {
@@ -64,6 +65,18 @@ class LogInViewController: UIViewController {
             }
     }
     
+    @IBAction func anonButtonPressed(_ sender: Any) {
+        Defaults.clearAuthData()
+        NotificationCenter.default.post(name: .accessLevelChanged, object: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = storyboard.instantiateInitialViewController() as? UITabBarController else {
+            presentDefaultOKAlert(title: "Can't instantiate initail vc", msg: nil)
+            return
+        }
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
+
     // MARK: - Actions for TextFields
     private var canPressLogInButton: Bool {
         !usernameTextField.isEmpty && !passwordTextField.isEmpty
@@ -101,6 +114,7 @@ class LogInViewController: UIViewController {
         profileGetter?.getProfile(user.id!, completion: { entity, error in
             DispatchQueue.main.async {
                 Profile.manager.currentProfile = entity
+                NotificationCenter.default.post(name: .accessLevelChanged, object: nil)
                 if let err = error {
                     self.presentDefaultOKAlert(title: "Error on getting profile", msg: err.localizedDescription)
                     return

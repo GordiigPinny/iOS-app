@@ -14,10 +14,28 @@ class PlacesSearchViewController: UIViewController {
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var mineStackView: UIStackView!
+    @IBOutlet weak var deletedStackView: UIStackView!
+    @IBOutlet weak var mineSwitch: UISwitch!
+    @IBOutlet weak var deletedSwitch: UISwitch!
     
     // MARK: - Outlets value getters
     var searchStr: String? {
         searchTextField.text
+    }
+
+    var onlyMine: Bool? {
+        if Defaults.currentAccessLevel.rawValue == AccessLevel.anon.rawValue {
+            return nil
+        }
+        return mineSwitch.isOn
+    }
+
+    var includeDeleted: Bool? {
+        if Defaults.currentAccessLevel.rawValue != AccessLevel.admin.rawValue {
+            return nil
+        }
+        return deletedSwitch.isOn
     }
 
     // MARK: - Variables
@@ -27,11 +45,18 @@ class PlacesSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTextField.addTarget(self, action: #selector(searchTextFieldTextChanged), for: .editingChanged)
+        NotificationCenter.default.addObserver(self, selector: #selector(accessLevelChanged), name: .accessLevelChanged, object: nil)
         activityIndicator.stopAnimating()
         searchButton.isEnabled = !searchTextField.isEmpty
+        accessLevelChanged()
     }
 
     // MARK: - Actions
+    @objc func accessLevelChanged() {
+        deletedStackView.isHidden = Defaults.currentAccessLevel.rawValue < AccessLevel.admin.rawValue
+        mineStackView.isHidden = Defaults.currentAccessLevel.rawValue == AccessLevel.anon.rawValue
+    }
+
     @objc func searchTextFieldTextChanged(_ textField: UITextField) {
         searchButton.isEnabled = !searchTextField.isEmpty
     }
@@ -44,7 +69,7 @@ class PlacesSearchViewController: UIViewController {
     // MARK: - Requests handlers
     private func getPlaces(_ name: String) {
         placesGetter = PlaceGetter()
-        placesGetter?.getPlaces(search: name) { entities, error in
+        placesGetter?.getPlaces(search: name, onlyMine: onlyMine, withDeleted: includeDeleted) { entities, error in
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
                 if let err = error {
