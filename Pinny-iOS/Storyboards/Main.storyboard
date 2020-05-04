@@ -8,6 +8,82 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Create Place View Controller-->
+        <scene sceneID="NMv-tU-NNU">
+            <objects>
+                <viewController restorationIdentifier="CreatePlaceVC" storyboardIdentifier="CreatePlaceVC" id="ARS-Oj-Z58" customClass="CreatePlaceViewController" customModule="Pinny_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ilg-GR-Yua">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EJP-1N-4do">
+                                <rect key="frame" x="8" y="322" width="398" height="198"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Название" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4WU-DJ-dAq">
+                                        <rect key="frame" x="0.0" y="0.0" width="398" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Адрес" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ge5-AA-AHe">
+                                        <rect key="frame" x="0.0" y="42" width="398" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="street-address"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Широта" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcu-te-Olt">
+                                        <rect key="frame" x="0.0" y="84" width="398" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Долгота" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r6B-nM-1iI">
+                                        <rect key="frame" x="0.0" y="126" width="398" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yRL-aL-mx1">
+                                        <rect key="frame" x="164.5" y="168" width="69" height="30"/>
+                                        <state key="normal" title="Добавить"/>
+                                        <connections>
+                                            <action selector="addButtonPressed:" destination="ARS-Oj-Z58" eventType="touchUpInside" id="CIZ-cu-l5s"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="r6B-nM-1iI" secondAttribute="trailing" id="BBj-Xb-Z4p"/>
+                                    <constraint firstItem="r6B-nM-1iI" firstAttribute="leading" secondItem="EJP-1N-4do" secondAttribute="leading" id="NWY-oW-ZS3"/>
+                                    <constraint firstItem="4WU-DJ-dAq" firstAttribute="leading" secondItem="EJP-1N-4do" secondAttribute="leading" id="RJd-rt-gsE"/>
+                                    <constraint firstAttribute="trailing" secondItem="ge5-AA-AHe" secondAttribute="trailing" id="ULd-FL-6fV"/>
+                                    <constraint firstItem="ge5-AA-AHe" firstAttribute="leading" secondItem="EJP-1N-4do" secondAttribute="leading" id="f60-l6-UxW"/>
+                                    <constraint firstAttribute="trailing" secondItem="4WU-DJ-dAq" secondAttribute="trailing" id="osU-Ef-Q6F"/>
+                                    <constraint firstAttribute="trailing" secondItem="bcu-te-Olt" secondAttribute="trailing" id="tZp-DQ-FsU"/>
+                                    <constraint firstItem="bcu-te-Olt" firstAttribute="leading" secondItem="EJP-1N-4do" secondAttribute="leading" id="yql-0U-IeP"/>
+                                </constraints>
+                            </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="l6S-2Y-OXy">
+                                <rect key="frame" x="249.5" y="495" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="l6S-2Y-OXy" firstAttribute="centerY" secondItem="yRL-aL-mx1" secondAttribute="centerY" id="1gR-yp-r6U"/>
+                            <constraint firstItem="EJP-1N-4do" firstAttribute="leading" secondItem="ecB-hQ-Wo1" secondAttribute="leading" constant="8" id="6M8-5L-gvZ"/>
+                            <constraint firstItem="ecB-hQ-Wo1" firstAttribute="trailing" secondItem="EJP-1N-4do" secondAttribute="trailing" constant="8" id="Ee3-fy-zWo"/>
+                            <constraint firstItem="EJP-1N-4do" firstAttribute="centerY" secondItem="ilg-GR-Yua" secondAttribute="centerY" id="cbQ-77-qQc"/>
+                            <constraint firstItem="l6S-2Y-OXy" firstAttribute="leading" secondItem="yRL-aL-mx1" secondAttribute="trailing" constant="8" id="mmR-L9-sUU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ecB-hQ-Wo1"/>
+                    </view>
+                    <connections>
+                        <outlet property="addButton" destination="yRL-aL-mx1" id="nu0-zf-McJ"/>
+                        <outlet property="addressTextField" destination="ge5-AA-AHe" id="UGe-au-5LZ"/>
+                        <outlet property="latitudeTextField" destination="bcu-te-Olt" id="aHV-Ai-ifg"/>
+                        <outlet property="longitudeTextField" destination="r6B-nM-1iI" id="Ewc-ix-EVD"/>
+                        <outlet property="nameTextField" destination="4WU-DJ-dAq" id="ngL-rP-n0I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PGQ-w7-FCu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1829" y="-1075"/>
+        </scene>
         <!--Поиск-->
         <scene sceneID="nNd-IW-FrI">
             <objects>
@@ -86,9 +162,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Lbv-CI-Osw"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Поиск" largeTitleDisplayMode="always" id="kUN-BM-ZY9"/>
+                    <navigationItem key="navigationItem" title="Поиск" largeTitleDisplayMode="always" id="kUN-BM-ZY9">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="zlc-gg-Bu4">
+                            <connections>
+                                <segue destination="ARS-Oj-Z58" kind="presentation" id="bI2-mL-vdh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="PeJ-Od-Wha" id="5Hy-05-j8e"/>
+                        <outlet property="addButton" destination="zlc-gg-Bu4" id="pJx-GD-7EK"/>
                         <outlet property="deletedStackView" destination="W6j-ks-pgu" id="Y9b-uS-9r1"/>
                         <outlet property="deletedSwitch" destination="hAb-bg-aWb" id="hHv-rV-h3Z"/>
                         <outlet property="mineStackView" destination="6E5-0E-8kN" id="2FJ-N2-MBY"/>

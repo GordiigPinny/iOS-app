@@ -18,6 +18,8 @@ class PlacesSearchViewController: UIViewController {
     @IBOutlet weak var deletedStackView: UIStackView!
     @IBOutlet weak var mineSwitch: UISwitch!
     @IBOutlet weak var deletedSwitch: UISwitch!
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
     
     // MARK: - Outlets value getters
     var searchStr: String? {
@@ -55,6 +57,7 @@ class PlacesSearchViewController: UIViewController {
     @objc func accessLevelChanged() {
         deletedStackView.isHidden = Defaults.currentAccessLevel.rawValue < AccessLevel.admin.rawValue
         mineStackView.isHidden = Defaults.currentAccessLevel.rawValue == AccessLevel.anon.rawValue
+        addButton.isEnabled = Defaults.currentAccessLevel.rawValue >= AccessLevel.authorized.rawValue
     }
 
     @objc func searchTextFieldTextChanged(_ textField: UITextField) {

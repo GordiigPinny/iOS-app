@@ -11,6 +11,7 @@
 		130522AF245D6947000C02C9 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130522AE245D6947000C02C9 /* Token.swift */; };
 		130522B1245D6959000C02C9 /* AuthRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130522B0245D6959000C02C9 /* AuthRequester.swift */; };
 		130522B4245D7B19000C02C9 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130522B3245D7B19000C02C9 /* UserManager.swift */; };
+		1306622224608C980031CB9B /* CreatePlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1306622124608C980031CB9B /* CreatePlaceViewController.swift */; };
 		13225253246072D900C56C73 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13225252246072D900C56C73 /* StatsViewController.swift */; };
 		132252552460731E00C56C73 /* StatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132252542460731E00C56C73 /* StatsTableViewCell.swift */; };
 		1327112224334D82009005C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327112124334D82009005C0 /* AppDelegate.swift */; };
@@ -69,6 +70,7 @@
 		C8147571553134AC0778F237 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81470FB07BA842AD8D6F0D9 /* ProfileManager.swift */; };
 		C8147598D001D68528A02177 /* PinPurchaseStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81475A7014A653B886AD9A9 /* PinPurchaseStats.swift */; };
 		C81475FA5787DFB2B778A1AC /* AcceptStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147DB25D7E36559FF7A847 /* AcceptStatsManager.swift */; };
+		C814763A250BBCF855639541 /* GatewayRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147A6D2A30BC5C665DD28E /* GatewayRequester.swift */; };
 		C8147645427479ACCE94EED4 /* AcceptStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147996E7FD2BDD46A09F4B /* AcceptStats.swift */; };
 		C814767D4E09C4CD1CB143DF /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81470BE36D03BC2B9E80F62 /* Notifications.swift */; };
 		C81476A4FE18747510421F66 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814794F0599A6145C25CD83 /* ChangePasswordViewController.swift */; };
@@ -106,6 +108,7 @@
 		130522AE245D6947000C02C9 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		130522B0245D6959000C02C9 /* AuthRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequester.swift; sourceTree = "<group>"; };
 		130522B3245D7B19000C02C9 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		1306622124608C980031CB9B /* CreatePlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaceViewController.swift; sourceTree = "<group>"; };
 		13225252246072D900C56C73 /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		132252542460731E00C56C73 /* StatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewCell.swift; sourceTree = "<group>"; };
 		1327111E24334D82009005C0 /* Pinny-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pinny-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,6 +184,7 @@
 		C814795D1494161ED3B20346 /* ImageGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGetter.swift; sourceTree = "<group>"; };
 		C8147996E7FD2BDD46A09F4B /* AcceptStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptStats.swift; sourceTree = "<group>"; };
 		C81479E7138A6B17767CCD50 /* AchievementStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementStatsManager.swift; sourceTree = "<group>"; };
+		C8147A6D2A30BC5C665DD28E /* GatewayRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GatewayRequester.swift; sourceTree = "<group>"; };
 		C8147AC8743044AE37E1CB69 /* UserMapMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMapMarker.swift; sourceTree = "<group>"; };
 		C8147B4BA888A88B24536A2F /* PlaceGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceGetter.swift; sourceTree = "<group>"; };
 		C8147B4EBB54D2A25B07C305 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -385,6 +389,7 @@
 				1397BAF12455A338005B2C75 /* URLRequester.swift */,
 				1397BAF82455B212005B2C75 /* ObjectRequester.swift */,
 				C8147ED827244A39A2392355 /* ObjectGetters */,
+				C8147A6D2A30BC5C665DD28E /* GatewayRequester.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -550,6 +555,7 @@
 				C81477A0D87BAF2AB2A18BF7 /* PlaceDetailViewController.swift */,
 				C814761E5BE2044DD863398E /* PlacesListViewController.swift */,
 				C814778AE7FED4F526723CDE /* PlacesSearchViewController.swift */,
+				1306622124608C980031CB9B /* CreatePlaceViewController.swift */,
 			);
 			path = Place;
 			sourceTree = "<group>";
@@ -784,6 +790,7 @@
 				C81478A6AF607C850B84CF49 /* Pin.swift in Sources */,
 				1365DDA0245F0BE100481B9D /* PinTableViewCell.swift in Sources */,
 				C81477D13A36E8F7754FFF37 /* PinManager.swift in Sources */,
+				1306622224608C980031CB9B /* CreatePlaceViewController.swift in Sources */,
 				C81479AE15A8D0B8BD89DFE2 /* Achievement.swift in Sources */,
 				C8147460BBD75D1736BE5F6A /* AchievementManager.swift in Sources */,
 				C81470D13BA9F6D2602C4546 /* RequestStats.swift in Sources */,
@@ -825,6 +832,7 @@
 				C8147CD5F690C4E1CCA7EB62 /* PlaceGetter.swift in Sources */,
 				C814767D4E09C4CD1CB143DF /* Notifications.swift in Sources */,
 				C81471A544A116E01B8AFFB4 /* RequestStatsGetter.swift in Sources */,
+				C814763A250BBCF855639541 /* GatewayRequester.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

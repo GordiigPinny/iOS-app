@@ -39,6 +39,15 @@ class ProfileViewController: UIViewController {
         fillView()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if Defaults.currentAccessLevel == .anon {
+            return
+        }
+        ratingLabel.text = "\(Profile.manager.currentProfile!.rating!)"
+        moneyLabel.text = "\(Profile.manager.currentProfile!.money!)"
+    }
+
     // MARK: - Actions
     @objc func accessLevelChanged() {
         if Defaults.currentAccessLevel == .anon {
