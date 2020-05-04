@@ -15,6 +15,7 @@ class PlaceGetter {
 
     private var entitySubscriber: AnyCancellable?
     private var entitiesSubscriber: AnyCancellable?
+    private var acceptSubscriber: AnyCancellable?
 
     deinit {
         cancel()
@@ -27,16 +28,16 @@ class PlaceGetter {
 
     func getPlace(_ id: Entity.ID, completion: Completion = nil) {
         entitySubscriber = Entity.manager.fetch(id: id)
-                .sink(receiveCompletion: { c in
-                    switch c {
-                    case .failure(let err):
-                        self.getEntityFailure(err, completion)
-                    case .finished:
-                        break
-                    }
-                }, receiveValue: { entity in
-                    self.getEntitySuccess(entity, completion)
-                })
+            .sink(receiveCompletion: { c in
+                switch c {
+                case .failure(let err):
+                    self.getEntityFailure(err, completion)
+                case .finished:
+                    break
+                }
+            }, receiveValue: { entity in
+                self.getEntitySuccess(entity, completion)
+            })
     }
 
     func getPlaces(search: String, onlyMine: Bool? = nil, withDeleted: Bool? = nil, completion: CompletionList = nil) {
@@ -53,8 +54,18 @@ class PlaceGetter {
             })
     }
 
+    func getAccept(place: Place) {
+        acceptSubscriber = AcceptRequester().getForPlace(place)
+            .sink(receiveCompletion: { completion in
+
+            }, receiveValue: { entities in
+                entities.forEach { Accept.manager.addLocaly($0) }
+            })
+    }
+
     private func getEntitySuccess(_ entity: Entity, _ completion: Completion) {
         Entity.manager.replace(entity, with: entity)
+        getAccept(place: entity)
         completion?(entity, nil)
     }
 

@@ -79,11 +79,8 @@ class AcceptButtonView: UIView {
     // MARK: - Touch targets
     @objc func buttonPressed(_ button: UIButton) {
         startAnimating()
-        let canChange = self.delegate?.acceptButtonStateChanged(self, newState: !self.isAccepted) ?? true
+        self.delegate?.acceptButtonStateWillChange(self, newState: !self.isAccepted)
         self.endAnimating()
-        if canChange {
-            self.isAccepted = !self.isAccepted
-        }
     }
 
     // MARK: - Activity indicator manipulations
@@ -100,5 +97,5 @@ class AcceptButtonView: UIView {
 
 
 protocol AcceptButtonDelegate: class {
-    func acceptButtonStateChanged(_ buttonView: AcceptButtonView, newState: Bool) -> Bool
+    func acceptButtonStateWillChange(_ buttonView: AcceptButtonView, newState: Bool)
 }

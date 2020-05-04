@@ -194,7 +194,70 @@ extension PlaceDetailViewController: StarsRatingViewDelegate {
 
 // MARK: - Accept button delegate
 extension PlaceDetailViewController: AcceptButtonDelegate {
-    func acceptButtonStateChanged(_ buttonView: AcceptButtonView, newState: Bool) -> Bool {
-        return true
+    func acceptButtonStateWillChange(_ buttonView: AcceptButtonView, newState: Bool) {
+        newState ? addAccept(self.place) : deleteAccept(self.place)
     }
+
+    private func addAccept(_ place: Place) {
+        acceptChangeSubscriber = GatewayRequester.addAccept(place: place)
+        .receive(on: DispatchQueue.main)
+        .sink(receiveCompletion: { completion in
+            switch completion {
+            case .failure(let err):
+                self.addAcceptCompletion(nil, nil, err)
+            case .finished:
+                break
+            }
+        }, receiveValue: { accept, profile in
+            self.addAcceptCompletion(accept, profile, nil)
+        })
+    }
+
+    private func addAcceptCompletion(_ accept: Accept?, _ profile: Profile?, _ err: GatewayRequester.ApiError?) {
+        if let err = err {
+            self.presentDefaultOKAlert(title: "Error on adding accept", msg: err.localizedDescription)
+            return
+        }
+        acceptButtonVew.isAccepted = true
+        self.acceptTypeLabel.text = "\(place.acceptType!)"
+        if profile == nil {
+            self.presentDefaultOKAlert(title: "Added accept", msg: "But didn't update profile")
+            return
+        }
+    }
+
+    private func deleteAccept(_ place: Place) {
+        let accept_ = Accept.manager.entities.first { accept in
+            accept.placeId == place.id
+        }
+        guard let accept = accept_ else {
+            self.presentDefaultOKAlert(title: "No accept here", msg: nil)
+            return
+        }
+        acceptChangeSubscriber = GatewayRequester.deleteAccept(acceptId: accept.id!)
+        .receive(on: DispatchQueue.main)
+        .sink(receiveCompletion: { completion in
+            switch completion {
+            case .failure(let err):
+                self.deleteAcceptCompletion(nil, err)
+            case .finished:
+                break
+            }
+        }, receiveValue: { profile in
+            self.deleteAcceptCompletion(profile, nil)
+        })
+    }
+
+    private func deleteAcceptCompletion(_ profile: Profile?, _ err: GatewayRequester.ApiError?) {
+        if let err = err {
+            self.presentDefaultOKAlert(title: "Error on deleting accept", msg: err.localizedDescription)
+            return
+        }
+        acceptButtonVew.isAccepted = false
+        if profile == nil {
+            self.presentDefaultOKAlert(title: "Deleted accept", msg: "But didn't update profile")
+            return
+        }
+    }
+
 }

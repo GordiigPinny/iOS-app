@@ -81,6 +81,53 @@ class GatewayRequester {
         return ans
     }
 
+    static func addAccept(place: Place) -> AnyPublisher<(accept: Accept, profile: Profile?), ApiError> {
+        let dictData: [String : Any] = [
+            "place_id": place.id!
+        ]
+        let jsonData = try! JSONSerialization.data(withJSONObject: dictData, options: .prettyPrinted)
+        let requester = URLRequester(host: Hosts.gatewayHostUrl)
+        let ans = requester.post(urlPostfix: "gateway/add_acceptance/", data: jsonData)
+            .tryMap { data, response -> (accept: Accept, profile: Profile?) in
+                let json = try JSON(data: data)
+                let acceptJson = json["accept"]
+                let profileJson = json["profile"]
+                let accept: Accept = try Self.decodeEntity(json: acceptJson, name: "Accept")
+                if let currentAcceptType = acceptJson["current_accept_type"].string {
+                    place.acceptType = currentAcceptType
+                    Place.manager.replace(place, with: place)
+                }
+                guard let profile = self.decodeProfile(json: profileJson) else {
+                    return (accept: accept, profile: nil)
+                }
+                return (accept: accept, profile: profile)
+            }
+            .mapError { error -> ApiError in
+                self.mapError(error)
+            }
+            .eraseToAnyPublisher()
+        return ans
+    }
+
+    static func deleteAccept(acceptId: Int) -> AnyPublisher<Profile?, ApiError> {
+        let requester = URLRequester(host: Hosts.gatewayHostUrl)
+        let ans = requester.delete(urlPostfix: "gateway/delete_acceptance/\(acceptId)/")
+            .tryMap { data, response -> Profile? in
+                Accept.manager.delete(acceptId)
+                let json = try JSON(data: data)
+                let profileJson = json["profile"]
+                guard let profile = self.decodeProfile(json: profileJson) else {
+                    return nil
+                }
+                return profile
+            }
+            .mapError { error -> ApiError in
+                self.mapError(error)
+            }
+            .eraseToAnyPublisher()
+        return ans
+    }
+
     // MARK: - Utils
     private static func decodeEntity<T: APIEntity>(json: JSON, name: String) throws -> T {
         guard let entity = T.deserialize(from: json.rawString()) else {

@@ -246,6 +246,10 @@ class RatingRequester: ObjectRequester {
 // MARK: - Accept requester
 class AcceptRequester: ObjectRequester {
     typealias Entity = Accept
+
+    func getForPlace(_ place: Place) -> AnyPublisher<[Entity], ApiError> {
+        self.getList(params: ["place_id": place.id!])
+    }
     
     var host: URL {
         Hosts.placesHostUrl
