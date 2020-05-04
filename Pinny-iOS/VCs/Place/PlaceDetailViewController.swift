@@ -20,6 +20,8 @@ class PlaceDetailViewController: UIViewController {
     @IBOutlet weak var appleMapsButton: UIButton!
     @IBOutlet weak var yandexMapsButton: UIButton!
     @IBOutlet weak var editButton: UIBarButtonItem!
+    @IBOutlet weak var acceptTypeLabel: UILabel!
+    @IBOutlet weak var checkedByModeratorLabel: UILabel!
     
     // MARK: - Variables
     static let id = "PlaceDetailVC"
@@ -127,6 +129,8 @@ class PlaceDetailViewController: UIViewController {
     private func fillAuthViewController() {
         title = place.name
         addressLabel.text = place.address
+        acceptTypeLabel.text = place.acceptType
+        checkedByModeratorLabel.text = place.checkedByModerator! ? "Проверенно модератором" : "Не проверенно модератором" 
         starsRatingView.isHidden = false
         acceptButtonVew.isHidden = false
         globalRatingLabel.text = "\(place.rating ?? 0)"

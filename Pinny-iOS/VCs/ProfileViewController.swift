@@ -19,6 +19,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var achievementsButton: UIButton!
     @IBOutlet weak var logOutButton: UIButton!
     @IBOutlet weak var statsButton: UIButton!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var moneyLabel: UILabel!
     
     // MARK: - Variables
     private var profileGetter: ProfileGetter?
@@ -141,6 +143,8 @@ class ProfileViewController: UIViewController {
         let profile = Defaults.currentProfile
         let user = Defaults.currentUser
         usernameLabel.text = user?.username
+        ratingLabel.text = "\(profile!.rating!)"
+        moneyLabel.text = "\(profile!.money!)"
         emailLabel.text = user?.email
         var avatar: UIImage? = ImageFile.defaultImage
         if let picId = profile?.picId {
@@ -162,6 +166,8 @@ class ProfileViewController: UIViewController {
     private func fillAnonView() {
         usernameLabel.text = "Anon"
         emailLabel.text = "anon"
+        ratingLabel.text = "0"
+        moneyLabel.text = "0"
         pinsButton.isHidden = true
         achievementsButton.isHidden = true
         changePasswordButton.isHidden = true
