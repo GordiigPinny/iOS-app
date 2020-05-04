@@ -386,20 +386,20 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F1q-y9-73Z">
-                                <rect key="frame" x="87" y="57" width="240" height="240"/>
+                                <rect key="frame" x="191" y="57" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="F1q-y9-73Z" secondAttribute="height" multiplier="1:1" id="OtR-mk-4VH"/>
-                                    <constraint firstAttribute="width" constant="240" id="wEs-2h-0h0"/>
+                                    <constraint firstAttribute="width" constant="32" id="wEs-2h-0h0"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descr multiline" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4d-9c-tZN">
-                                <rect key="frame" x="8" y="343" width="398" height="20.5"/>
+                                <rect key="frame" x="8" y="135" width="398" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cF1-Uh-V4f">
-                                <rect key="frame" x="165" y="305" width="84" height="30"/>
+                                <rect key="frame" x="165" y="97" width="84" height="30"/>
                                 <state key="normal" title="Price button"/>
                                 <connections>
                                     <action selector="priceButtonPressed:" destination="p5B-g9-LiS" eventType="touchUpInside" id="9q8-O9-Hwf"/>
