@@ -60,6 +60,7 @@ protocol ObjectRequester {
     
     // Patch methods
     func patchObject(_ id: Entity.ID, entity: Entity) -> AnyPublisher<Entity, ApiError>
+    func patchObject(_ id: Entity.ID, data: Data) -> AnyPublisher<Entity, ApiError>
     
     // Delete methods
     func deleteObject(_ id: Entity.ID) -> AnyPublisher<Bool, ApiError>
@@ -195,9 +196,14 @@ extension ObjectRequester {
 
     // Patch methods
     func patchObject(_ id: Entity.ID, entity: Entity) -> AnyPublisher<Entity, ApiError> {
+        let data = entity.toJSONString()!.data(using: .utf8)!
+        return patchObject(id, data: data)
+    }
+
+    func patchObject(_ id: Entity.ID, data: Data) -> AnyPublisher<Entity, ApiError> {
         let url = urlFor(.patchObject(id: id))
         let urlRequester = URLRequester(host: url)
-        let publisher = urlRequester.patch()
+        let publisher = urlRequester.patch(data: data)
             .tryMap { (data, _) -> Entity in
                 let ans = try self.simpleTryMap(data: data)
                 return ans
@@ -209,7 +215,7 @@ extension ObjectRequester {
             .eraseToAnyPublisher()
         return publisher
     }
-    
+
     // Delete methods
     func deleteObject(_ id: Entity.ID) -> AnyPublisher<Bool, ApiError> {
         let url = urlFor(.deleteObject(id: id))
@@ -343,6 +349,13 @@ class ProfileRequester: ObjectRequester {
 
     var resource: String {
         "profiles/"
+    }
+
+    func changeCurrentPin(_ pin: Pin) -> AnyPublisher<Entity, ApiError> {
+        let key = (pin.ptype == .place) ? "pin_sprite" : "geopin_sprite"
+        let dictData = [key: pin.id!]
+        let jsonData = try! JSONSerialization.data(withJSONObject: dictData, options: .prettyPrinted)
+        return self.patchObject(Defaults.currentProfile!.id!, data: jsonData)
     }
 
 }

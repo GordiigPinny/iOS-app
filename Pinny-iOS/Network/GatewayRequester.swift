@@ -128,6 +128,28 @@ class GatewayRequester {
         return ans
     }
 
+    static func buyPin(pin: Pin) -> AnyPublisher<Profile?, ApiError> {
+        let dictData: [String : Any] = [
+            "pin_id": pin.id!
+        ]
+        let jsonData = try! JSONSerialization.data(withJSONObject: dictData, options: .prettyPrinted)
+        let requester = URLRequester(host: Hosts.gatewayHostUrl)
+        let ans = requester.post(urlPostfix: "gateway/buy_pin/", data: jsonData)
+            .tryMap { data, response -> Profile? in
+                let json = try JSON(data: data)
+                guard let profile = Self.decodeProfile(json: json) else {
+                    throw MyDecodingError.cantDecode(type: "Profile")
+                }
+                Profile.manager.currentProfile = profile
+                return profile
+            }
+            .mapError { error -> ApiError in
+                self.mapError(error)
+            }
+            .eraseToAnyPublisher()
+        return ans
+    }
+
     // MARK: - Utils
     private static func decodeEntity<T: APIEntity>(json: JSON, name: String) throws -> T {
         guard let entity = T.deserialize(from: json.rawString()) else {

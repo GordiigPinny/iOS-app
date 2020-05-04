@@ -34,6 +34,8 @@ class PinDetailViewController: UIViewController {
         }
     }
     private var pinGetter: PinGetter?
+    private var buyPinSubscriber: AnyCancellable?
+    private var changeCurrentPinSubscriber: AnyCancellable?
 
     // MARK: - Time hooks
     override func viewDidLoad() {
@@ -48,7 +50,11 @@ class PinDetailViewController: UIViewController {
 
     // MARK: - Actions
     @IBAction func priceButtonPressed(_ sender: Any) {
-
+        if priceButton.titleLabel?.text == "Выбрать как текущий" {
+            changeCurrentPin(self.pin)
+            return
+        }
+        buyPin(self.pin)
     }
 
     // MARK: - Requests handlers
@@ -76,12 +82,70 @@ class PinDetailViewController: UIViewController {
         }
     }
 
+    private func buyPin(_ pin: Pin) {
+        buyPinSubscriber = GatewayRequester.buyPin(pin: pin)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let err):
+                    self.buyPinCompletion(nil, err)
+                case .finished:
+                    break
+                }
+            }, receiveValue: { profile in
+                self.buyPinCompletion(profile, nil)
+            })
+    }
+
+    private func buyPinCompletion(_ profile: Profile?, _ err: GatewayRequester.ApiError?) {
+        if let err = err {
+            self.presentDefaultOKAlert(title: "Error on buying pin", msg: err.localizedDescription)
+            return
+        }
+        fillView()
+    }
+
+    private func changeCurrentPin(_ pin: Pin) {
+        changeCurrentPinSubscriber = ProfileRequester().changeCurrentPin(pin)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let err):
+                    self.changeCurrentPinCompletion(nil, err)
+                case .finished:
+                    break
+                }
+            }, receiveValue: { entity in
+                Profile.manager.currentProfile = entity
+                self.changeCurrentPinCompletion(entity, nil)
+            })
+    }
+
+    private func changeCurrentPinCompletion(_ profile: Profile?, _ err: ProfileRequester.ApiError?) {
+        if let err = err {
+            self.presentDefaultOKAlert(title: "Error on changing current pin", msg: err.localizedDescription)
+            return
+        }
+        fillView()
+    }
+
     // MARK: - Fill view
     private func fillView() {
         if !isViewLoaded { return }
         nameLabel.text = pin.name
         descrLabel.text = pin.descr
-        priceButton.setTitle("\(pin.price ?? -1)", for: .normal)
+        let profile = Profile.manager.currentProfile!
+        if profile.unlockedPinsId.contains(pin.id!) {
+            if profile.geopinSpriteId == pin.id || profile.pinSpriteId == pin.id {
+                priceButton.isEnabled = false
+                priceButton.setTitle("Выбран как текущий", for: .disabled)   
+            } else {
+                priceButton.setTitle("Выбрать как текущий", for: .normal)
+            }
+        } else {
+            priceButton.isEnabled = true
+            priceButton.setTitle("Купить за \(pin.price ?? -1)", for: .normal)
+        }
         let imgFile = ImageFile.manager.get(id: pin.picId!)
         if imgFile == nil {
             imageView.image = ImageFile.defaultImage
