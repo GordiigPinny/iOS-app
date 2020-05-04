@@ -26,6 +26,8 @@ class PlaceDetailViewController: UIViewController {
     // MARK: - Variables
     static let id = "PlaceDetailVC"
     private var placeGetter: PlaceGetter?
+    private var ratingChangeSubscriber: AnyCancellable?
+    private var acceptChangeSubscriber: AnyCancellable?
     private var _place: Place = Place()
     var place: Place {
         get {
@@ -155,9 +157,38 @@ class PlaceDetailViewController: UIViewController {
 
 // MARK: - Stars rating view delegate
 extension PlaceDetailViewController: StarsRatingViewDelegate {
-    func ratingDidChange(_ starsRatingView: StarsRatingView, newRating rating: UInt) {
-
+    func ratingWillChange(_ starsRatingView: StarsRatingView, oldRating: UInt, newRating rating: UInt) {
+        changeRating(self.place, rating)
     }
+
+    private func changeRating(_ place: Place, _ newRating: UInt) {
+        ratingChangeSubscriber = GatewayRequester.updateRating(placeId: place.id!, rating: Int(newRating))
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let err):
+                    self.changeRatingCompletion(nil, nil, err)
+                case .finished:
+                    break
+                }
+            }, receiveValue: { rating, profile in
+                self.changeRatingCompletion(rating, profile, nil)
+            })
+    }
+
+    private func changeRatingCompletion(_ rating: Rating?, _ profile: Profile?, _ err: GatewayRequester.ApiError?) {
+        if let err = err {
+            self.presentDefaultOKAlert(title: "Error on changing rating", msg: err.localizedDescription)
+            return
+        }
+        starsRatingView.rating = UInt(rating!.rating!)
+        self.globalRatingLabel.text = "\(self.place.rating!)"
+        if profile == nil {
+            self.presentDefaultOKAlert(title: "Rating changed", msg: "But profile didn't update")
+            return
+        }
+    }
+
 }
 
 

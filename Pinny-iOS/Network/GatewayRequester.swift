@@ -38,14 +38,10 @@ class GatewayRequester {
                 let json = try JSON(data: data)
                 let newPlaceJson = json["place"]
                 let updatedProfile = json["profile"]
-                guard let place = Place.deserialize(from: newPlaceJson.rawString()) else {
-                    throw MyDecodingError.cantDecode(type: "Place")
-                }
-                Place.manager.addLocaly(place)
-                guard let profile = Profile.deserialize(from: updatedProfile.rawString()) else {
+                let place: Place = try Self.decodeEntity(json: newPlaceJson, name: "Place")
+                guard let profile = Self.decodeProfile(json: updatedProfile) else {
                     return (newPlace: place, updatedProfile: nil)
                 }
-                Profile.manager.currentProfile = profile
                 return (newPlace: place, updatedProfile: profile)
             }
             .mapError { error -> ApiError in
@@ -56,7 +52,52 @@ class GatewayRequester {
         return ans
     }
 
+    static func updateRating(placeId: Int, rating: Int) -> AnyPublisher<(rating: Rating, profile: Profile?), ApiError> {
+        let dictData: [String : Any] = [
+            "place_id": placeId,
+            "rating": rating
+        ]
+        let jsonData = try! JSONSerialization.data(withJSONObject: dictData, options: .prettyPrinted)
+        let requester = URLRequester(host: Hosts.gatewayHostUrl)
+        let ans = requester.post(urlPostfix: "gateway/add_rating/", data: jsonData)
+            .tryMap { data, response -> (rating: Rating, profile: Profile?) in
+                let json = try JSON(data: data)
+                let ratingJson = json["rating"]
+                let profileJson = json["profile"]
+                let rating: Rating = try Self.decodeEntity(json: ratingJson, name: "rating")
+                Place.manager.get(id: placeId)?.myRating = rating.rating
+                if let newGlobalRating = ratingJson["current_rating"].double {
+                    Place.manager.get(id: placeId)?.rating = newGlobalRating
+                }
+                guard let profile = self.decodeProfile(json: profileJson) else {
+                    return (rating: rating, profile: nil)
+                }
+                return (rating: rating, profile: profile)
+            }
+            .mapError { error -> ApiError in
+                self.mapError(error)
+            }
+            .eraseToAnyPublisher()
+        return ans
+    }
+
     // MARK: - Utils
+    private static func decodeEntity<T: APIEntity>(json: JSON, name: String) throws -> T {
+        guard let entity = T.deserialize(from: json.rawString()) else {
+            throw MyDecodingError.cantDecode(type: name)
+        }
+        T.manager.addLocaly(entity)
+        return entity
+    }
+
+    private static func decodeProfile(json: JSON) -> Profile? {
+        guard let profile = Profile.deserialize(from: json.rawString()) else {
+            return nil
+        }
+        Profile.manager.currentProfile = profile
+        return profile
+    }
+
     private static func mapError(_ error: Error) -> ApiError {
         if let _ = error as? DecodingError {
             return ApiError.apiError(code: -1, descr: "Decoding error")

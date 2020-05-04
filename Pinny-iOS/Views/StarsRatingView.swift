@@ -70,8 +70,9 @@ class StarsRatingView: UIStackView {
         guard let idx = buttonsArr.firstIndex(of: button) else {
             fatalError("Unknown button was pressed")
         }
-        self.rating = UInt(idx + 1)
-        self.delegate?.ratingDidChange(self, newRating: self.rating)
+        let oldRating = self.rating
+        let newRating = UInt(idx + 1)
+        self.delegate?.ratingWillChange(self, oldRating: oldRating, newRating: newRating)
     }
     
     @objc func buttonIsPressedNow(_ button: UIButton) {
@@ -98,6 +99,6 @@ class StarsRatingView: UIStackView {
 
 // MARK: - Delegate protocol
 protocol StarsRatingViewDelegate: class {
-    func ratingDidChange(_ starsRatingView: StarsRatingView, newRating rating: UInt)
+    func ratingWillChange(_ starsRatingView: StarsRatingView, oldRating: UInt, newRating rating: UInt)
     
 }
