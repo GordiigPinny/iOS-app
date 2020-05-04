@@ -27,6 +27,18 @@ final class ProfileManager: APIEntityManager {
         ProfileRequester()
     }
 
+    var currentProfile: Profile? {
+        get {
+            Defaults.currentProfile
+        }
+        set {
+            Defaults.currentProfile = newValue
+            if let newValue = newValue {
+                self.replace(newValue, with: newValue)
+            }
+        }
+    }
+
     // MARK: - Needed for protocol
     func checkEntityWithKeyPath<T>(_ entity: Profile, keyPath: KeyPath<Profile, T>, value: T) -> Bool
             where T : Equatable {

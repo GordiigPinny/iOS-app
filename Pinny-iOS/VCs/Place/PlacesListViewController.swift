@@ -28,8 +28,8 @@ class PlacesListViewController: UIViewController {
         }
     }
     let refreshControl = UIRefreshControl()
-    var placesSubscriber: AnyCancellable?
-    var fetchSubscriber: AnyCancellable?
+    private var placesGetter: PlaceGetter?
+    private var placeGetter: PlaceGetter?
     let requester = PlaceRequester()
     
     // MARK: - Time hooks
@@ -51,61 +51,34 @@ class PlacesListViewController: UIViewController {
 
     // MARK: - Searching
     private func startSearching() {
-        if !refreshControl.isRefreshing {
-            refreshControl.beginRefreshing()
-        }
-        placesSubscriber = requester.searchByName(searchQuery)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                self.refreshControl.endRefreshing()
-                switch completion {
-                case .failure(let err):
-                    self.searchFailure(err)
-                case .finished:
-                    break
+        placesGetter = PlaceGetter()
+        placesGetter?.getPlaces(search: searchQuery) { entities, error in
+            DispatchQueue.main.async {
+                if let err = error {
+                    self.presentDefaultOKAlert(title: "Error on getting places", msg: err.localizedDescription)
+                    return
                 }
-            }, receiveValue: { entities in
-                self.searchSuccess(entities)
-            })
-    }
-
-    private func searchSuccess(_ places: [Place]) {
-        let manager = Place.manager
-        places.forEach { manager.replace($0, with: $0) }
-        self.placesToShow = places
-    }
-
-    private func searchFailure(_ err: PlaceRequester.ApiError) {
-        presentDefaultOKAlert(title: "Error on getting places", msg: err.localizedDescription)
+                self.placesToShow = entities!
+            }
+        }
     }
 
     // MARK: - Fetching single place
     private func startFetching(_ place: Place, tappedCell cell: PlaceSearchTableViewCell) {
-        fetchSubscriber = Place.manager.fetch(id: place.id!)
-        .receive(on: DispatchQueue.main)
-        .sink(receiveCompletion: { completion in
-            cell.activityIndicator.stopAnimating()
-            switch completion {
-            case .failure(let err):
-                self.fetchFailure(err)
-            case .finished:
-                break
+        placeGetter = PlaceGetter()
+        placeGetter?.getPlace(place.id!) { entity, error in
+            DispatchQueue.main.async {
+                cell.activityIndicator.stopAnimating()
+                if let err = error {
+                    self.presentDefaultOKAlert(title: "Error on getting place", msg: err.localizedDescription)
+                    return
+                }
+                let idx = self.placesToShow.firstIndex { $0.id == place.id }!
+                self.placesToShow.remove(at: idx)
+                self.placesToShow.insert(place, at: idx)
+                self.presentDetailVC(withPlace: entity!)
             }
-        }, receiveValue: { place in
-            self.fetchSuccess(place)
-        })
-    }
-
-    private func fetchSuccess(_ place: Place) {
-        // Changing place in placesToShow
-        let idx = placesToShow.firstIndex { $0.id == place.id }!
-        placesToShow.remove(at: idx)
-        placesToShow.insert(place, at: idx)
-        presentDetailVC(withPlace: place)
-    }
-
-    private func fetchFailure(_ err: PlaceRequester.ApiError) {
-        presentDefaultOKAlert(title: "Error on getting place", msg: err.localizedDescription)
+        }
     }
 
     // MARK: - Present VCs
@@ -146,7 +119,7 @@ extension PlacesListViewController: UITableViewDataSource {
 extension PlacesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let selectedCell = tableView.cellForRow(at: indexPath) as? PlaceSearchTableViewCell else {
-            presentDefaultOKAlert(title: "Can't transform cell to needet type", msg: "")
+            presentDefaultOKAlert(title: "Can't transform cell to needed type", msg: "")
             return
         }
         selectedCell.setSelected(false, animated: true)

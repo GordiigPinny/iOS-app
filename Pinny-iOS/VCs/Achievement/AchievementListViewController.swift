@@ -22,7 +22,7 @@ class AchievementListViewController: UIViewController {
         }
     }
     static let id = "AchievementListVC"
-    private var achievementsSubscriber: AnyCancellable?
+    private var achievementGetter: AchievementGetter?
     private var refreshController = UIRefreshControl()
 
     // MARK: - Time hooks
@@ -44,28 +44,16 @@ class AchievementListViewController: UIViewController {
 
     // MARK: - Request handlers
     private func getAchievements() {
-        achievementsSubscriber = AchievementRequester().getList()
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                self.refreshController.endRefreshing()
-                switch completion {
-                case .failure(let err):
-                    self.achievementsGetFailure(err)
-                case .finished:
-                    break
+        achievementGetter = AchievementGetter()
+        achievementGetter?.getAchievements { entities, error in
+            DispatchQueue.main.async {
+                if let err = error {
+                    self.presentDefaultOKAlert(title: "Error on getting achievements", msg: err.localizedDescription)
+                    return
                 }
-            }, receiveValue: { entities in
-                self.achievementsGetSuccess(entities)
-            })
-    }
-
-    private func achievementsGetSuccess(_ achievements: [Achievement]) {
-        achievementsToShow = achievements
-        achievements.forEach { Achievement.manager.replace($0, with: $0) }
-    }
-
-    private func achievementsGetFailure(_ err: AchievementRequester.ApiError) {
-        presentDefaultOKAlert(title: "Error on getting achievements", msg: err.localizedDescription)
+                self.achievementsToShow = entities!
+            }
+        }
     }
 
 }

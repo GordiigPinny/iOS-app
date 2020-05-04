@@ -17,9 +17,7 @@ class AchievementDetailViewController: UIViewController {
 
     // MARK: - Variables
     static let id = "AchievementDetailVC"
-    private var achievementSubscriber: AnyCancellable?
-    private var imageFileSubscriber: AnyCancellable?
-    private var imageDwTask: URLSessionDownloadTask?
+    private var achievementGetter: AchievementGetter?
     private var _achievement = Achievement()
     var achievement: Achievement {
         get {
@@ -44,64 +42,34 @@ class AchievementDetailViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        imageDwTask?.cancel()
+        achievementGetter?.cancel()
     }
 
     // MARK: - Request handlers
     private func fetchAchievement(_ achievement: Achievement) {
-        achievementSubscriber = Achievement.manager.fetch(id: achievement.id!)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let err):
-                    self.fetchAchievementFailure(err)
-                case .finished:
-                    break
-                }
-            }, receiveValue: { achievement in
-                self.fetchAchievementSuccess(achievement)
-            })
+        achievementGetter = AchievementGetter()
+        achievementGetter?.getAchievement(
+                achievement.id!,
+                completion: getAchievementCompletion,
+                imageCompletion: getImageCompletion)
     }
 
-    private func fetchAchievementSuccess(_ achievement: Achievement) {
-        Achievement.manager.replace(achievement, with: achievement)
-        self.achievement = achievement
-        imageFileSubscriber = ImageFile.manager.fetch(id: achievement.picId!)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let err):
-                    self.getImageFileFailure(err)
-                case .finished:
-                    break
-                }
-            }, receiveValue: { file in
-                self.getImageFileSuccess(file)
-            })
-    }
-
-    private func fetchAchievementFailure(_ err: AchievementRequester.ApiError) {
-        presentDefaultOKAlert(title: "Error on fetching achievement", msg: err.localizedDescription)
-    }
-
-    private func getImageFileSuccess(_ imageFile: ImageFile) {
-        let requester = URLRequester(host: Hosts.mediaHostNoApiUrl)
-        imageDwTask = requester.download(urlPostfix: imageFile.imageUrlForPostfix, forObject: imageFile,
-                completionHandler: self.getImageCompletion)
-    }
-
-    private func getImageFileFailure(_ err: ImageFileRequester.ApiError) {
-        presentDefaultOKAlert(title: "Error on getting image file", msg: err.localizedDescription)
-    }
-
-    private func getImageCompletion(_ imageFile: Any?, _ image: UIImage?, _ err: URLRequester.RequestError?) {
+    private func getAchievementCompletion(_ achievement: Achievement?, _ err: AchievementGetter.ApiError?) {
         DispatchQueue.main.async {
             if let err = err {
-                self.presentDefaultOKAlert(title: "Error on getting image", msg: err.localizedDescription)
-                return
+                self.presentDefaultOKAlert(title: "Error on fetching achievement", msg: err.localizedDescription)
             }
-            (imageFile as! ImageFile).image = image
-            self.fillView()
+            self.achievement = achievement!
+        }
+    }
+
+    private func getImageCompletion(_ imageFile: ImageFile?, _ image: UIImage?, _ err: ImageFileRequester.ApiError?) {
+        DispatchQueue.main.async {
+            if let err = err {
+                self.presentDefaultOKAlert(title: "Error on getting image file", msg: err.localizedDescription)
+            }
+            imageFile?.image = image
+            self.imageView.image = image
         }
     }
 

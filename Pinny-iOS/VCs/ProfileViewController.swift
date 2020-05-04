@@ -20,9 +20,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var logOutButton: UIButton!
 
     // MARK: - Variables
-    private var profileSubscriber: AnyCancellable?
-    private var imageFileSubscriber: AnyCancellable?
-    private var avatarDownloadTask: URLSessionDownloadTask?
+    private var profileGetter: ProfileGetter?
 
     // MARK: - Time hooks
     override func viewDidLoad() {
@@ -72,61 +70,31 @@ class ProfileViewController: UIViewController {
 
     // MARK: - Getting profile
     private func getProfile() {
-        profileSubscriber = ProfileRequester().getObject(Defaults.currentUser!.id!)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let err):
-                    self.profileGetFailure(err)
-                case .finished:
-                    break
-                }
-            }, receiveValue: { entity in
-                self.profileGetSuccess(entity)
-            })
+        profileGetter = ProfileGetter()
+        profileGetter?.getProfile(
+                User.manager.currentUser!.id!,
+                completion: profileGetCompletion,
+                imageCompletion: avatarGetCompletion)
     }
 
-    private func profileGetSuccess(_ profile: Profile) {
-        Defaults.currentProfile = profile
-        self.fillView()
-        imageFileSubscriber = ImageFileRequester().getObject(profile.picId)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let err):
-                    self.imageFileGetFailure(err)
-                case .finished:
-                    break
-                }
-            }, receiveValue: { entity in
-                self.imageFileGetSuccess(entity)
-            })
-    }
-
-    private func profileGetFailure(_ err: ProfileRequester.ApiError) {
-        presentDefaultOKAlert(title: "Error on getting profile", msg: nil)
-    }
-
-    private func imageFileGetSuccess(_ imageFile: ImageFile) {
-        ImageFile.manager.replace(imageFile, with: imageFile)
-        avatarDownloadTask = URLRequester(host: Hosts.mediaHostNoApiUrl)
-                .download(urlPostfix: imageFile.imageUrlForPostfix, forObject: imageFile,
-                        completionHandler: self.avatarDownloadCompletion)
-    }
-
-    private func imageFileGetFailure(_ err: ImageFileRequester.ApiError) {
-        presentDefaultOKAlert(title: "Error on getting image file", msg: nil)
-    }
-
-    private func avatarDownloadCompletion(_ imageFile: Any?, _ image: UIImage?, _ err: URLRequester.RequestError?) {
+    private func profileGetCompletion(_ entity: Profile?, _ err: ProfileRequester.ApiError?) {
         DispatchQueue.main.async {
             if let err = err {
-                self.presentDefaultOKAlert(title: "Error on getting image", msg: err.localizedDescription)
+                self.presentDefaultOKAlert(title: "Error on getting profile", msg: err.localizedDescription)
                 return
             }
-            (imageFile as! ImageFile).image = image
-            Defaults.currentAvatar = imageFile as? ImageFile
+            Profile.manager.currentProfile = entity
             self.fillView()
+        }
+    }
+
+    private func avatarGetCompletion(_ imageFile: ImageFile?, _ image: UIImage?, _ err: ImageFileRequester.ApiError?) {
+        DispatchQueue.main.async {
+            if let err = err {
+                self.presentDefaultOKAlert(title: "Error on getting avatar", msg: err.localizedDescription)
+            }
+            imageFile?.image = image
+            self.avatarImageView.image = image
         }
     }
 

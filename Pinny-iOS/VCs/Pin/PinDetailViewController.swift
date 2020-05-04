@@ -33,9 +33,7 @@ class PinDetailViewController: UIViewController {
             fetchPin(newValue)
         }
     }
-    var pinSubscriber: AnyCancellable?
-    var imageFileSubscriber: AnyCancellable?
-    var dwTask: URLSessionDownloadTask?
+    private var pinGetter: PinGetter?
 
     // MARK: - Time hooks
     override func viewDidLoad() {
@@ -45,7 +43,7 @@ class PinDetailViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        dwTask?.cancel()
+        pinGetter?.cancel()
     }
 
     // MARK: - Actions
@@ -55,58 +53,26 @@ class PinDetailViewController: UIViewController {
 
     // MARK: - Requests handlers
     private func fetchPin(_ pin: Pin) {
-        pinSubscriber = Pin.manager.fetch(id: pin.id!)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let err):
-                    self.fetchPinFailure(err)
-                case .finished:
-                    break
-                }
-            }, receiveValue: { pin in
-                self.fetchPinSuccess(pin)
-            })
+        pinGetter = PinGetter()
+        pinGetter?.getPin(pin.id!, completion: getPinCompletion, imageCompletion: getPinImageCompletion)
     }
 
-    private func fetchPinSuccess(_ pin: Pin) {
-        self.pin = pin
-        imageFileSubscriber = ImageFile.manager.fetch(id: pin.picId!)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let err):
-                    self.fetchImageFileFailure(err)
-                case .finished:
-                    break
-                }
-            }, receiveValue: { file in
-                self.fetchImageFileSuccess(file)
-            })
-    }
-
-    private func fetchPinFailure(_ err: PinRequester.ApiError) {
-        presentDefaultOKAlert(title: "Error on fetching pin", msg: err.localizedDescription)
-    }
-
-    private func fetchImageFileSuccess(_ imageFile: ImageFile) {
-        let requester = URLRequester(host: Hosts.mediaHostNoApiUrl)
-        dwTask = requester.download(urlPostfix: imageFile.imageUrlForPostfix, forObject: imageFile,
-                completionHandler: self.getImageCompletion)
-    }
-
-    private func fetchImageFileFailure(_ err: ImageFileRequester.ApiError) {
-        presentDefaultOKAlert(title: "Error on fetching image file", msg: err.localizedDescription)
-    }
-
-    private func getImageCompletion(_ imageFile: Any?, _ image: UIImage?, _ err: URLRequester.RequestError?) {
+    private func getPinCompletion(_ pin: Pin?, _ err: PinGetter.ApiError?) {
         DispatchQueue.main.async {
             if let err = err {
-                self.presentDefaultOKAlert(title: "Error on getting image", msg: err.localizedDescription)
-                return
+                self.presentDefaultOKAlert(title: "Error on fetching pin", msg: err.localizedDescription)
             }
-            (imageFile as! ImageFile).image = image
-            self.fillView()
+            self.pin = pin!
+        }
+    }
+
+    private func getPinImageCompletion(_ imageFile: ImageFile?, _ image: UIImage?, _ err: ImageFileRequester.ApiError?) {
+        DispatchQueue.main.async {
+            if let err = err {
+                self.presentDefaultOKAlert(title: "Error on getting image for pin", msg: err.localizedDescription)
+            }
+            imageFile?.image = image
+            self.imageView.image = image
         }
     }
 

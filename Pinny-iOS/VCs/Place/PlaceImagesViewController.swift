@@ -17,8 +17,7 @@ class PlaceImagesViewController: UIViewController {
     static let id = "PlaceImagesVC"
     var itemsPerRow: CGFloat = 3
     var sectionInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-    var imageFilesSubscriber: AnyCancellable?
-    var downloadTasks = [URLSessionDownloadTask]()
+    private var imageGetter: ImageGetter?
     private var _place = Place()
     var imagesToShow = [ImageFile]()
     var place: Place {
@@ -26,20 +25,7 @@ class PlaceImagesViewController: UIViewController {
             _place
         }
         set {
-            let imageRequester = ImageFileRequester()
-            imageRequester.resourcePostfix = "place/\(newValue.id!)/"
-            self.imageFilesSubscriber = imageRequester.getList()
-                .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let err):
-                    self.imageFilesGetFailure(err)
-                case .finished:
-                    break
-                }
-            }, receiveValue: { entities in
-                self.imageFilesGetSuccess(entities)
-            })
+            getImages(newValue)
         }
     }
 
@@ -53,38 +39,24 @@ class PlaceImagesViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        downloadTasks.forEach { $0.cancel() }
-        downloadTasks = []
+        imageGetter?.cancel()
     }
 
     // MARK: - Request handlers
-    private func imageFilesGetSuccess(_ imageFiles: [ImageFile]) {
-        self.imagesToShow = imageFiles
-        for entity in imageFiles {
-            let requester = URLRequester(host: Hosts.mediaHostNoApiUrl)
-            guard var imageUrl = entity.imageUrl else {
-                continue
-            }
-            imageUrl.removeFirst()
-            let dwTask = requester.download(urlPostfix: imageUrl, forObject: entity,
-                    completionHandler: self.imagesGetCompletion)
-            self.downloadTasks.append(dwTask)
-        }
-    }
-
-    private func imageFilesGetFailure(_ err: ImageFileRequester.ApiError) {
-        presentDefaultOKAlert(title: "Error on getting image files", msg: "")
-    }
-
-    private func imagesGetCompletion(_ place: Any?, _ image: UIImage?, _ err: URLRequester.RequestError?) {
-        DispatchQueue.main.async {
-            if let err = err {
-                self.presentDefaultOKAlert(title: "Error on getting image", msg: err.localizedDescription)
-                return
-            }
-            (place as! ImageFile).image = image
-            if self.isViewLoaded {
-                self.collectionView.reloadData()
+    private func getImages(_ place: Place) {
+        imageGetter = ImageGetter()
+        imagesToShow = []
+        imageGetter?.getImagesFor(place: place) { entity, image, error in
+            DispatchQueue.main.async {
+                if let err = error {
+                    self.presentDefaultOKAlert(title: "Error on getting image", msg: err.localizedDescription)
+                    return
+                }
+                entity?.image = image
+                self.imagesToShow.append(entity!)
+                if self.isViewLoaded {
+                    self.collectionView.reloadData()
+                }
             }
         }
     }

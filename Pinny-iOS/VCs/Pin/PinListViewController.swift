@@ -22,7 +22,7 @@ class PinListViewController: UIViewController {
             }
         }
     }
-    private var pinsSubscriber: AnyCancellable?
+    private var pinGetter: PinGetter?
     private var refreshControl = UIRefreshControl()
 
     // MARK: - Getters
@@ -52,28 +52,19 @@ class PinListViewController: UIViewController {
 
     // MARK: - Request handlers
     private func getPins() {
-        pinsSubscriber = PinRequester().getList()
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                self.refreshControl.endRefreshing()
-                switch completion {
-                case .failure(let err):
-                    self.getPinsFailure(err)
-                case .finished:
-                    break
-                }
-            }, receiveValue: { entities in
-                self.getPinsSuccess(entities)
-            })
+        pinGetter = PinGetter()
+        pinGetter?.getPins(completion: getPinsCompletion)
     }
 
-    private func getPinsSuccess(_ pins: [Pin]) {
-        self.pinsToShow = pins
-        pins.forEach { Pin.manager.replace($0, with: $0) }
-    }
-
-    private func getPinsFailure(_ err: PinRequester.ApiError) {
-        presentDefaultOKAlert(title: "Error on getting pins", msg: err.localizedDescription)
+    private func getPinsCompletion(_ pins: [Pin]?, _ err: PinRequester.ApiError?) {
+        DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
+            if let err = err {
+                self.presentDefaultOKAlert(title: "Error on getting pins", msg: err.localizedDescription)
+                return
+            }
+            self.pinsToShow = pins!
+        }
     }
 
 }

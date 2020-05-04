@@ -21,7 +21,7 @@ class PlacesSearchViewController: UIViewController {
     }
 
     // MARK: - Variables
-    var placesSubscriber: AnyCancellable?
+    private var placesGetter: PlaceGetter?
 
     // MARK: - Time hooks
     override func viewDidLoad() {
@@ -37,37 +37,30 @@ class PlacesSearchViewController: UIViewController {
     }
 
     @IBAction func searchButtonPressed(_ sender: Any) {
+        self.getPlaces(searchStr!)
         activityIndicator.startAnimating()
-        placesSubscriber = PlaceRequester().searchByName(searchStr!)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                self.activityIndicator.stopAnimating()
-                switch completion {
-                case .failure(let err):
-                    self.placesGetFailure(err)
-                case .finished:
-                    break
-                }
-            }, receiveValue: { entities in
-                entities.forEach { Place.manager.replace($0, with: $0) }
-                self.placesGetSuccess(entities)
-            })
     }
 
     // MARK: - Requests handlers
-    private func placesGetSuccess(_ places: [Place]) {
-        guard let vc = storyboard?.instantiateViewController(identifier: PlacesListViewController.id)
-                as? PlacesListViewController else {
-            presentDefaultOKAlert(title: "Can't instantiate PlacesListVC", msg: "")
-            return
+    private func getPlaces(_ name: String) {
+        placesGetter = PlaceGetter()
+        placesGetter?.getPlaces(search: name) { entities, error in
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                if let err = error {
+                    self.presentDefaultOKAlert(title: "Error on getting places", msg: err.localizedDescription)
+                    return
+                }
+                guard let vc = self.storyboard?.instantiateViewController(identifier: PlacesListViewController.id)
+                        as? PlacesListViewController else {
+                    self.presentDefaultOKAlert(title: "Can't instantiate PlacesListVC", msg: "")
+                    return
+                }
+                vc.placesToShow = entities!
+                vc.searchQuery = name
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
-        vc.placesToShow = places
-        vc.searchQuery = searchStr!
-        navigationController?.pushViewController(vc, animated: true)
-    }
-
-    private func placesGetFailure(_ err: PlaceRequester.ApiError) {
-        presentDefaultOKAlert(title: "Error on getting places", msg: err.localizedDescription)
     }
 
 }

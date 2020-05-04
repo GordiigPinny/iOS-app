@@ -22,7 +22,7 @@ class PlaceDetailViewController: UIViewController {
     
     // MARK: - Variables
     static let id = "PlaceDetailVC"
-    var placeSubscriber: AnyCancellable?
+    private var placeGetter: PlaceGetter?
     private var _place: Place = Place()
     var place: Place {
         get {
@@ -30,18 +30,7 @@ class PlaceDetailViewController: UIViewController {
         }
         set {
             if !newValue.isDetailed {
-                placeSubscriber = Place.manager.fetch(id: newValue.id!)
-                    .receive(on: DispatchQueue.main)
-                    .sink(receiveCompletion: { completion in
-                        switch completion {
-                        case .failure(let err):
-                            self.placeGetFailure(err)
-                        case .finished:
-                            break
-                        }
-                    }, receiveValue: { place in
-                        self.placeGetSuccess(place)
-                    })
+                getPlace(newValue)
                 return
             }
             self._place = newValue
@@ -94,6 +83,20 @@ class PlaceDetailViewController: UIViewController {
         vc.place = place
         navigationController?.pushViewController(vc, animated: true)
     }
+
+    // MARK: - Request handlers
+    private func getPlace(_ place: Place) {
+        placeGetter = PlaceGetter()
+        placeGetter?.getPlace(place.id!) { entity, error in
+            DispatchQueue.main.async {
+                if let err = error {
+                    self.presentDefaultOKAlert(title: "Error on fetching place", msg: err.localizedDescription)
+                    return
+                }
+                self.place = place
+            }
+        }
+    }
     
 
     // MARK: - Fill view with values
@@ -104,15 +107,6 @@ class PlaceDetailViewController: UIViewController {
         globalRatingLabel.text = "\(place.rating ?? 0)"
         starsRatingView.rating = UInt(place.myRating!)
         acceptButtonVew.isAccepted = place.isAcceptedByMe!
-    }
-
-    private func placeGetSuccess(_ place: Place) {
-        _place = place
-        fillViewController()
-    }
-
-    private func placeGetFailure(_ err: PlaceRequester.ApiError) {
-        presentDefaultOKAlert(title: "Error on fetching place", msg: err.localizedDescription)
     }
 
 }

@@ -29,6 +29,7 @@ class LogInViewController: UIViewController {
     let authRequester = AuthRequester()
     var tokenSubscriber: AnyCancellable?
     var userSubscriber: AnyCancellable?
+    var profileGetter: ProfileGetter?
     
     // MARK: - Time hooks
     override func viewDidLoad() {
@@ -96,14 +97,23 @@ class LogInViewController: UIViewController {
 
     private func userRequestHandlerSuccess(_ user: User) {
         User.manager.currentUser = user
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let vc = storyboard.instantiateInitialViewController() as? UITabBarController else {
-            let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Can't instantiate main VC", msg: "Rebuild")
-            present(alert, animated: true)
-            return
-        }
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+        profileGetter = ProfileGetter()
+        profileGetter?.getProfile(user.id!, completion: { entity, error in
+            DispatchQueue.main.async {
+                Profile.manager.currentProfile = entity
+                if let err = error {
+                    self.presentDefaultOKAlert(title: "Error on getting profile", msg: err.localizedDescription)
+                    return
+                }
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                guard let vc = storyboard.instantiateInitialViewController() as? UITabBarController else {
+                    self.presentDefaultOKAlert(title: "Can't instantiate main VC", msg: nil)
+                    return
+                }
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
+            }
+        })
     }
 
     private func userRequestHandlerFailed(_ err: UserRequester.ApiError) {
