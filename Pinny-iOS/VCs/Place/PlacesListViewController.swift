@@ -30,6 +30,7 @@ class PlacesListViewController: UIViewController {
     let refreshControl = UIRefreshControl()
     private var placesGetter: PlaceGetter?
     private var placeGetter: PlaceGetter?
+    private var deletePlaceSubscriber: AnyCancellable?
     let requester = PlaceRequester()
     
     // MARK: - Time hooks
@@ -111,7 +112,48 @@ extension PlacesListViewController: UITableViewDataSource {
         cell.placeNamelabel?.text = place.name
         return cell
     }
-    
+
+    public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        Defaults.currentAccessLevel == AccessLevel.admin
+    }
+
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle != .delete {
+            return
+        }
+        let place = self.placesToShow[indexPath.row]
+        deletePlace(place)
+    }
+
+    private func deletePlace(_ place: Place) {
+        deletePlaceSubscriber = PlaceRequester().deleteObject(place.id!)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let err):
+                    self.deletePlaceCompletion(place, nil, err)
+                case .finished:
+                    break
+                }
+            }, receiveValue: { b in
+                self.deletePlaceCompletion(place, b, nil)
+            })
+    }
+
+    private func deletePlaceCompletion(_ place: Place, _ didDelete: Bool?, _ err: PlaceRequester.ApiError?) {
+        if let err = err {
+            self.presentDefaultOKAlert(title: "Error on deleting place", msg: err.localizedDescription)
+            return
+        }
+        if !(didDelete!) {
+            self.presentDefaultOKAlert(title: "Place is not deleted", msg: nil)
+            return
+        }
+        Place.manager.delete(place)
+        self.placesToShow.removeAll { $0.id == place.id }
+        self.tableView.reloadData()
+    }
+
 }
 
 
