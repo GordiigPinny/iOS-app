@@ -33,8 +33,6 @@ class SignUpViewController: UIViewController {
 
     // MARK: - Variables
     var signUpSubscriber: AnyCancellable?
-    var userSubscriber: AnyCancellable?
-    var profileGetter: ProfileGetter?
     
     // MARK: - Time hooks
     override func viewDidLoad() {
@@ -54,19 +52,7 @@ class SignUpViewController: UIViewController {
         if password != passwordConfirm {
             presentDefaultOKAlert(title: "Can't sign up", msg: "Different passwords in password and confirm fields")
         }
-
-        signUpSubscriber = AuthRequester().signUp(username: username, password: password, email: email)
-            .receive(on: DispatchQueue.main)
-        .sink(receiveCompletion: { completion in
-            switch completion {
-            case .failure(let err):
-                self.requestFailure(err)
-            case .finished:
-                break
-            }
-        }, receiveValue: { token in
-            self.signUpRequestSuccess(token)
-        })
+        signUp(username: username, password: password, email: email)
     }
     
     // MARK: - Actions for TextFields
@@ -80,50 +66,36 @@ class SignUpViewController: UIViewController {
     }
 
     // MARK: - Request handlers
-    private func signUpRequestSuccess(_ token: Token) {
-        Defaults.currentToken = token
-        userSubscriber = UserRequester().getCurrentUser()
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let err):
-                    self.requestFailure(err)
-                case .finished:
-                    break
-                }
-            }, receiveValue: { user in
-                self.getUserRequestSuccess(user)
-            })
-    }
-
-    private func getUserRequestSuccess(_ user: User) {
-        User.manager.currentUser = user
-        profileGetter = ProfileGetter()
-        profileGetter?.getProfile(user.id!, completion: {entity, error in
-            DispatchQueue.main.async {
-                Profile.manager.currentProfile = entity
-                NotificationCenter.default.post(name: .accessLevelChanged, object: nil)
-                if let err = error {
-                    self.presentDefaultOKAlert(title: "Error on getting profile", msg: err.localizedDescription)
-                    return
-                }
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                guard let vc = storyboard.instantiateInitialViewController() as? UITabBarController else {
-                    self.presentDefaultOKAlert(title: "Can't instantiate main vc", msg: nil)
-                    return
-                }
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true)
+    private func signUp(username: String, password: String, email: String?) {
+        signUpSubscriber = ProfileRequester().register(username: username, password: password, email: email)
+        .receive(on: DispatchQueue.main)
+        .sink(receiveCompletion: { completion in
+            switch completion {
+            case .failure(let err):
+                self.signUpCompletion(nil, nil, nil, err)
+            case .finished:
+                break
             }
+        }, receiveValue: { token, user, profile in
+            self.signUpCompletion(token, user, profile, nil)
         })
     }
 
-    private func requestFailure(_ err: UserRequester.ApiError) {
-        presentDefaultOKAlert(title: "Error on user get", msg: err.localizedDescription)
-    }
-
-    private func requestFailure(_ err: URLRequester.RequestError) {
-        presentDefaultOKAlert(title: "Error on token get", msg: err.localizedDescription)
+    private func signUpCompletion(_ token: Token?, _ user: User?, _ profile: Profile?, _ err: ProfileRequester.ApiError?) {
+        if let err = err {
+            self.presentDefaultOKAlert(title: "Error on sign up", msg: err.localizedDescription)
+            return
+        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = storyboard.instantiateInitialViewController() as? UITabBarController else {
+            self.presentDefaultOKAlert(title: "Can't instantiate main vc", msg: nil)
+            return
+        }
+        vc.modalPresentationStyle = .fullScreen
+        User.manager.currentUser = user!
+        Profile.manager.currentProfile = profile!
+        Defaults.currentToken = token!
+        self.present(vc, animated: true)
     }
     
 

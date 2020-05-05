@@ -236,7 +236,7 @@ extension PlaceDetailViewController: AcceptButtonDelegate {
 
     private func deleteAccept(_ place: Place) {
         let accept_ = Accept.manager.entities.first { accept in
-            accept.placeId == place.id
+            accept.placeId == place.id && accept.createdById == User.manager.currentUser?.id
         }
         guard let accept = accept_ else {
             self.presentDefaultOKAlert(title: "No accept here", msg: nil)
@@ -262,6 +262,7 @@ extension PlaceDetailViewController: AcceptButtonDelegate {
             return
         }
         acceptButtonVew.isAccepted = false
+        place.isAcceptedByMe = false
         if profile == nil {
             self.presentDefaultOKAlert(title: "Deleted accept", msg: "But didn't update profile")
             return

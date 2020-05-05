@@ -95,6 +95,9 @@ extension ObjectRequester {
         if let newErr = err as? URLRequester.RequestError {
             return ApiError.requestError(err: newErr)
         }
+        if let _ = err as? DecodingError {
+            return .decodeError(type: Entity.self)
+        }
         if let newErr = err as? ApiError {
             return newErr
         }
@@ -355,7 +358,42 @@ class ProfileRequester: ObjectRequester {
         let key = (pin.ptype == .place) ? "pin_sprite" : "geopin_sprite"
         let dictData = [key: pin.id!]
         let jsonData = try! JSONSerialization.data(withJSONObject: dictData, options: .prettyPrinted)
-        return self.patchObject(Defaults.currentProfile!.id!, data: jsonData)
+        return self.patchObject(Defaults.currentProfile!.userId!, data: jsonData)
+    }
+
+    func register(username: String, password: String, email: String?) -> AnyPublisher<(Token, User, Profile), ApiError> {
+        var data = [
+            "username": username,
+            "password": password
+        ]
+        if email != nil {
+            data["email"] = email
+        }
+        let jsonData = try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+        let requester = URLRequester(host: Hosts.profilesHostUrl)
+        let ans = requester.post(urlPostfix: "profiles/register/", data: jsonData)
+        .tryMap { data, response -> (Token, User, Profile) in
+            let json = try JSON(data: data)
+            let tokenJson = json["token"]
+            let userJson = json["user"]
+            let profileJson = json["profile"]
+            guard let user = User.deserialize(from: userJson.rawString()) else {
+                throw ApiError.decodeError(type: Profile.self)
+            }
+            guard let profile = Profile.deserialize(from: profileJson.rawString()) else {
+                throw ApiError.decodeError(type: Profile.self)
+            }
+            guard let token = Token.deserialize(from: tokenJson.rawString()) else {
+                throw ApiError.decodeError(type: Profile.self)
+            }
+            return (token, user, profile)
+        }
+        .mapError { error -> ApiError in
+            let ans = self.mapError(error)
+            return ans
+        }
+        .eraseToAnyPublisher()
+        return ans
     }
 
 }

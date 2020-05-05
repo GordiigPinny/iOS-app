@@ -93,6 +93,8 @@ class GatewayRequester {
                 let acceptJson = json["accept"]
                 let profileJson = json["profile"]
                 let accept: Accept = try Self.decodeEntity(json: acceptJson, name: "Accept")
+                place.isAcceptedByMe = true
+                Accept.manager.addLocaly(accept)
                 if let currentAcceptType = acceptJson["current_accept_type"].string {
                     place.acceptType = currentAcceptType
                     Place.manager.replace(place, with: place)
