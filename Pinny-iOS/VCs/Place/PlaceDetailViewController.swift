@@ -59,6 +59,14 @@ class PlaceDetailViewController: UIViewController {
     }
 
     @IBAction func editButtonPressed(_ sender: Any) {
+        guard let vc = storyboard?.instantiateViewController(identifier: EditPlaceViewController.id)
+                as? EditPlaceViewController else {
+            presentDefaultOKAlert(title: "Can't instantiate edit place vc", msg: nil)
+            return
+        }
+        vc.place = place
+        vc.calleeVc = self
+        present(vc, animated: true)
     }
     
     @IBAction func photosButtonPressed(_ sender: Any) {

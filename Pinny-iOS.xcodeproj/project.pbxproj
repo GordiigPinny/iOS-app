@@ -39,6 +39,7 @@
 		1397BAF22455A338005B2C75 /* URLRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1397BAF12455A338005B2C75 /* URLRequester.swift */; };
 		1397BAF92455B212005B2C75 /* ObjectRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1397BAF82455B212005B2C75 /* ObjectRequester.swift */; };
 		13A56C53245038E000584BDD /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A56C52245038E000584BDD /* UITextFieldExtension.swift */; };
+		13A631B924616835000C9D54 /* EditPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A631B824616835000C9D54 /* EditPlaceViewController.swift */; };
 		13B392A7246001F1002FDA9F /* AppleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B392A6246001F1002FDA9F /* AppleMapsViewController.swift */; };
 		13B392A92460024A002FDA9F /* YandexMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B392A82460024A002FDA9F /* YandexMapsViewController.swift */; };
 		13B392AC24606343002FDA9F /* PlaceImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B392AB24606343002FDA9F /* PlaceImageDetailViewController.swift */; };
@@ -140,6 +141,7 @@
 		1397BAF12455A338005B2C75 /* URLRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequester.swift; sourceTree = "<group>"; };
 		1397BAF82455B212005B2C75 /* ObjectRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectRequester.swift; sourceTree = "<group>"; };
 		13A56C52245038E000584BDD /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
+		13A631B824616835000C9D54 /* EditPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPlaceViewController.swift; sourceTree = "<group>"; };
 		13B392A6246001F1002FDA9F /* AppleMapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMapsViewController.swift; sourceTree = "<group>"; };
 		13B392A82460024A002FDA9F /* YandexMapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexMapsViewController.swift; sourceTree = "<group>"; };
 		13B392AB24606343002FDA9F /* PlaceImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImageDetailViewController.swift; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 				C814761E5BE2044DD863398E /* PlacesListViewController.swift */,
 				C814778AE7FED4F526723CDE /* PlacesSearchViewController.swift */,
 				1306622124608C980031CB9B /* CreatePlaceViewController.swift */,
+				13A631B824616835000C9D54 /* EditPlaceViewController.swift */,
 			);
 			path = Place;
 			sourceTree = "<group>";
@@ -786,6 +789,7 @@
 				134356B8244EFF0800026355 /* AcceptButtonView.swift in Sources */,
 				C8147BD62E780C067D660FD7 /* Profile.swift in Sources */,
 				1365DD9C245EF20700481B9D /* ProfileViewController.swift in Sources */,
+				13A631B924616835000C9D54 /* EditPlaceViewController.swift in Sources */,
 				C8147571553134AC0778F237 /* ProfileManager.swift in Sources */,
 				C81478A6AF607C850B84CF49 /* Pin.swift in Sources */,
 				1365DDA0245F0BE100481B9D /* PinTableViewCell.swift in Sources */,
