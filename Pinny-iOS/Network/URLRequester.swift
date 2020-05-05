@@ -200,4 +200,67 @@ class URLRequester {
         return task
     }
 
+    func upload(urlPostfix: String? = nil, image: UIImage, objectType: ImageFile.ObjectType, objectId: Int,
+                filename: String? = nil, queryParams: [String: Any]? = nil,
+                completion: ((ImageFile?, ImageFileRequester.ApiError?) -> Void)? = nil) -> URLSessionUploadTask {
+        // Configuring headers
+        let boundary = UUID().uuidString
+        let headers: [String : String] = [
+            "Content-Type": "multipart/form-data; boundary=\(boundary)",
+            "Authorization": "Bearer \(Defaults.currentToken!.access)"
+        ]
+        // Configuring data
+        var data = Data()
+        // Object type
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"object_type\"\r\n\r\n".data(using: .utf8)!)
+        data.append("\(objectType.rawValue)".data(using: .utf8)!)
+        // Object id
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"object_id\"\r\n\r\n".data(using: .utf8)!)
+        data.append("\(objectId)".data(using: .utf8)!)
+        // Image
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"image\"; filename=\"\(filename ?? "from-iOS.jpeg")\"\r\n".data(using: .utf8)!)
+        data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
+        data.append(image.jpegData(compressionQuality: 0.9)!)
+        data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+        // Getting fully configured request
+        var request = getRequest(method: .POST, urlPostfix: urlPostfix, data: data, queryParams: queryParams,
+                headers: headers)
+        request.httpBody = nil
+        let uploadTask = URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
+            if let err = error as? URLError {
+                let urlErr = RequestError.networkError(from: err)
+                let apiErr = ImageFileRequester.ApiError.requestError(err: urlErr)
+                completion?(nil, apiErr)
+                return
+            }
+            if let _ = error {
+                completion?(nil, .requestError(err: .unknown))
+                return
+            }
+            guard let response = response as? HTTPURLResponse else {
+                completion?(nil, .requestError(err: .unknown))
+                return
+            }
+            if response.statusCode != 201 {
+                completion?(nil, .requestError(err: .apiError(code: response.statusCode, descr: "Wrong status code")))
+                return
+            }
+            guard let data = data else {
+                completion?(nil, .requestError(err: .apiError(code: response.statusCode, descr: "Return data is empty")))
+                return
+            }
+            let jsonString = String(data: data, encoding: .utf8)
+            guard let imageFile = ImageFile.deserialize(from: jsonString) else {
+                completion?(nil, ImageFileRequester.ApiError.decodeError(type: ImageFile.self))
+                return
+            }
+            completion?(imageFile, nil)
+        }
+        uploadTask.resume()
+        return uploadTask
+    }
+
 }

@@ -13,12 +13,14 @@ class PlaceImagesViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addButton: UIBarButtonItem!
+    @IBOutlet weak var uploadActivityIndicator: UIActivityIndicatorView!
     
     // MARK: - Variables
     static let id = "PlaceImagesVC"
     var itemsPerRow: CGFloat = 3
     var sectionInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     private var imageGetter: ImageGetter?
+    private var uploadTask: URLSessionUploadTask?
     private var _place = Place()
     var imagesToShow = [ImageFile]()
     var place: Place {
@@ -27,6 +29,7 @@ class PlaceImagesViewController: UIViewController {
         }
         set {
             getImages(newValue)
+            _place = newValue
         }
     }
 
@@ -51,6 +54,16 @@ class PlaceImagesViewController: UIViewController {
     }
 
     @IBAction func addButtonPressed(_ sender: Any) {
+        if !UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            presentDefaultOKAlert(title: "Can't open photo library", msg: "Maybe app hasn't permissions to do so")    
+            return
+        }
+        let vc = UIImagePickerController()
+        vc.delegate = self
+        vc.sourceType = .photoLibrary
+        vc.mediaTypes = ["public.image"]
+        vc.allowsEditing = false
+        self.present(vc, animated: true)
     }
     
 
@@ -131,3 +144,33 @@ extension PlaceImagesViewController: UICollectionViewDelegateFlowLayout {
         present(vc, animated: true)
     }
 }
+
+
+// MARK: - Image picker delegate
+extension PlaceImagesViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        guard let image = info[.originalImage] as? UIImage else {
+            presentDefaultOKAlert(title: "Error on picking image", msg: "Can't cast it to UIImage")
+            return
+        }
+        picker.dismiss(animated: true)
+        self.uploadActivityIndicator.startAnimating()
+        self.collectionView.isUserInteractionEnabled = false
+        let requester = URLRequester(host: Hosts.mediaHostUrl)
+        self.uploadTask = requester.upload(urlPostfix: "images/", image: image, objectType: .place, objectId: place.id!) { file, error in
+            DispatchQueue.main.async {
+                self.uploadActivityIndicator.stopAnimating()
+                self.collectionView.isUserInteractionEnabled = true
+                if let err = error {
+                    self.presentDefaultOKAlert(title: "Error on uploading image", msg: err.localizedDescription)
+                    return
+                }
+                ImageFile.manager.addLocaly(file!)
+                self.imagesToShow.append(file!)
+                self.getImages(self.place)
+            }
+        }
+    }
+
+}
+
