@@ -1216,18 +1216,24 @@
                                     <action selector="deleteButtonPressed:" destination="MeL-ig-NDo" eventType="touchUpInside" id="rly-vt-QzM"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="JMw-0a-aJE">
+                                <rect key="frame" x="244" y="371" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="pFm-hc-d8j" firstAttribute="centerX" secondItem="P1Y-9b-WP3" secondAttribute="centerX" id="390-7o-fby"/>
                             <constraint firstItem="pFm-hc-d8j" firstAttribute="top" secondItem="wYc-lS-UWJ" secondAttribute="bottom" constant="8" id="KIW-0O-p7d"/>
                             <constraint firstItem="wYc-lS-UWJ" firstAttribute="top" secondItem="X7g-z3-S4r" secondAttribute="top" constant="8" id="QWF-oh-8XL"/>
+                            <constraint firstItem="JMw-0a-aJE" firstAttribute="centerY" secondItem="pFm-hc-d8j" secondAttribute="centerY" id="XQU-dG-heN"/>
+                            <constraint firstItem="JMw-0a-aJE" firstAttribute="leading" secondItem="pFm-hc-d8j" secondAttribute="trailing" constant="8" id="lKW-sY-mP3"/>
                             <constraint firstItem="wYc-lS-UWJ" firstAttribute="centerX" secondItem="P1Y-9b-WP3" secondAttribute="centerX" id="yV8-NV-OKl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="X7g-z3-S4r"/>
                     </view>
                     <navigationItem key="navigationItem" id="yad-OP-p3o"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="JMw-0a-aJE" id="zf7-FE-jXl"/>
                         <outlet property="deleteButton" destination="pFm-hc-d8j" id="SSQ-I0-99p"/>
                         <outlet property="imageView" destination="wYc-lS-UWJ" id="UnX-dF-E12"/>
                     </connections>

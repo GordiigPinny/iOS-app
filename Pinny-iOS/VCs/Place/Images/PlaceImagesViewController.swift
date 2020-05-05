@@ -43,6 +43,11 @@ class PlaceImagesViewController: UIViewController {
         accessLevelChanged()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        collectionView.reloadData()
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         imageGetter?.cancel()
@@ -141,6 +146,7 @@ extension PlaceImagesViewController: UICollectionViewDelegateFlowLayout {
             return
         }
         vc.imageFile = image
+        vc.callingVC = self
         present(vc, animated: true)
     }
 }
