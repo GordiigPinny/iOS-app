@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import DelayedJob
 
 // MARK: - User defaults store
 enum AccessLevel: Int {
@@ -25,6 +26,14 @@ class Defaults {
         case currentProfile
         case avatarFile
         case avatar
+    }
+
+    static let delayedRefresh = DelayedJob(prioritize: .later) {
+        Defaults.currentToken?.doRefresh()
+    }
+
+    static func createDelayedRefreshTask(withDelay: TimeInterval) {
+        delayedRefresh.run(withDelay: withDelay)
     }
     
     private static let ud = UserDefaults.standard
@@ -52,6 +61,7 @@ class Defaults {
         set {
             ud.set(newValue?.access, forKey: UDKeys.accessToken.rawValue)
             ud.set(newValue?.refresh, forKey: UDKeys.refreshToken.rawValue)
+            createDelayedRefreshTask(withDelay: (newValue?.refreshRate) ?? 60)
         }
     }
 
@@ -109,42 +119,51 @@ class Defaults {
 
 // MARK: - Hosts
 class Hosts {
-    static let authHost = "http://127.0.0.1:8000/api/"
+//    static let authHost = "http://127.0.0.1:8000/api/"
+    static let authHost = "https://gordiig-rsoi-auth.herokuapp.com/api/"
     static var authHostUrl: URL {
         URL(string: authHost)!
     }
     
-    static let profilesHost = "http://127.0.0.1:8001/api/"
+//    static let profilesHost = "http://127.0.0.1:8001/api/"
+    static let profilesHost = "https://gordiig-rsoi-users.herokuapp.com/api/"
     static var profilesHostUrl: URL {
         URL(string: profilesHost)!
     }
     
-    static let awardsHost = "http://127.0.0.1:8002/api/"
+//    static let awardsHost = "http://127.0.0.1:8002/api/"
+    static let awardsHost = "https://gordiig-rsoi-awards.herokuapp.com/api/"
     static var awardsHostUrl: URL {
         URL(string: awardsHost)!
     }
     
-    static let placesHost = "http://127.0.0.1:8003/api/"
+//    static let placesHost = "http://127.0.0.1:8003/api/"
+    static let placesHost = "https://gordiig-rsoi-places.herokuapp.com/api/"
     static var placesHostUrl: URL {
         URL(string: placesHost)!
     }
     
-    static let statsHost = "http://127.0.0.1:8004/api/"
+//    static let statsHost = "http://127.0.0.1:8004/api/"
+    static let statsHost = "https://gordiig-rsoi-stats.herokuapp.com/api/"
     static var statsHostUrl: URL {
         URL(string: statsHost)!
     }
     
-    static let mediaHost = "http://127.0.0.1:8005/api/"
+//    static let mediaHost = "http://127.0.0.1:8005/api/"
+    static let mediaHost = "http://198.199.84.48/api/"
     static var mediaHostUrl: URL {
         URL(string: mediaHost)!
     }
 
-    static let mediaHostNoApi = "http://127.0.0.1:8005/"
+//    static let mediaHostNoApi = "http://127.0.0.1:8005/"
+    static let mediaHostNoApi = "http://198.199.84.48/"
     static var mediaHostNoApiUrl: URL {
         URL(string: mediaHostNoApi)!
     }
 
-    static let gatewayHost = "http://127.0.0.1:8006/api/"
+//    static let gatewayHost = "http://127.0.0.1:8006/api/"
+//    static let gatewayHost = "https://gordiig-rsoi-gateway.herokuapp.com/api/"
+    static let gatewayHost = "https://gordiig-rsoi-gateway.herokuapp.com/api/"
     static var gatewayHostUrl: URL {
         URL(string: gatewayHost)!
     }

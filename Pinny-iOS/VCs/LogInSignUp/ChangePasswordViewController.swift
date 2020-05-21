@@ -44,10 +44,12 @@ class ChangePasswordViewController: UIViewController {
 
     // MARK: - Request handlers
     private func changePassword(_ oldPassword: String, newPassword: String, passwordConfirm: String) {
+        submitButton.isEnabled = false
         activityIndicator.startAnimating()
         passwordChangeSubscriber = AuthRequester().changePassword(oldPassword, newPassword, passwordConfirm)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
+                self.submitButton.isEnabled = self.isSubmitEnabled
                 self.activityIndicator.stopAnimating()
                 switch completion {
                 case .failure(let err):

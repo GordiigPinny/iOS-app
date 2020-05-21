@@ -1,5 +1,7 @@
 PODS:
+  - DelayedJob (1.0.1)
   - HandyJSON (5.0.1)
+  - JWTDecode (2.4.1)
   - SwiftyJSON (4.3.0)
   - YandexMapKit (3.5.0):
     - YandexRuntime (= 3.5.0)
@@ -18,7 +20,9 @@ PODS:
   - YandexRuntime (3.5.0)
 
 DEPENDENCIES:
+  - DelayedJob
   - HandyJSON (~> 5.0.1)
+  - JWTDecode (~> 2.4)
   - SwiftyJSON (~> 4.0)
   - YandexMapKit (= 3.5)
   - YandexMapKitDirections (= 3.5)
@@ -28,7 +32,9 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - DelayedJob
     - HandyJSON
+    - JWTDecode
     - SwiftyJSON
     - YandexMapKit
     - YandexMapKitDirections
@@ -38,7 +44,9 @@ SPEC REPOS:
     - YandexRuntime
 
 SPEC CHECKSUMS:
+  DelayedJob: 80055840e6a2ec3a4a15ac90f1077e7932499015
   HandyJSON: d45b8415c501e3affc59ca9762c1197ff0feb646
+  JWTDecode: 4bd4da0cdf0f8154fd467fa48499f34ec057fb88
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   YandexMapKit: ecd4b78de34a35df63d066ac299e6fd0fe46d1ba
   YandexMapKitDirections: 4298725d34df043ec127dd6e76f457e24f378188
@@ -47,6 +55,6 @@ SPEC CHECKSUMS:
   YandexMapKitTransport: 52f64fdc16bc83f8849b47e4143a698b6be24c49
   YandexRuntime: 2d55244d06267106cf9b00c25a1e63f72a73b6fd
 
-PODFILE CHECKSUM: 8a4f6f801538892220d6f7b0d6ae5d447ebb9cda
+PODFILE CHECKSUM: 60f5a37a4466a66ad38c726dd96afc7e27bd4de6
 
 COCOAPODS: 1.9.1

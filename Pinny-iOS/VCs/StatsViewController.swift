@@ -14,6 +14,9 @@ class StatsViewController: UIViewController {
 
     // MARK: - Variables
     static let id = "StatsVC"
+    private let limit: UInt = 20
+    private var hasNext: Bool = true
+    private var downloading: Bool = false
     private var statsGetter: RequestStatsGetter?
     var statsToShow = [RequestStats]() {
         didSet {
@@ -35,13 +38,16 @@ class StatsViewController: UIViewController {
     // MARK: - Request handlers
     func getStats() {
         statsGetter = RequestStatsGetter()
-        statsGetter?.getStats { entities, error in
+        downloading = true
+        statsGetter?.getStats(limit: limit, offset: UInt(statsToShow.count)) { entities, hasNext, error in
             DispatchQueue.main.async {
+                self.downloading = false
                 if let err = error {
                     self.presentDefaultOKAlert(title: "Error on getting stats", msg: err.localizedDescription)
                     return
                 }
-                self.statsToShow = entities!
+                self.statsToShow.append(contentsOf: entities!)
+                self.hasNext = hasNext!
             }
         }
     }
@@ -56,6 +62,10 @@ extension StatsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if hasNext && !downloading && indexPath.row >= statsToShow.count - 10 {
+            getStats()
+        }
+
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StatsTableViewCell.id)
                 as? StatsTableViewCell else {
             return UITableViewCell()

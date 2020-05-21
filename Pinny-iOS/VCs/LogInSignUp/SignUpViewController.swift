@@ -67,9 +67,11 @@ class SignUpViewController: UIViewController {
 
     // MARK: - Request handlers
     private func signUp(username: String, password: String, email: String?) {
+        signUpButton.isEnabled = false
         signUpSubscriber = ProfileRequester().register(username: username, password: password, email: email)
         .receive(on: DispatchQueue.main)
         .sink(receiveCompletion: { completion in
+            self.signUpButton.isEnabled = self.canPressSignUpButton
             switch completion {
             case .failure(let err):
                 self.signUpCompletion(nil, nil, nil, err)

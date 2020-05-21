@@ -11,7 +11,7 @@ class RequestStatsGetter {
     typealias ApiError = RequestStatsRequester.ApiError
     typealias Entity = RequestStats
     typealias Completion = ((Entity?, ApiError?) -> Void)?
-    typealias CompletionList = (([Entity]?, ApiError?) -> Void)?
+    typealias CompletionList = (([Entity]?, Bool?, ApiError?) -> Void)?
 
     private var entitySubscriber: AnyCancellable?
 
@@ -23,8 +23,8 @@ class RequestStatsGetter {
         entitySubscriber?.cancel()
     }
 
-    func getStats(completion: CompletionList = nil) {
-        entitySubscriber = RequestStatsRequester().getList()
+    func getStats(limit: UInt, offset: UInt, completion: CompletionList = nil) {
+        entitySubscriber = RequestStatsRequester().getPaginated(limit: limit, offset: offset)
             .sink(receiveCompletion: { c in
                 switch c {
                 case .failure(let err):
@@ -32,18 +32,18 @@ class RequestStatsGetter {
                 case .finished:
                     break
                 }
-            }, receiveValue: { entities in
-                self.getEntitySuccess(entities, completion)
+            }, receiveValue: { entities, hasNext in
+                self.getEntitySuccess(entities, hasNext, completion)
             })
     }
 
-    private func getEntitySuccess(_ entities: [Entity], _ completion: CompletionList) {
+    private func getEntitySuccess(_ entities: [Entity], _ hasNext: Bool, _ completion: CompletionList) {
         entities.forEach { Entity.manager.addLocaly($0) }
-        completion?(entities, nil)
+        completion?(entities, hasNext, nil)
     }
 
     private func getEntityFailure(_ err: ApiError, _ completion: CompletionList) {
-        completion?(nil, err)
+        completion?(nil, nil, err)
     }
 
 }

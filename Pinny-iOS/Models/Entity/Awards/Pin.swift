@@ -9,7 +9,7 @@ import HandyJSON
 
 enum PinType: String, HandyJSONEnum {
     case place = "p"
-    case user = "g"
+    case user = "u"
 }
 
 

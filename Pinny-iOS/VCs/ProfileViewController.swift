@@ -21,9 +21,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var statsButton: UIButton!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var moneyLabel: UILabel!
+    @IBOutlet weak var changeAvatarButton: UIButton!
     
     // MARK: - Variables
     private var profileGetter: ProfileGetter?
+    private var avatarChanger: AvatarChanger?
 
     // MARK: - Time hooks
     override func viewDidLoad() {
@@ -62,6 +64,19 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func changePasswordButtonPressed(_ sender: Any) {
+    }
+    
+    @IBAction func changeAvatarButtonPressed(_ sender: Any) {
+        if !UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            presentDefaultOKAlert(title: "Can't open photo library", msg: "Maybe app hasn't permissions to do so")
+            return
+        }
+        let vc = UIImagePickerController()
+        vc.delegate = self
+        vc.sourceType = .photoLibrary
+        vc.mediaTypes = ["public.image"]
+        vc.allowsEditing = false
+        self.present(vc, animated: true)
     }
     
     @IBAction func statsButtonPressed(_ sender: Any) {
@@ -160,6 +175,7 @@ class ProfileViewController: UIViewController {
             avatar = ImageFile.manager.get(id: picId)?.image
         }
         avatarImageView.image = avatar
+        changeAvatarButton.isHidden = false
         pinsButton.isHidden = false
         achievementsButton.isHidden = false
         changePasswordButton.isHidden = false
@@ -177,12 +193,39 @@ class ProfileViewController: UIViewController {
         emailLabel.text = "anon"
         ratingLabel.text = "0"
         moneyLabel.text = "0"
+        changeAvatarButton.isHidden = true
         pinsButton.isHidden = true
         achievementsButton.isHidden = true
         changePasswordButton.isHidden = true
         statsButton.isHidden = true
         logOutButton.setTitle("Войти", for: .normal)
         avatarImageView.image = ImageFile.defaultImage
+    }
+
+}
+
+
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    public func imagePickerController(_ picker: UIImagePickerController,
+                                      didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        guard let image = info[.originalImage] as? UIImage else {
+            presentDefaultOKAlert(title: "Error on picking image", msg: "Can't cast it to UIImage")
+            return
+        }
+        picker.dismiss(animated: true)
+        avatarChanger = AvatarChanger(profile: Profile.manager.currentProfile!, image: image)
+        avatarChanger?.changeAvatar { file, profile, error in
+            DispatchQueue.main.async {
+                if let err = error {
+                    self.presentDefaultOKAlert(title: "Error on changing avatar", msg: err.localizedDescription)
+                    return
+                }
+                Profile.manager.currentProfile = profile
+                ImageFile.manager.replace(file!, with: file!)
+                file?.image = image
+                self.avatarImageView.image = image
+            }
+        }
     }
 
 }

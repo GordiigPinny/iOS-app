@@ -52,7 +52,7 @@ protocol ObjectRequester {
     
     // Get methods
     func getList(params: [String : Any]) -> AnyPublisher<[Entity], ApiError>
-    func getPaginated(limit: UInt, offset: UInt) -> AnyPublisher<[Entity], ApiError>
+    func getPaginated(limit: UInt, offset: UInt) -> AnyPublisher<([Entity], Bool), ApiError>
     func getObject(_ id: Entity.ID) -> AnyPublisher<Entity, ApiError>
     
     // Post methods
@@ -138,23 +138,24 @@ extension ObjectRequester {
         return publisher
     }
     
-    func getPaginated(limit: UInt, offset: UInt) -> AnyPublisher<[Entity], ApiError> {
+    func getPaginated(limit: UInt, offset: UInt) -> AnyPublisher<([Entity], Bool), ApiError> {
         let url = urlFor(.getPaginated(limit: limit, offset: offset))
         let urlRequester = URLRequester(host: url)
         let publisher = urlRequester.get()
-            .tryMap { (data, _) -> [Entity] in
+            .tryMap { (data, _) -> ([Entity], Bool) in
                 let jsonString = String(data: data, encoding: .utf8)
                 guard let ans = [Entity].deserialize(from: jsonString, designatedPath: "results") else {
                     throw ApiError.decodeError(type: Entity.self)
                 }
+                let json = try? JSON(data: data)
+                let hasNext = json?["next"].string != nil
                 let nonNilAns = try ans.map({ e -> Entity in
                     guard let e = e else {
                         throw ApiError.decodeError(type: Entity.self)
                     }
                     return e
                 })
-                return nonNilAns
-                
+                return (nonNilAns, hasNext)
             }
             .mapError { (err) -> ApiError in
                 let ans = self.mapError(err)
@@ -357,6 +358,12 @@ class ProfileRequester: ObjectRequester {
     func changeCurrentPin(_ pin: Pin) -> AnyPublisher<Entity, ApiError> {
         let key = (pin.ptype == .place) ? "pin_sprite" : "geopin_sprite"
         let dictData = [key: pin.id!]
+        let jsonData = try! JSONSerialization.data(withJSONObject: dictData, options: .prettyPrinted)
+        return self.patchObject(Defaults.currentProfile!.userId!, data: jsonData)
+    }
+
+    func changeAvatarId(_ avatarId: Int?) -> AnyPublisher<Entity, ApiError> {
+        let dictData = ["pic_id": avatarId]
         let jsonData = try! JSONSerialization.data(withJSONObject: dictData, options: .prettyPrinted)
         return self.patchObject(Defaults.currentProfile!.userId!, data: jsonData)
     }

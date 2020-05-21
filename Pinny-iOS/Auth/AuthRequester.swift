@@ -80,6 +80,25 @@ class AuthRequester {
         return ans
     }
 
+    // Refresh token
+    func refreshToken(token: Token) -> AnyPublisher<Token, URLRequester.RequestError> {
+        let data = ["refresh": token.refresh]
+        let jsonData = try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+        let ans = requester.post(urlPostfix: "api-token-refresh/", data: jsonData, headers: Hosts.unauthorizedHeaders)
+            .tryMap { data, response -> Token in
+                let json = try JSON(data: data)
+                let access = json["access"].stringValue
+                let ans = Token(access: access, refresh: token.refresh)
+                return ans
+            }
+            .mapError { error -> URLRequester.RequestError in
+                let ans = self.mapErrorFromTokens(error)
+                return ans
+            }
+            .eraseToAnyPublisher()
+        return ans
+    }
+
     // MARK: - Handy privates
     private func dataToTokens(_ data: Data) throws -> Token {
         let json = try JSON(data: data)

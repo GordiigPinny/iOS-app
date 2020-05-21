@@ -83,9 +83,11 @@ class PinDetailViewController: UIViewController {
     }
 
     private func buyPin(_ pin: Pin) {
+        priceButton.isEnabled = false
         buyPinSubscriber = GatewayRequester.buyPin(pin: pin)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
+                self.priceButton.isEnabled = true
                 switch completion {
                 case .failure(let err):
                     self.buyPinCompletion(nil, err)

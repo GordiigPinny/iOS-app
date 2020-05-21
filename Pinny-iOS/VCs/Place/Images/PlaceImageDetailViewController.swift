@@ -36,9 +36,11 @@ class PlaceImageDetailViewController: UIViewController {
 
     @IBAction func deleteButtonPressed(_ sender: Any) {
         activityIndicator.startAnimating()
+        deleteButton.isEnabled = false
         deleteSubscriber = ImageFileRequester().deleteObject(imageFile.id!)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
+                self.deleteButton.isEnabled = true
                 self.activityIndicator.stopAnimating()
                 switch completion {
                 case .failure(let err):

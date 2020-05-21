@@ -53,6 +53,11 @@ class PlacesSearchViewController: UIViewController {
         accessLevelChanged()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.searchButton.isEnabled = !searchTextField.isEmpty
+    }
+
     // MARK: - Actions
     @objc func accessLevelChanged() {
         deletedStackView.isHidden = Defaults.currentAccessLevel.rawValue < AccessLevel.admin.rawValue
@@ -66,15 +71,17 @@ class PlacesSearchViewController: UIViewController {
 
     @IBAction func searchButtonPressed(_ sender: Any) {
         self.getPlaces(searchStr!)
-        activityIndicator.startAnimating()
     }
 
     // MARK: - Requests handlers
     private func getPlaces(_ name: String) {
+        activityIndicator.startAnimating()
+        searchButton.isEnabled = false
         placesGetter = PlaceGetter()
         placesGetter?.getPlaces(search: name, onlyMine: onlyMine, withDeleted: includeDeleted) { entities, error in
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
+                self.searchButton.isEnabled = self.searchTextField.isEmpty
                 if let err = error {
                     self.presentDefaultOKAlert(title: "Error on getting places", msg: err.localizedDescription)
                     return

@@ -50,7 +50,8 @@ class LogInViewController: UIViewController {
     @IBAction func logInButtonPressed(_ sender: Any) {
         let username = self.username!
         let password = self.password!
-        
+
+        logInButton.isEnabled = false
         tokenSubscriber = authRequester.getToken(username: username, password: password)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
@@ -104,6 +105,7 @@ class LogInViewController: UIViewController {
     }
     
     private func logInRequestHandlerFailed(_ err: URLRequester.RequestError) {
+        self.logInButton.isEnabled = self.canPressLogInButton
         let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Error came", msg: err.localizedDescription)
         present(alert, animated: true)
     }
@@ -113,6 +115,7 @@ class LogInViewController: UIViewController {
         profileGetter = ProfileGetter()
         profileGetter?.getProfile(user.id!, completion: { entity, error in
             DispatchQueue.main.async {
+                self.logInButton.isEnabled = self.canPressLogInButton
                 Profile.manager.currentProfile = entity
                 NotificationCenter.default.post(name: .accessLevelChanged, object: nil)
                 if let err = error {
@@ -131,6 +134,7 @@ class LogInViewController: UIViewController {
     }
 
     private func userRequestHandlerFailed(_ err: UserRequester.ApiError) {
+        self.logInButton.isEnabled = self.canPressLogInButton
         let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Error", msg: err.localizedDescription)
         present(alert, animated: true)
     }

@@ -18,4 +18,10 @@ target 'Pinny-iOS' do
 
     # Serializer
     pod 'HandyJSON', '~> 5.0.1'
+
+    # Job
+    pod 'DelayedJob'
+
+    # JWT
+    pod 'JWTDecode', '~> 2.4'
 end

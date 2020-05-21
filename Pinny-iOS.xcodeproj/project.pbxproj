@@ -58,6 +58,7 @@
 		C8147243879F63CB2EDC400D /* PlacesSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814778AE7FED4F526723CDE /* PlacesSearchViewController.swift */; };
 		C814725946DC2AC2AEF17C8C /* PlaceStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81473708117BB241281D99A /* PlaceStats.swift */; };
 		C814727AF23E4AB3D69E90B0 /* PlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81477A0D87BAF2AB2A18BF7 /* PlaceDetailViewController.swift */; };
+		C81472B74C83A98BCBC34485 /* AvatarChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147AD93BB7C01AFBD8DC17 /* AvatarChanger.swift */; };
 		C814734AD2572D53F165D0B7 /* RatingStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81472B33FF8A0BB747DEA80 /* RatingStats.swift */; };
 		C81473D038E53B3AE3B59851 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81477C2767D580A9A1959A9 /* LogInViewController.swift */; };
 		C81473E2FD6555A69C4C6AF3 /* PlaceMapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814762EFDF2831D80DFDCBA /* PlaceMapMarker.swift */; };
@@ -188,6 +189,7 @@
 		C81479E7138A6B17767CCD50 /* AchievementStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementStatsManager.swift; sourceTree = "<group>"; };
 		C8147A6D2A30BC5C665DD28E /* GatewayRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GatewayRequester.swift; sourceTree = "<group>"; };
 		C8147AC8743044AE37E1CB69 /* UserMapMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMapMarker.swift; sourceTree = "<group>"; };
+		C8147AD93BB7C01AFBD8DC17 /* AvatarChanger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarChanger.swift; sourceTree = "<group>"; };
 		C8147B4BA888A88B24536A2F /* PlaceGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceGetter.swift; sourceTree = "<group>"; };
 		C8147B4EBB54D2A25B07C305 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		C8147B932298EA36335B6D75 /* RequestStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestStatsManager.swift; sourceTree = "<group>"; };
@@ -581,6 +583,7 @@
 				C8147C0091241018B5D40A3D /* ProfileGetter.swift */,
 				C8147B4BA888A88B24536A2F /* PlaceGetter.swift */,
 				C81477CDFD77B1BDE6FF0C70 /* RequestStatsGetter.swift */,
+				C8147AD93BB7C01AFBD8DC17 /* AvatarChanger.swift */,
 			);
 			path = ObjectGetters;
 			sourceTree = "<group>";
@@ -613,6 +616,8 @@
 			dependencies = (
 			);
 			name = "Pinny-iOS";
+			packageProductDependencies = (
+			);
 			productName = "Pinny-iOS";
 			productReference = 1327111E24334D82009005C0 /* Pinny-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -663,6 +668,8 @@
 				Base,
 			);
 			mainGroup = 1327111524334D82009005C0;
+			packageReferences = (
+			);
 			productRefGroup = 1327111F24334D82009005C0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -837,6 +844,7 @@
 				C814767D4E09C4CD1CB143DF /* Notifications.swift in Sources */,
 				C81471A544A116E01B8AFFB4 /* RequestStatsGetter.swift in Sources */,
 				C814763A250BBCF855639541 /* GatewayRequester.swift in Sources */,
+				C81472B74C83A98BCBC34485 /* AvatarChanger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

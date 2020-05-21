@@ -187,6 +187,7 @@ extension PlaceDetailViewController: StarsRatingViewDelegate {
     private func changeRatingCompletion(_ rating: Rating?, _ profile: Profile?, _ err: GatewayRequester.ApiError?) {
         if let err = err {
             self.presentDefaultOKAlert(title: "Error on changing rating", msg: err.localizedDescription)
+            starsRatingView.rating = starsRatingView.rating
             return
         }
         starsRatingView.rating = UInt(rating!.rating!)
@@ -207,9 +208,11 @@ extension PlaceDetailViewController: AcceptButtonDelegate {
     }
 
     private func addAccept(_ place: Place) {
+        acceptButtonVew.button.isEnabled = false
         acceptChangeSubscriber = GatewayRequester.addAccept(place: place)
         .receive(on: DispatchQueue.main)
         .sink(receiveCompletion: { completion in
+            self.acceptButtonVew.button.isEnabled = true
             switch completion {
             case .failure(let err):
                 self.addAcceptCompletion(nil, nil, err)
@@ -227,6 +230,7 @@ extension PlaceDetailViewController: AcceptButtonDelegate {
             return
         }
         acceptButtonVew.isAccepted = true
+        place.isAcceptedByMe = true
         self.acceptTypeLabel.text = "\(place.acceptType!)"
         if profile == nil {
             self.presentDefaultOKAlert(title: "Added accept", msg: "But didn't update profile")
@@ -235,16 +239,18 @@ extension PlaceDetailViewController: AcceptButtonDelegate {
     }
 
     private func deleteAccept(_ place: Place) {
-        let accept_ = Accept.manager.entities.first { accept in
+        let accept_ = Accept.manager.entities.last { accept in
             accept.placeId == place.id && accept.createdById == User.manager.currentUser?.id
         }
         guard let accept = accept_ else {
             self.presentDefaultOKAlert(title: "No accept here", msg: nil)
             return
         }
+        acceptButtonVew.button.isEnabled = false
         acceptChangeSubscriber = GatewayRequester.deleteAccept(acceptId: accept.id!)
         .receive(on: DispatchQueue.main)
         .sink(receiveCompletion: { completion in
+            self.acceptButtonVew.button.isEnabled = true
             switch completion {
             case .failure(let err):
                 self.deleteAcceptCompletion(nil, err)
@@ -263,6 +269,7 @@ extension PlaceDetailViewController: AcceptButtonDelegate {
         }
         acceptButtonVew.isAccepted = false
         place.isAcceptedByMe = false
+        self.acceptTypeLabel.text = "\(place.acceptType!)"
         if profile == nil {
             self.presentDefaultOKAlert(title: "Deleted accept", msg: "But didn't update profile")
             return
