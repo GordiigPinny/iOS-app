@@ -15,6 +15,7 @@ class PinDetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var priceButton: UIButton!
     @IBOutlet weak var descrLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - Variables
     static let id = "PinDetailVC"
@@ -84,10 +85,12 @@ class PinDetailViewController: UIViewController {
 
     private func buyPin(_ pin: Pin) {
         priceButton.isEnabled = false
+        activityIndicator.startAnimating()
         buyPinSubscriber = GatewayRequester.buyPin(pin: pin)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 self.priceButton.isEnabled = true
+                self.activityIndicator.stopAnimating()
                 switch completion {
                 case .failure(let err):
                     self.buyPinCompletion(nil, err)

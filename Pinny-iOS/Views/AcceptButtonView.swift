@@ -40,7 +40,7 @@ class AcceptButtonView: UIView {
         button.setTitleColor(.red, for: .selected)
         button.setTitleColor(.red, for: [.selected, .highlighted])
         button.setTitleColor(.gray, for: [.selected, .disabled])
-        button.setTitleColor(.green, for: .normal)
+        button.setTitleColor(UIColor(red: 0.00, green: 0.39, blue: 0.00, alpha: 1.00), for: .normal)
         button.setTitleColor(.gray, for: [.normal, .disabled])
         button.tintColor = .clear
         button.addTarget(self, action: #selector(self.buttonPressed), for: .touchUpInside)

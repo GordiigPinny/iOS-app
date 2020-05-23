@@ -168,7 +168,11 @@ extension ObjectRequester {
     func getObject(_ id: Entity.ID) -> AnyPublisher<Entity, ApiError> {
         let url = urlFor(.getObject(id: id))
         let urlRequester = URLRequester(host: url)
-        let publisher = urlRequester.get()
+        var withDeletedQueryParams = [String : Any]()
+        if Defaults.currentAccessLevel == .admin {
+            withDeletedQueryParams["with_deleted"] = true
+        }
+        let publisher = urlRequester.get(queryParams: withDeletedQueryParams)
             .tryMap { (data, _) -> Entity in
                 let ans = try self.simpleTryMap(data: data)
                 return ans

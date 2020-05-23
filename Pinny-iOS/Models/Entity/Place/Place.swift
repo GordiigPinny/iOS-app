@@ -17,7 +17,6 @@ final class Place: APIEntity {
     var lat: Double!
     var long: Double!
     var address: String!
-    var checkedByModerator: Bool!
     var rating: Double!
     var acceptType: String!
     var createdById: Int!
@@ -26,7 +25,7 @@ final class Place: APIEntity {
     var isAcceptedByMe: Bool?
     
     var isDetailed: Bool {
-        return myRating != nil && isAcceptedByMe != nil
+        myRating != nil && isAcceptedByMe != nil
     }
     
     // MARK: - Manager
@@ -52,13 +51,12 @@ final class Place: APIEntity {
         
     }
     
-    init(id: Int? = nil, name: String, lat: Double, long: Double, address: String, checkedByModerator: Bool, rating: Double, acceptType: String, createdById: Int, deletedFlg: Bool, myRating: Int? = nil, isAcceptedByMe: Bool? = nil) {
+    init(id: Int? = nil, name: String, lat: Double, long: Double, address: String, rating: Double, acceptType: String, createdById: Int, deletedFlg: Bool, myRating: Int? = nil, isAcceptedByMe: Bool? = nil) {
         self.id = id
         self.name = name
         self.lat = lat
         self.long = long
         self.address = address
-        self.checkedByModerator = checkedByModerator
         self.rating = rating
         self.acceptType = acceptType
         self.createdById = createdById
@@ -69,8 +67,6 @@ final class Place: APIEntity {
     
     // MARK: - HandyJSON mappings
     func mapping(mapper: HelpingMapper) {
-        mapper <<<
-            self.checkedByModerator <-- "checked_by_moderator"
         mapper <<<
             self.acceptType <-- "accept_type"
         mapper <<<

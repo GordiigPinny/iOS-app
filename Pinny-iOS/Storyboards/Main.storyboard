@@ -584,14 +584,19 @@
                                     <action selector="priceButtonPressed:" destination="p5B-g9-LiS" eventType="touchUpInside" id="9q8-O9-Hwf"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="J3m-3m-5lY">
+                                <rect key="frame" x="257" y="102" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Z5J-lA-zt1" firstAttribute="trailing" secondItem="b4d-9c-tZN" secondAttribute="trailing" constant="8" id="8Qg-jF-A9Y"/>
                             <constraint firstItem="F1q-y9-73Z" firstAttribute="top" secondItem="2JQ-vV-r2z" secondAttribute="bottom" constant="8" id="DVS-Cn-gjQ"/>
                             <constraint firstItem="b4d-9c-tZN" firstAttribute="leading" secondItem="Z5J-lA-zt1" secondAttribute="leading" constant="8" id="PjP-2w-DdR"/>
+                            <constraint firstItem="J3m-3m-5lY" firstAttribute="centerY" secondItem="cF1-Uh-V4f" secondAttribute="centerY" id="SLI-d7-6T1"/>
                             <constraint firstItem="2JQ-vV-r2z" firstAttribute="top" secondItem="Z5J-lA-zt1" secondAttribute="top" constant="8" id="Ul3-Il-zsm"/>
                             <constraint firstItem="2JQ-vV-r2z" firstAttribute="centerX" secondItem="Ovg-wt-O9N" secondAttribute="centerX" id="aQQ-Ge-J3i"/>
+                            <constraint firstItem="J3m-3m-5lY" firstAttribute="leading" secondItem="cF1-Uh-V4f" secondAttribute="trailing" constant="8" id="fvC-DM-gNq"/>
                             <constraint firstItem="F1q-y9-73Z" firstAttribute="centerX" secondItem="Ovg-wt-O9N" secondAttribute="centerX" id="j5b-E2-qyZ"/>
                             <constraint firstItem="b4d-9c-tZN" firstAttribute="top" secondItem="cF1-Uh-V4f" secondAttribute="bottom" constant="8" id="sbE-iY-Icm"/>
                             <constraint firstItem="cF1-Uh-V4f" firstAttribute="centerX" secondItem="Ovg-wt-O9N" secondAttribute="centerX" id="xEG-Q2-bsw"/>
@@ -601,6 +606,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="KiG-h1-MqL"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="J3m-3m-5lY" id="JUI-uW-hqx"/>
                         <outlet property="descrLabel" destination="b4d-9c-tZN" id="13T-4R-8ts"/>
                         <outlet property="imageView" destination="F1q-y9-73Z" id="5yD-9z-V1B"/>
                         <outlet property="nameLabel" destination="2JQ-vV-r2z" id="IoM-ZU-fow"/>
@@ -970,6 +976,9 @@
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="u4a-Vy-gEb" customClass="StarsRatingView" customModule="Pinny_iOS" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="41.5" width="270" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="sGt-00-Bym"/>
+                                                        </constraints>
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
@@ -1000,49 +1009,46 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Проверенно модератором" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WlQ-sW-g67">
-                                                <rect key="frame" x="99.5" y="312" width="215" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytU-Ti-hj7" customClass="AcceptButtonView" customModule="Pinny_iOS" customModuleProvider="target">
-                                                <rect key="frame" x="94.5" y="340.5" width="225" height="34"/>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytU-Ti-hj7" customClass="AcceptButtonView" customModule="Pinny_iOS" customModuleProvider="target">
+                                                <rect key="frame" x="72" y="316" width="270" height="34"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="34" id="ls8-UA-Em2"/>
+                                                </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cV-wP-6G7">
-                                                <rect key="frame" x="139" y="391.5" width="136" height="30"/>
+                                                <rect key="frame" x="139" y="367" width="136" height="30"/>
                                                 <state key="normal" title="Фотографии места"/>
                                                 <connections>
                                                     <action selector="photosButtonPressed:" destination="Xcc-5A-sDS" eventType="touchUpInside" id="kEZ-y4-9OI"/>
                                                 </connections>
                                             </button>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="KwS-Jz-U8a">
-                                                <rect key="frame" x="283" y="396.5" width="20" height="20"/>
+                                                <rect key="frame" x="283" y="372" width="20" height="20"/>
                                             </activityIndicatorView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBw-CW-q1g">
-                                                <rect key="frame" x="8" y="382.5" width="398" height="1"/>
+                                                <rect key="frame" x="8" y="358" width="398" height="1"/>
                                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="gYY-lw-xfI"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ant-5w-nlS">
-                                                <rect key="frame" x="8" y="429.5" width="398" height="1"/>
+                                                <rect key="frame" x="8" y="405" width="398" height="1"/>
                                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="luA-V0-ChH"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ihe-P2-kSF">
-                                                <rect key="frame" x="114" y="438.5" width="186" height="30"/>
+                                                <rect key="frame" x="114" y="414" width="186" height="30"/>
                                                 <state key="normal" title="Смотреть на картах Apple"/>
                                                 <connections>
                                                     <action selector="appleMapsButtonPressed:" destination="Xcc-5A-sDS" eventType="touchUpInside" id="qWm-77-reh"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQU-dU-fuG">
-                                                <rect key="frame" x="109" y="476.5" width="196" height="30"/>
+                                                <rect key="frame" x="109" y="452" width="196" height="30"/>
                                                 <state key="normal" title="Смотреть на картах Yandex"/>
                                                 <connections>
                                                     <action selector="yandexMapsButtonPressed:" destination="Xcc-5A-sDS" eventType="touchUpInside" id="av9-gO-Mlf"/>
@@ -1071,7 +1077,7 @@
                                             <constraint firstItem="XBw-CW-q1g" firstAttribute="top" secondItem="ytU-Ti-hj7" secondAttribute="bottom" constant="8" id="Jjr-Ah-yZv"/>
                                             <constraint firstItem="SXQ-9K-80O" firstAttribute="leading" secondItem="MJn-tE-oh6" secondAttribute="leading" constant="8" id="LJz-Yb-2fb"/>
                                             <constraint firstItem="ant-5w-nlS" firstAttribute="top" secondItem="6cV-wP-6G7" secondAttribute="bottom" constant="8" id="Mm7-O5-Y66"/>
-                                            <constraint firstItem="WlQ-sW-g67" firstAttribute="centerX" secondItem="MJn-tE-oh6" secondAttribute="centerX" id="OIA-3h-LJs"/>
+                                            <constraint firstItem="ytU-Ti-hj7" firstAttribute="top" secondItem="ETN-d4-3pQ" secondAttribute="bottom" constant="8" id="OO5-Bj-Dd9"/>
                                             <constraint firstItem="ant-5w-nlS" firstAttribute="leading" secondItem="MJn-tE-oh6" secondAttribute="leading" constant="8" id="OgB-xa-Bib"/>
                                             <constraint firstItem="tax-ou-J30" firstAttribute="leading" secondItem="wf1-CT-amU" secondAttribute="trailing" constant="8" id="RDb-Rb-oop"/>
                                             <constraint firstItem="Ihe-P2-kSF" firstAttribute="centerX" secondItem="MJn-tE-oh6" secondAttribute="centerX" id="RY1-T3-6xy"/>
@@ -1081,11 +1087,9 @@
                                             <constraint firstItem="tax-ou-J30" firstAttribute="centerY" secondItem="wf1-CT-amU" secondAttribute="centerY" id="Urr-cA-w9z"/>
                                             <constraint firstItem="Ihe-P2-kSF" firstAttribute="top" secondItem="ant-5w-nlS" secondAttribute="bottom" constant="8" id="V0g-Pk-NJa"/>
                                             <constraint firstAttribute="trailing" secondItem="XBw-CW-q1g" secondAttribute="trailing" constant="8" id="Vsr-uE-Qwd"/>
-                                            <constraint firstItem="ytU-Ti-hj7" firstAttribute="top" secondItem="WlQ-sW-g67" secondAttribute="bottom" constant="8" id="WCb-OF-DPD"/>
                                             <constraint firstItem="hQU-dU-fuG" firstAttribute="centerX" secondItem="MJn-tE-oh6" secondAttribute="centerX" id="Xtn-d2-WiS"/>
                                             <constraint firstItem="czD-6t-1QH" firstAttribute="top" secondItem="MJn-tE-oh6" secondAttribute="top" constant="8" id="YdP-Wg-vVg"/>
                                             <constraint firstItem="ytU-Ti-hj7" firstAttribute="centerX" secondItem="MJn-tE-oh6" secondAttribute="centerX" id="ZdD-bK-0Ue"/>
-                                            <constraint firstItem="WlQ-sW-g67" firstAttribute="top" secondItem="ETN-d4-3pQ" secondAttribute="bottom" constant="4" id="aYO-IB-yed"/>
                                             <constraint firstItem="6cV-wP-6G7" firstAttribute="centerX" secondItem="MJn-tE-oh6" secondAttribute="centerX" id="b0Q-OO-bt5"/>
                                             <constraint firstItem="13T-Ct-rEX" firstAttribute="centerX" secondItem="MJn-tE-oh6" secondAttribute="centerX" id="c5i-ac-wf3"/>
                                             <constraint firstItem="wf1-CT-amU" firstAttribute="centerX" secondItem="MJn-tE-oh6" secondAttribute="centerX" id="ck8-lA-D4Z"/>
@@ -1138,7 +1142,6 @@
                         <outlet property="acceptTypeLabel" destination="ETN-d4-3pQ" id="vRa-r1-dMH"/>
                         <outlet property="addressLabel" destination="r93-bt-T3j" id="nPo-mw-yaV"/>
                         <outlet property="appleMapsButton" destination="Ihe-P2-kSF" id="knF-iU-cYH"/>
-                        <outlet property="checkedByModeratorLabel" destination="WlQ-sW-g67" id="M9N-gn-PJG"/>
                         <outlet property="deleteActivityIndicator" destination="tax-ou-J30" id="8k4-q2-ulL"/>
                         <outlet property="deleteButton" destination="wf1-CT-amU" id="MVV-4C-H73"/>
                         <outlet property="editButton" destination="8cW-za-z3y" id="NEc-Cg-P0b"/>
@@ -1155,7 +1158,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fgU-E0-lDR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3678" y="-1215"/>
+            <point key="canvasLocation" x="3676.811594202899" y="-1215.4017857142856"/>
         </scene>
         <!--Edit Place View Controller-->
         <scene sceneID="ovR-Kc-vYW">
