@@ -16,6 +16,7 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var anonButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - Outlet value getters
     var username: String? {
@@ -52,6 +53,7 @@ class LogInViewController: UIViewController {
         let password = self.password!
 
         logInButton.isEnabled = false
+        activityIndicator.startAnimating()
         tokenSubscriber = authRequester.getToken(username: username, password: password)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
@@ -106,6 +108,7 @@ class LogInViewController: UIViewController {
     
     private func logInRequestHandlerFailed(_ err: URLRequester.RequestError) {
         self.logInButton.isEnabled = self.canPressLogInButton
+        self.activityIndicator.stopAnimating()
         let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Error came", msg: err.localizedDescription)
         present(alert, animated: true)
     }
@@ -116,6 +119,7 @@ class LogInViewController: UIViewController {
         profileGetter?.getProfile(user.id!, completion: { entity, error in
             DispatchQueue.main.async {
                 self.logInButton.isEnabled = self.canPressLogInButton
+                self.activityIndicator.stopAnimating()
                 Profile.manager.currentProfile = entity
                 NotificationCenter.default.post(name: .accessLevelChanged, object: nil)
                 if let err = error {
@@ -135,6 +139,7 @@ class LogInViewController: UIViewController {
 
     private func userRequestHandlerFailed(_ err: UserRequester.ApiError) {
         self.logInButton.isEnabled = self.canPressLogInButton
+        self.activityIndicator.stopAnimating()
         let alert = UIAlertControllerBuilder.defaultOkAlert(title: "Error", msg: err.localizedDescription)
         present(alert, animated: true)
     }

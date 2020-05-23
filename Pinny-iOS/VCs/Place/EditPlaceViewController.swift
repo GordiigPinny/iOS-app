@@ -78,10 +78,12 @@ class EditPlaceViewController: UIViewController {
         ]
         let jsonData = try! JSONSerialization.data(withJSONObject: dictData, options: .prettyPrinted)
         activityIndicator.startAnimating()
+        editButton.isEnabled = isButtonEnabled
         editSubscriber = PlaceRequester().patchObject(place.id!, data: jsonData)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 self.activityIndicator.stopAnimating()
+                self.editButton.isEnabled = self.isButtonEnabled
                 switch completion {
                 case .failure(let err):
                     self.editPlaceCompletion(nil, err)
@@ -105,7 +107,9 @@ class EditPlaceViewController: UIViewController {
 
     // MARK: - Utils
     private var isButtonEnabled: Bool {
-        !nameTextField.isEmpty && !addressTextField.isEmpty && !latitudeTextField.isEmpty && !longitudeTextField.isEmpty
+        !nameTextField.isEmpty && !addressTextField.isEmpty && !latitudeTextField.isEmpty
+                && !longitudeTextField.isEmpty && latitude! < 56.106229 && latitude! > 55.515174 &&
+                longitude! < 37.956703 && longitude! > 36.994695
     }
 
     // MARK: - View fill

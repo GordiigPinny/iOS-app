@@ -69,7 +69,7 @@ class AuthRequester {
                     switch newErr {
                     case .apiError(let code, let descr):
                         return URLRequester.RequestError.apiError(code: code, descr: descr +
-                                "Maybe old password is wrong?")
+                                "\nMaybe old password is wrong?")
                     default:
                         return newErr
                     }

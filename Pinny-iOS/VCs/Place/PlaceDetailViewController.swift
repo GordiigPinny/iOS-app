@@ -22,12 +22,15 @@ class PlaceDetailViewController: UIViewController {
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var acceptTypeLabel: UILabel!
     @IBOutlet weak var checkedByModeratorLabel: UILabel!
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var deleteActivityIndicator: UIActivityIndicatorView!
     
     // MARK: - Variables
     static let id = "PlaceDetailVC"
     private var placeGetter: PlaceGetter?
     private var ratingChangeSubscriber: AnyCancellable?
     private var acceptChangeSubscriber: AnyCancellable?
+    private var placeDeleteSubscriber: AnyCancellable?
     private var _place: Place = Place()
     var place: Place {
         get {
@@ -51,6 +54,14 @@ class PlaceDetailViewController: UIViewController {
         acceptButtonVew.delegate = self
         placeImagesActivityIndicator.stopAnimating()
         fillViewController()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        placeGetter?.cancel()
+        ratingChangeSubscriber?.cancel()
+        acceptChangeSubscriber?.cancel()
+        placeDeleteSubscriber?.cancel()
     }
 
     // MARK: - Actions
@@ -104,6 +115,29 @@ class PlaceDetailViewController: UIViewController {
         vc.place = place
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        deleteButton.isEnabled = false
+        deleteActivityIndicator.startAnimating()
+        placeDeleteSubscriber = Place.manager.deleteRemotely(place)
+        .receive(on: DispatchQueue.main)
+        .sink(receiveCompletion: { completion in
+            self.deleteActivityIndicator.stopAnimating()
+            self.deleteButton.isEnabled = true
+            switch completion {
+            case .failure(let err):
+                self.presentDefaultOKAlert(title: "Error on deleting place", msg: err.localizedDescription)
+            case .finished:
+                break
+            }
+        }, receiveValue: { b in
+            if !b {
+                self.presentDefaultOKAlert(title: "Didn't delete this place", msg: "Dunno why tho")
+            }
+            self.navigationController?.popToRootViewController(animated: true)
+        })
+    }
+    
 
     // MARK: - Request handlers
     private func getPlace(_ place: Place) {
@@ -147,11 +181,13 @@ class PlaceDetailViewController: UIViewController {
         starsRatingView.rating = UInt(place.myRating!)
         acceptButtonVew.isAccepted = place.isAcceptedByMe!
         editButton.isEnabled = false
+        deleteButton.isHidden = true
     }
 
     private func fillAdminViewController() {
         fillAuthViewController()
         editButton.isEnabled = true
+        deleteButton.isHidden = false
     }
 
     private func fillAnonViewController() {

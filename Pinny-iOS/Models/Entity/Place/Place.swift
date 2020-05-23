@@ -40,11 +40,11 @@ final class Place: APIEntity {
     }
 
     static var moscowRadiusForPinch: (lat: Int, long: Int) {
-        (lat: 10_000, long: 15_000)
+        (lat: 50_000, long: 60_000)
     }
 
     static var maxDistanceForPinch: Double {
-        100_000
+        150_000
     }
     
     // MARK: - Inits

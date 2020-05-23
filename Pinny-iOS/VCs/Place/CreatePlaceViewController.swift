@@ -16,7 +16,8 @@ class CreatePlaceViewController: UIViewController {
     @IBOutlet weak var latitudeTextField: UITextField!
     @IBOutlet weak var longitudeTextField: UITextField!
     @IBOutlet weak var addButton: UIButton!
-
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     // MARK: - Outlets value getters
     var name: String? {
         nameTextField.text
@@ -47,6 +48,11 @@ class CreatePlaceViewController: UIViewController {
         addButton.isEnabled = isButtonEnabled
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.addButton.isEnabled = isButtonEnabled
+    }
+
     // MARK: - Actions
     @objc func textFieldEditingChanged() {
         addButton.isEnabled = isButtonEnabled
@@ -57,6 +63,8 @@ class CreatePlaceViewController: UIViewController {
         let address = self.address!
         let latitude = self.latitude!
         let longitude = self.longitude!
+        addButton.isEnabled = false
+        activityIndicator.startAnimating()
         createPlace(name: name, address: address, lat: latitude, long: longitude)
     }
     
@@ -65,6 +73,8 @@ class CreatePlaceViewController: UIViewController {
         createPlaceSubscriber = GatewayRequester.createPlace(name: name, address: address, lat: lat, long: long)
         .receive(on: DispatchQueue.main)
         .sink(receiveCompletion: { completion in
+            self.activityIndicator.stopAnimating()
+            self.addButton.isEnabled = self.isButtonEnabled
             switch completion {
             case .failure(let err):
                 self.createCompletion(nil, nil, err)
@@ -90,7 +100,9 @@ class CreatePlaceViewController: UIViewController {
 
     // MARK: - Utils
     private var isButtonEnabled: Bool {
-        !nameTextField.isEmpty && !addressTextField.isEmpty && !latitudeTextField.isEmpty && !longitudeTextField.isEmpty
+        !nameTextField.isEmpty && !addressTextField.isEmpty && !latitudeTextField.isEmpty &&
+                !longitudeTextField.isEmpty && latitude! < 56.106229 && latitude! > 55.515174 &&
+                longitude! < 37.956703 && longitude! > 36.994695
     }
 
 }

@@ -169,7 +169,7 @@ class ProfileViewController: UIViewController {
         usernameLabel.text = user?.username
         ratingLabel.text = "\(profile!.rating!)"
         moneyLabel.text = "\(profile!.money!)"
-        emailLabel.text = user?.email
+        emailLabel.text = (user?.email ?? "").isEmpty ? "nil" : user?.email
         var avatar: UIImage? = ImageFile.defaultImage
         if let picId = profile?.picId {
             avatar = ImageFile.manager.get(id: picId)?.image

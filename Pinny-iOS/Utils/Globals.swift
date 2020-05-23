@@ -162,7 +162,6 @@ class Hosts {
     }
 
 //    static let gatewayHost = "http://127.0.0.1:8006/api/"
-//    static let gatewayHost = "https://gordiig-rsoi-gateway.herokuapp.com/api/"
     static let gatewayHost = "https://gordiig-rsoi-gateway.herokuapp.com/api/"
     static var gatewayHostUrl: URL {
         URL(string: gatewayHost)!

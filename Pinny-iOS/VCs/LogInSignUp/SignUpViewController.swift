@@ -16,6 +16,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordConfirmTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - Outlets value getters
     var username: String? {
@@ -58,7 +59,8 @@ class SignUpViewController: UIViewController {
     // MARK: - Actions for TextFields
     private var canPressSignUpButton: Bool {
         !usernameTextField.isEmpty && !passwordTextField.isEmpty && !passwordConfirmTextField.isEmpty &&
-                (password! == passwordConfirm!)
+                (password! == passwordConfirm!) && (passwordTextField.text!.count >= 6) &&
+                (emailTextField.isEmpty || emailTextField.isEmail)
     }
 
     @objc func textFieldChangeEditing() {
@@ -68,10 +70,12 @@ class SignUpViewController: UIViewController {
     // MARK: - Request handlers
     private func signUp(username: String, password: String, email: String?) {
         signUpButton.isEnabled = false
+        activityIndicator.startAnimating()
         signUpSubscriber = ProfileRequester().register(username: username, password: password, email: email)
         .receive(on: DispatchQueue.main)
         .sink(receiveCompletion: { completion in
             self.signUpButton.isEnabled = self.canPressSignUpButton
+            self.activityIndicator.stopAnimating()
             switch completion {
             case .failure(let err):
                 self.signUpCompletion(nil, nil, nil, err)

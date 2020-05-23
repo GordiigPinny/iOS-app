@@ -11,13 +11,20 @@ import UIKit
 class AchievementTableViewCell: UITableViewCell {
     // MARK: - Outlets
     @IBOutlet weak var nameLabel: UILabel!
-
+    @IBOutlet weak var markImageView: UIImageView!
+    
     // MARK: - Variables
     static let id = "AchievementTableViewCell"
     
     // MARK: - Set up code
     func setUp(_ achievement: Achievement) {
         nameLabel.text = achievement.name
+        markImageView.image = UIImage(systemName: "xmark")
+        if let profile = Profile.manager.currentProfile {
+            if profile.achievementsId.contains(achievement.id!) {
+                markImageView.image = UIImage(systemName: "checkmark")
+            }
+        }
     }
 
     override func awakeFromNib() {

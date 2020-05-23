@@ -80,7 +80,7 @@ class ChangePasswordViewController: UIViewController {
     // MARK: - Utils
     private var isSubmitEnabled: Bool {
         !currentPassword.isEmpty && !newPassword.isEmpty && !newPasswordConfirm.isEmpty &&
-                (newPassword.text! == newPasswordConfirm.text!)
+                (newPassword.text! == newPasswordConfirm.text!) && (newPassword.text!.count >= 6)
     }
 
 }

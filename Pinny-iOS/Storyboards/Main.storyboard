@@ -29,12 +29,12 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="street-address"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Широта" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcu-te-Olt">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Широта (55.515174 ... 56.106229)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcu-te-Olt">
                                         <rect key="frame" x="0.0" y="84" width="398" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Долгота" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r6B-nM-1iI">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Долгота (36.994695 ... 37.956703)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r6B-nM-1iI">
                                         <rect key="frame" x="0.0" y="126" width="398" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -73,6 +73,7 @@
                         <viewLayoutGuide key="safeArea" id="ecB-hQ-Wo1"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="l6S-2Y-OXy" id="LsN-Wy-wEs"/>
                         <outlet property="addButton" destination="yRL-aL-mx1" id="nu0-zf-McJ"/>
                         <outlet property="addressTextField" destination="ge5-AA-AHe" id="UGe-au-5LZ"/>
                         <outlet property="latitudeTextField" destination="bcu-te-Olt" id="aHV-Ai-ifg"/>
@@ -784,11 +785,11 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="AchievementTableViewCell" rowHeight="59" id="5b9-FS-Lug" customClass="AchievementTableViewCell" customModule="Pinny_iOS" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="AchievementTableViewCell" rowHeight="59" id="5b9-FS-Lug" customClass="AchievementTableViewCell" customModule="Pinny_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5b9-FS-Lug" id="Cb7-85-8PC">
-                                            <rect key="frame" x="0.0" y="0.0" width="351" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZf-Wc-Eky">
@@ -797,15 +798,25 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Fn9-MQ-eHY">
+                                                    <rect key="frame" x="351" y="19.5" width="24" height="19.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="3I7-gw-JZH"/>
+                                                        <constraint firstAttribute="height" constant="24" id="nCH-kE-eav"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="FZf-Wc-Eky" secondAttribute="trailing" constant="8" id="QJg-N1-tEa"/>
+                                                <constraint firstAttribute="trailing" secondItem="Fn9-MQ-eHY" secondAttribute="trailing" constant="8" id="Rqf-UO-CFL"/>
                                                 <constraint firstAttribute="bottom" secondItem="FZf-Wc-Eky" secondAttribute="bottom" constant="8" id="hBR-W6-4BZ"/>
                                                 <constraint firstItem="FZf-Wc-Eky" firstAttribute="top" secondItem="Cb7-85-8PC" secondAttribute="top" constant="8" id="mU1-Lh-Rtt"/>
+                                                <constraint firstItem="Fn9-MQ-eHY" firstAttribute="leading" secondItem="FZf-Wc-Eky" secondAttribute="trailing" constant="8" id="tQz-4a-Qtz"/>
                                                 <constraint firstItem="FZf-Wc-Eky" firstAttribute="leading" secondItem="Cb7-85-8PC" secondAttribute="leading" constant="8" id="vI9-xM-wrX"/>
+                                                <constraint firstItem="Fn9-MQ-eHY" firstAttribute="centerY" secondItem="Cb7-85-8PC" secondAttribute="centerY" id="zqx-sb-u5n"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="markImageView" destination="Fn9-MQ-eHY" id="ftg-7o-Oyx"/>
                                             <outlet property="nameLabel" destination="FZf-Wc-Eky" id="yuU-QV-7Jc"/>
                                         </connections>
                                     </tableViewCell>
@@ -931,7 +942,7 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="13T-Ct-rEX">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="13T-Ct-rEX">
                                                 <rect key="frame" x="107.5" y="195.5" width="199.5" height="62"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Общий рейтинг" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAu-CA-7QV">
@@ -948,7 +959,7 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1Ls-gw-kLf">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1Ls-gw-kLf">
                                                 <rect key="frame" x="72" y="87" width="270" height="91.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мой рейтинг" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGg-SQ-VqS">
@@ -957,7 +968,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="u4a-Vy-gEb" customClass="StarsRatingView" customModule="Pinny_iOS" customModuleProvider="target">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="u4a-Vy-gEb" customClass="StarsRatingView" customModule="Pinny_iOS" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="41.5" width="270" height="50"/>
                                                     </stackView>
                                                 </subviews>
@@ -969,74 +980,86 @@
                                                     <constraint firstAttribute="height" constant="1" id="W9S-5p-efN"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m0p-A3-HNJ">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m0p-A3-HNJ">
                                                 <rect key="frame" x="8" y="186.5" width="398" height="1"/>
                                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="IR7-v8-NDp"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sbt-eO-zBu">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sbt-eO-zBu">
                                                 <rect key="frame" x="8" y="265.5" width="398" height="1"/>
                                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="N8s-zs-6f1"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Непроверенное место" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETN-d4-3pQ">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Непроверенное место" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETN-d4-3pQ">
                                                 <rect key="frame" x="63.5" y="274.5" width="287" height="33.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Проверенно модератором" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WlQ-sW-g67">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Проверенно модератором" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WlQ-sW-g67">
                                                 <rect key="frame" x="99.5" y="312" width="215" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytU-Ti-hj7" customClass="AcceptButtonView" customModule="Pinny_iOS" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytU-Ti-hj7" customClass="AcceptButtonView" customModule="Pinny_iOS" customModuleProvider="target">
                                                 <rect key="frame" x="94.5" y="340.5" width="225" height="34"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cV-wP-6G7">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cV-wP-6G7">
                                                 <rect key="frame" x="139" y="391.5" width="136" height="30"/>
                                                 <state key="normal" title="Фотографии места"/>
                                                 <connections>
                                                     <action selector="photosButtonPressed:" destination="Xcc-5A-sDS" eventType="touchUpInside" id="kEZ-y4-9OI"/>
                                                 </connections>
                                             </button>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="KwS-Jz-U8a">
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="KwS-Jz-U8a">
                                                 <rect key="frame" x="283" y="396.5" width="20" height="20"/>
                                             </activityIndicatorView>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XBw-CW-q1g">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBw-CW-q1g">
                                                 <rect key="frame" x="8" y="382.5" width="398" height="1"/>
                                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="gYY-lw-xfI"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ant-5w-nlS">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ant-5w-nlS">
                                                 <rect key="frame" x="8" y="429.5" width="398" height="1"/>
                                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="luA-V0-ChH"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ihe-P2-kSF">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ihe-P2-kSF">
                                                 <rect key="frame" x="114" y="438.5" width="186" height="30"/>
                                                 <state key="normal" title="Смотреть на картах Apple"/>
                                                 <connections>
                                                     <action selector="appleMapsButtonPressed:" destination="Xcc-5A-sDS" eventType="touchUpInside" id="qWm-77-reh"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQU-dU-fuG">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQU-dU-fuG">
                                                 <rect key="frame" x="109" y="476.5" width="196" height="30"/>
                                                 <state key="normal" title="Смотреть на картах Yandex"/>
                                                 <connections>
                                                     <action selector="yandexMapsButtonPressed:" destination="Xcc-5A-sDS" eventType="touchUpInside" id="av9-gO-Mlf"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wf1-CT-amU">
+                                                <rect key="frame" x="178" y="687" width="58" height="30"/>
+                                                <state key="normal" title="Удалить">
+                                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="deleteButtonPressed:" destination="Xcc-5A-sDS" eventType="touchUpInside" id="Qhj-Sh-pqA"/>
+                                                </connections>
+                                            </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="tax-ou-J30">
+                                                <rect key="frame" x="244" y="692" width="20" height="20"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -1050,10 +1073,12 @@
                                             <constraint firstItem="ant-5w-nlS" firstAttribute="top" secondItem="6cV-wP-6G7" secondAttribute="bottom" constant="8" id="Mm7-O5-Y66"/>
                                             <constraint firstItem="WlQ-sW-g67" firstAttribute="centerX" secondItem="MJn-tE-oh6" secondAttribute="centerX" id="OIA-3h-LJs"/>
                                             <constraint firstItem="ant-5w-nlS" firstAttribute="leading" secondItem="MJn-tE-oh6" secondAttribute="leading" constant="8" id="OgB-xa-Bib"/>
+                                            <constraint firstItem="tax-ou-J30" firstAttribute="leading" secondItem="wf1-CT-amU" secondAttribute="trailing" constant="8" id="RDb-Rb-oop"/>
                                             <constraint firstItem="Ihe-P2-kSF" firstAttribute="centerX" secondItem="MJn-tE-oh6" secondAttribute="centerX" id="RY1-T3-6xy"/>
                                             <constraint firstItem="XBw-CW-q1g" firstAttribute="leading" secondItem="MJn-tE-oh6" secondAttribute="leading" constant="8" id="TiN-CO-3zQ"/>
                                             <constraint firstItem="SXQ-9K-80O" firstAttribute="top" secondItem="czD-6t-1QH" secondAttribute="bottom" constant="8" id="TlE-kA-EEp"/>
                                             <constraint firstAttribute="trailing" secondItem="Sbt-eO-zBu" secondAttribute="trailing" constant="8" id="UEf-eE-Q74"/>
+                                            <constraint firstItem="tax-ou-J30" firstAttribute="centerY" secondItem="wf1-CT-amU" secondAttribute="centerY" id="Urr-cA-w9z"/>
                                             <constraint firstItem="Ihe-P2-kSF" firstAttribute="top" secondItem="ant-5w-nlS" secondAttribute="bottom" constant="8" id="V0g-Pk-NJa"/>
                                             <constraint firstAttribute="trailing" secondItem="XBw-CW-q1g" secondAttribute="trailing" constant="8" id="Vsr-uE-Qwd"/>
                                             <constraint firstItem="ytU-Ti-hj7" firstAttribute="top" secondItem="WlQ-sW-g67" secondAttribute="bottom" constant="8" id="WCb-OF-DPD"/>
@@ -1063,6 +1088,7 @@
                                             <constraint firstItem="WlQ-sW-g67" firstAttribute="top" secondItem="ETN-d4-3pQ" secondAttribute="bottom" constant="4" id="aYO-IB-yed"/>
                                             <constraint firstItem="6cV-wP-6G7" firstAttribute="centerX" secondItem="MJn-tE-oh6" secondAttribute="centerX" id="b0Q-OO-bt5"/>
                                             <constraint firstItem="13T-Ct-rEX" firstAttribute="centerX" secondItem="MJn-tE-oh6" secondAttribute="centerX" id="c5i-ac-wf3"/>
+                                            <constraint firstItem="wf1-CT-amU" firstAttribute="centerX" secondItem="MJn-tE-oh6" secondAttribute="centerX" id="ck8-lA-D4Z"/>
                                             <constraint firstItem="KwS-Jz-U8a" firstAttribute="leading" secondItem="6cV-wP-6G7" secondAttribute="trailing" constant="8" id="cx4-Bq-t1G"/>
                                             <constraint firstItem="hQU-dU-fuG" firstAttribute="top" secondItem="Ihe-P2-kSF" secondAttribute="bottom" constant="8" id="ejZ-NU-nXK"/>
                                             <constraint firstItem="KwS-Jz-U8a" firstAttribute="centerY" secondItem="6cV-wP-6G7" secondAttribute="centerY" id="emk-cR-4dq"/>
@@ -1070,6 +1096,7 @@
                                             <constraint firstItem="1Ls-gw-kLf" firstAttribute="centerX" secondItem="MJn-tE-oh6" secondAttribute="centerX" id="kEZ-qB-hL8"/>
                                             <constraint firstItem="ETN-d4-3pQ" firstAttribute="centerX" secondItem="MJn-tE-oh6" secondAttribute="centerX" id="kdM-Q6-a5A"/>
                                             <constraint firstItem="Sbt-eO-zBu" firstAttribute="top" secondItem="13T-Ct-rEX" secondAttribute="bottom" constant="8" id="ntm-7n-kCl"/>
+                                            <constraint firstAttribute="bottom" secondItem="wf1-CT-amU" secondAttribute="bottom" constant="8" id="oSG-f6-e5f"/>
                                             <constraint firstAttribute="trailing" secondItem="ant-5w-nlS" secondAttribute="trailing" constant="8" id="ou1-c6-leO"/>
                                             <constraint firstItem="m0p-A3-HNJ" firstAttribute="leading" secondItem="MJn-tE-oh6" secondAttribute="leading" constant="8" id="uyr-Ec-QGQ"/>
                                             <constraint firstAttribute="trailing" secondItem="m0p-A3-HNJ" secondAttribute="trailing" constant="8" id="vat-PU-zkR"/>
@@ -1112,6 +1139,8 @@
                         <outlet property="addressLabel" destination="r93-bt-T3j" id="nPo-mw-yaV"/>
                         <outlet property="appleMapsButton" destination="Ihe-P2-kSF" id="knF-iU-cYH"/>
                         <outlet property="checkedByModeratorLabel" destination="WlQ-sW-g67" id="M9N-gn-PJG"/>
+                        <outlet property="deleteActivityIndicator" destination="tax-ou-J30" id="8k4-q2-ulL"/>
+                        <outlet property="deleteButton" destination="wf1-CT-amU" id="MVV-4C-H73"/>
                         <outlet property="editButton" destination="8cW-za-z3y" id="NEc-Cg-P0b"/>
                         <outlet property="globalRatingLabel" destination="Df4-bA-zvY" id="c5w-8H-yg9"/>
                         <outlet property="photosButton" destination="6cV-wP-6G7" id="Y7f-9k-2bj"/>
@@ -1149,12 +1178,12 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="street-address"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Широта" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S4W-hc-z6E">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Широта (55.515174 ... 56.106229)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S4W-hc-z6E">
                                         <rect key="frame" x="0.0" y="84" width="398" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Долгота" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4b9-5l-3qM">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Долгота (36.994695 ... 37.956703)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4b9-5l-3qM">
                                         <rect key="frame" x="0.0" y="126" width="398" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1398,5 +1427,6 @@
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="questionmark.circle" catalog="system" width="128" height="121"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
     </resources>
 </document>
