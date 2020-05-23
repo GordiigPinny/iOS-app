@@ -3,18 +3,96 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		130522AA245D66EB000C02C9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130522A9245D66EB000C02C9 /* User.swift */; };
+		130522AF245D6947000C02C9 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130522AE245D6947000C02C9 /* Token.swift */; };
+		130522B1245D6959000C02C9 /* AuthRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130522B0245D6959000C02C9 /* AuthRequester.swift */; };
+		130522B4245D7B19000C02C9 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130522B3245D7B19000C02C9 /* UserManager.swift */; };
+		1306622224608C980031CB9B /* CreatePlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1306622124608C980031CB9B /* CreatePlaceViewController.swift */; };
+		13225253246072D900C56C73 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13225252246072D900C56C73 /* StatsViewController.swift */; };
+		132252552460731E00C56C73 /* StatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132252542460731E00C56C73 /* StatsTableViewCell.swift */; };
 		1327112224334D82009005C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327112124334D82009005C0 /* AppDelegate.swift */; };
 		1327112424334D82009005C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327112324334D82009005C0 /* SceneDelegate.swift */; };
-		1327112624334D82009005C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327112524334D82009005C0 /* ViewController.swift */; };
-		1327112924334D82009005C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327112724334D82009005C0 /* Main.storyboard */; };
-		1327112C24334D82009005C0 /* Pinny_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1327112A24334D82009005C0 /* Pinny_iOS.xcdatamodeld */; };
+		1327112924334D82009005C0 /* LogInSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327112724334D82009005C0 /* LogInSignUp.storyboard */; };
 		1327112E24334D83009005C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1327112D24334D83009005C0 /* Assets.xcassets */; };
 		1327113124334D83009005C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1327112F24334D83009005C0 /* LaunchScreen.storyboard */; };
 		1327113F24334EBE009005C0 /* Pinny_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327113E24334EBE009005C0 /* Pinny_iOSTests.swift */; };
+		1338069B24389E540014A600 /* YandexAPIKey in Resources */ = {isa = PBXBuildFile; fileRef = 1338069A24389E540014A600 /* YandexAPIKey */; };
+		134356B2244EFB6000026355 /* StarsRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B1244EFB6000026355 /* StarsRatingView.swift */; };
+		134356B8244EFF0800026355 /* AcceptButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B7244EFF0800026355 /* AcceptButtonView.swift */; };
+		134356BA245029EF00026355 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134356B9245029EF00026355 /* UIViewControllerExt.swift */; };
+		1365DD98245ECA4D00481B9D /* PlaceImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DD97245ECA4D00481B9D /* PlaceImageCollectionViewCell.swift */; };
+		1365DD9C245EF20700481B9D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DD9B245EF20700481B9D /* ProfileViewController.swift */; };
+		1365DDA0245F0BE100481B9D /* PinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DD9F245F0BE100481B9D /* PinTableViewCell.swift */; };
+		1365DDA2245F0BEE00481B9D /* AchievementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365DDA1245F0BEE00481B9D /* AchievementTableViewCell.swift */; };
+		1380D7482458583C0007EBEA /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D7472458583C0007EBEA /* Rating.swift */; };
+		1380D74A2458594A0007EBEA /* RatingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D7492458594A0007EBEA /* RatingManager.swift */; };
+		1380D752245861D00007EBEA /* Accept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D751245861D00007EBEA /* Accept.swift */; };
+		1380D754245863EE0007EBEA /* AcceptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D753245863EE0007EBEA /* AcceptManager.swift */; };
+		1380D758245867780007EBEA /* PlaceImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D757245867780007EBEA /* PlaceImage.swift */; };
+		1380D75A245867E80007EBEA /* PlaceImagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D759245867E80007EBEA /* PlaceImagesManager.swift */; };
+		1380D75E24586BDA0007EBEA /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D75D24586BDA0007EBEA /* Place.swift */; };
+		1380D76024586C2B0007EBEA /* PlaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1380D75F24586C2B0007EBEA /* PlaceManager.swift */; };
+		1397BAF22455A338005B2C75 /* URLRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1397BAF12455A338005B2C75 /* URLRequester.swift */; };
+		1397BAF92455B212005B2C75 /* ObjectRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1397BAF82455B212005B2C75 /* ObjectRequester.swift */; };
+		13A56C53245038E000584BDD /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A56C52245038E000584BDD /* UITextFieldExtension.swift */; };
+		13A631B924616835000C9D54 /* EditPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A631B824616835000C9D54 /* EditPlaceViewController.swift */; };
+		13B392A7246001F1002FDA9F /* AppleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B392A6246001F1002FDA9F /* AppleMapsViewController.swift */; };
+		13B392A92460024A002FDA9F /* YandexMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B392A82460024A002FDA9F /* YandexMapsViewController.swift */; };
+		13B392AC24606343002FDA9F /* PlaceImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B392AB24606343002FDA9F /* PlaceImageDetailViewController.swift */; };
+		13BAE95024582E4600BE7C99 /* APIEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BAE94F24582E4600BE7C99 /* APIEntity.swift */; };
+		13BAE95224582F1900BE7C99 /* APIEntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BAE95124582F1900BE7C99 /* APIEntityManager.swift */; };
+		13CA803A24502B12006ED889 /* UIAlertControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CA803924502B12006ED889 /* UIAlertControllerBuilder.swift */; };
+		13FC27B02450431A00EB5A0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13FC27AF2450431A00EB5A0D /* Main.storyboard */; };
+		13FC27B32451A64400EB5A0D /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC27B22451A64400EB5A0D /* Globals.swift */; };
+		13FC27B62451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FC27B52451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift */; };
+		A215AC73D2C9C936552AB672 /* Pods_Pinny_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240C9199E2E44AFA0E874D99 /* Pods_Pinny_iOS.framework */; };
+		C81470ACA755AFA6A565BCDF /* UserMapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147AC8743044AE37E1CB69 /* UserMapMarker.swift */; };
+		C81470C3736A8D621BA95722 /* PinGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814741F2AE09DDE317FF693 /* PinGetter.swift */; };
+		C81470D13BA9F6D2602C4546 /* RequestStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814754DED8A989A2D4C7BF1 /* RequestStats.swift */; };
+		C81470E15546FDC38F649624 /* PlaceImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814791DC2C420C853A17CA2 /* PlaceImagesViewController.swift */; };
+		C81471A544A116E01B8AFFB4 /* RequestStatsGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81477CDFD77B1BDE6FF0C70 /* RequestStatsGetter.swift */; };
+		C8147243879F63CB2EDC400D /* PlacesSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814778AE7FED4F526723CDE /* PlacesSearchViewController.swift */; };
+		C814725946DC2AC2AEF17C8C /* PlaceStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81473708117BB241281D99A /* PlaceStats.swift */; };
+		C814727AF23E4AB3D69E90B0 /* PlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81477A0D87BAF2AB2A18BF7 /* PlaceDetailViewController.swift */; };
+		C81472B74C83A98BCBC34485 /* AvatarChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147AD93BB7C01AFBD8DC17 /* AvatarChanger.swift */; };
+		C814734AD2572D53F165D0B7 /* RatingStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81472B33FF8A0BB747DEA80 /* RatingStats.swift */; };
+		C81473D038E53B3AE3B59851 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81477C2767D580A9A1959A9 /* LogInViewController.swift */; };
+		C81473E2FD6555A69C4C6AF3 /* PlaceMapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814762EFDF2831D80DFDCBA /* PlaceMapMarker.swift */; };
+		C81473F6E7639465FF39DAA9 /* RatingStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814778BFE44C32BE396A6D6 /* RatingStatsManager.swift */; };
+		C8147460BBD75D1736BE5F6A /* AchievementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814730550786F9A5A3C12BB /* AchievementManager.swift */; };
+		C814749080E0C4CCC889837A /* AchievementGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81475A99B120015B1632389 /* AchievementGetter.swift */; };
+		C814749C574F8F78056982E1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147615F6E54DA71041C439 /* SignUpViewController.swift */; };
+		C81474C1AE6B726CD254984F /* PlacesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814761E5BE2044DD863398E /* PlacesListViewController.swift */; };
+		C81474E4ECEC1EB015ABEA5A /* PinListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81476BCFDC16DF7BDCC06BB /* PinListViewController.swift */; };
+		C81474ED912BA6952EE15553 /* ImageFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814784E67007B36472C68C2 /* ImageFile.swift */; };
+		C8147571553134AC0778F237 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81470FB07BA842AD8D6F0D9 /* ProfileManager.swift */; };
+		C8147598D001D68528A02177 /* PinPurchaseStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81475A7014A653B886AD9A9 /* PinPurchaseStats.swift */; };
+		C81475FA5787DFB2B778A1AC /* AcceptStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147DB25D7E36559FF7A847 /* AcceptStatsManager.swift */; };
+		C814763A250BBCF855639541 /* GatewayRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147A6D2A30BC5C665DD28E /* GatewayRequester.swift */; };
+		C8147645427479ACCE94EED4 /* AcceptStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147996E7FD2BDD46A09F4B /* AcceptStats.swift */; };
+		C814767D4E09C4CD1CB143DF /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81470BE36D03BC2B9E80F62 /* Notifications.swift */; };
+		C81476A4FE18747510421F66 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814794F0599A6145C25CD83 /* ChangePasswordViewController.swift */; };
+		C81477D13A36E8F7754FFF37 /* PinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147064CE86025DECCC0F1C /* PinManager.swift */; };
+		C81478A6AF607C850B84CF49 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81475BAEF6641B1CA983BDD /* Pin.swift */; };
+		C814791A6E2A827FAB2E1C38 /* AchievementStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81479E7138A6B17767CCD50 /* AchievementStatsManager.swift */; };
+		C814795B5881D2014FD29831 /* ProfileGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147C0091241018B5D40A3D /* ProfileGetter.swift */; };
+		C81479AE15A8D0B8BD89DFE2 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147C90DE3221C40FDFDEAB /* Achievement.swift */; };
+		C8147A9B613DEC89C7F6F055 /* PinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147FFB77182E11B2DEDF15 /* PinDetailViewController.swift */; };
+		C8147B461CFF789DA5C37114 /* PinPurchaseStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814766E020DE99F8E6F576E /* PinPurchaseStatsManager.swift */; };
+		C8147BD62E780C067D660FD7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147B4EBB54D2A25B07C305 /* Profile.swift */; };
+		C8147BEB3E0CB641E6E5CF65 /* AchievementStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147EE381B1FE198E5CA587 /* AchievementStats.swift */; };
+		C8147C550C3B2F95F16EBF52 /* AchievementDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147322DEA4532DE4C1AF37 /* AchievementDetailViewController.swift */; };
+		C8147CD5F690C4E1CCA7EB62 /* PlaceGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147B4BA888A88B24536A2F /* PlaceGetter.swift */; };
+		C8147D3513E5FADFA3FEF910 /* ImageGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814795D1494161ED3B20346 /* ImageGetter.swift */; };
+		C8147D52679C7E42B31747E2 /* AchievementListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147108707280032830E3C3 /* AchievementListViewController.swift */; };
+		C8147D84AADEA15C2A24CEDF /* PlaceStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147630BD2853475FA224B3 /* PlaceStatsManager.swift */; };
+		C8147E07E4030801D1F60782 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81475AC0CBC8C0FAD7C9203 /* MKMapViewExtension.swift */; };
+		C8147E142052CCE5FA2EC7C4 /* RequestStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8147B932298EA36335B6D75 /* RequestStatsManager.swift */; };
+		C8147E7ECF6F7DCF0B28E819 /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81471084A4E9CFF67E33B98 /* ImageFileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,18 +106,98 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		130522A9245D66EB000C02C9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		130522AE245D6947000C02C9 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		130522B0245D6959000C02C9 /* AuthRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequester.swift; sourceTree = "<group>"; };
+		130522B3245D7B19000C02C9 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		1306622124608C980031CB9B /* CreatePlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaceViewController.swift; sourceTree = "<group>"; };
+		13225252246072D900C56C73 /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		132252542460731E00C56C73 /* StatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewCell.swift; sourceTree = "<group>"; };
 		1327111E24334D82009005C0 /* Pinny-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pinny-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1327112124334D82009005C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1327112324334D82009005C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1327112524334D82009005C0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1327112824334D82009005C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1327112B24334D82009005C0 /* Pinny_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pinny_iOS.xcdatamodel; sourceTree = "<group>"; };
+		1327112824334D82009005C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LogInSignUp.storyboard; sourceTree = "<group>"; };
 		1327112D24334D83009005C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1327113024334D83009005C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1327113224334D83009005C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1327113C24334EBE009005C0 /* Pinny-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pinny-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1327113E24334EBE009005C0 /* Pinny_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pinny_iOSTests.swift; sourceTree = "<group>"; };
 		1327114024334EBE009005C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1338069A24389E540014A600 /* YandexAPIKey */ = {isa = PBXFileReference; lastKnownFileType = text; path = YandexAPIKey; sourceTree = "<group>"; };
+		134356B1244EFB6000026355 /* StarsRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsRatingView.swift; sourceTree = "<group>"; };
+		134356B7244EFF0800026355 /* AcceptButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptButtonView.swift; sourceTree = "<group>"; };
+		134356B9245029EF00026355 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
+		1365DD97245ECA4D00481B9D /* PlaceImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		1365DD9B245EF20700481B9D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1365DD9F245F0BE100481B9D /* PinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinTableViewCell.swift; sourceTree = "<group>"; };
+		1365DDA1245F0BEE00481B9D /* AchievementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementTableViewCell.swift; sourceTree = "<group>"; };
+		1380D7472458583C0007EBEA /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		1380D7492458594A0007EBEA /* RatingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingManager.swift; sourceTree = "<group>"; };
+		1380D751245861D00007EBEA /* Accept.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accept.swift; sourceTree = "<group>"; };
+		1380D753245863EE0007EBEA /* AcceptManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptManager.swift; sourceTree = "<group>"; };
+		1380D757245867780007EBEA /* PlaceImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImage.swift; sourceTree = "<group>"; };
+		1380D759245867E80007EBEA /* PlaceImagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImagesManager.swift; sourceTree = "<group>"; };
+		1380D75D24586BDA0007EBEA /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		1380D75F24586C2B0007EBEA /* PlaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceManager.swift; sourceTree = "<group>"; };
+		1397BAF12455A338005B2C75 /* URLRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequester.swift; sourceTree = "<group>"; };
+		1397BAF82455B212005B2C75 /* ObjectRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectRequester.swift; sourceTree = "<group>"; };
+		13A56C52245038E000584BDD /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
+		13A631B824616835000C9D54 /* EditPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPlaceViewController.swift; sourceTree = "<group>"; };
+		13B392A6246001F1002FDA9F /* AppleMapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMapsViewController.swift; sourceTree = "<group>"; };
+		13B392A82460024A002FDA9F /* YandexMapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexMapsViewController.swift; sourceTree = "<group>"; };
+		13B392AB24606343002FDA9F /* PlaceImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImageDetailViewController.swift; sourceTree = "<group>"; };
+		13BAE94F24582E4600BE7C99 /* APIEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEntity.swift; sourceTree = "<group>"; };
+		13BAE95124582F1900BE7C99 /* APIEntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEntityManager.swift; sourceTree = "<group>"; };
+		13CA803924502B12006ED889 /* UIAlertControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerBuilder.swift; sourceTree = "<group>"; };
+		13FC27AF2450431A00EB5A0D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		13FC27B22451A64400EB5A0D /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		13FC27B52451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSearchTableViewCell.swift; sourceTree = "<group>"; };
+		240C9199E2E44AFA0E874D99 /* Pods_Pinny_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pinny_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DAC37D220E3F42D78F09681 /* Pods-Pinny-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinny-iOS.release.xcconfig"; path = "Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		8EC6DC99C46AC042FE467DAD /* Pods-Pinny-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinny-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		C8147064CE86025DECCC0F1C /* PinManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinManager.swift; sourceTree = "<group>"; };
+		C81470BE36D03BC2B9E80F62 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		C81470FB07BA842AD8D6F0D9 /* ProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
+		C81471084A4E9CFF67E33B98 /* ImageFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
+		C8147108707280032830E3C3 /* AchievementListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementListViewController.swift; sourceTree = "<group>"; };
+		C81472B33FF8A0BB747DEA80 /* RatingStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingStats.swift; sourceTree = "<group>"; };
+		C814730550786F9A5A3C12BB /* AchievementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementManager.swift; sourceTree = "<group>"; };
+		C8147322DEA4532DE4C1AF37 /* AchievementDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementDetailViewController.swift; sourceTree = "<group>"; };
+		C81473708117BB241281D99A /* PlaceStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceStats.swift; sourceTree = "<group>"; };
+		C814741F2AE09DDE317FF693 /* PinGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinGetter.swift; sourceTree = "<group>"; };
+		C814754DED8A989A2D4C7BF1 /* RequestStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestStats.swift; sourceTree = "<group>"; };
+		C81475A7014A653B886AD9A9 /* PinPurchaseStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinPurchaseStats.swift; sourceTree = "<group>"; };
+		C81475A99B120015B1632389 /* AchievementGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementGetter.swift; sourceTree = "<group>"; };
+		C81475AC0CBC8C0FAD7C9203 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
+		C81475BAEF6641B1CA983BDD /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		C8147615F6E54DA71041C439 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		C814761E5BE2044DD863398E /* PlacesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesListViewController.swift; sourceTree = "<group>"; };
+		C814762EFDF2831D80DFDCBA /* PlaceMapMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceMapMarker.swift; sourceTree = "<group>"; };
+		C8147630BD2853475FA224B3 /* PlaceStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceStatsManager.swift; sourceTree = "<group>"; };
+		C814766E020DE99F8E6F576E /* PinPurchaseStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinPurchaseStatsManager.swift; sourceTree = "<group>"; };
+		C81476BCFDC16DF7BDCC06BB /* PinListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinListViewController.swift; sourceTree = "<group>"; };
+		C814778AE7FED4F526723CDE /* PlacesSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesSearchViewController.swift; sourceTree = "<group>"; };
+		C814778BFE44C32BE396A6D6 /* RatingStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingStatsManager.swift; sourceTree = "<group>"; };
+		C81477A0D87BAF2AB2A18BF7 /* PlaceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetailViewController.swift; sourceTree = "<group>"; };
+		C81477C2767D580A9A1959A9 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		C81477CDFD77B1BDE6FF0C70 /* RequestStatsGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestStatsGetter.swift; sourceTree = "<group>"; };
+		C814784E67007B36472C68C2 /* ImageFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFile.swift; sourceTree = "<group>"; };
+		C814791DC2C420C853A17CA2 /* PlaceImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceImagesViewController.swift; sourceTree = "<group>"; };
+		C814794F0599A6145C25CD83 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		C814795D1494161ED3B20346 /* ImageGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGetter.swift; sourceTree = "<group>"; };
+		C8147996E7FD2BDD46A09F4B /* AcceptStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptStats.swift; sourceTree = "<group>"; };
+		C81479E7138A6B17767CCD50 /* AchievementStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementStatsManager.swift; sourceTree = "<group>"; };
+		C8147A6D2A30BC5C665DD28E /* GatewayRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GatewayRequester.swift; sourceTree = "<group>"; };
+		C8147AC8743044AE37E1CB69 /* UserMapMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMapMarker.swift; sourceTree = "<group>"; };
+		C8147AD93BB7C01AFBD8DC17 /* AvatarChanger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarChanger.swift; sourceTree = "<group>"; };
+		C8147B4BA888A88B24536A2F /* PlaceGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceGetter.swift; sourceTree = "<group>"; };
+		C8147B4EBB54D2A25B07C305 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		C8147B932298EA36335B6D75 /* RequestStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestStatsManager.swift; sourceTree = "<group>"; };
+		C8147C0091241018B5D40A3D /* ProfileGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileGetter.swift; sourceTree = "<group>"; };
+		C8147C90DE3221C40FDFDEAB /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
+		C8147DB25D7E36559FF7A847 /* AcceptStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptStatsManager.swift; sourceTree = "<group>"; };
+		C8147EE381B1FE198E5CA587 /* AchievementStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementStats.swift; sourceTree = "<group>"; };
+		C8147FFB77182E11B2DEDF15 /* PinDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +205,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A215AC73D2C9C936552AB672 /* Pods_Pinny_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +219,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		130522A8245D66E1000C02C9 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				130522A9245D66EB000C02C9 /* User.swift */,
+				C8147B4EBB54D2A25B07C305 /* Profile.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		130522AD245D693E000C02C9 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				130522AE245D6947000C02C9 /* Token.swift */,
+				130522B0245D6959000C02C9 /* AuthRequester.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		130522B2245D7B0A000C02C9 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				130522B3245D7B19000C02C9 /* UserManager.swift */,
+				C81470FB07BA842AD8D6F0D9 /* ProfileManager.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		1327111524334D82009005C0 = {
 			isa = PBXGroup;
 			children = (
 				1327112024334D82009005C0 /* Pinny-iOS */,
 				1327113D24334EBE009005C0 /* Pinny-iOSTests */,
 				1327111F24334D82009005C0 /* Products */,
+				8B71001511E1312B7A3DACC5 /* Pods */,
+				65A90629605D3ADB57034631 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,14 +269,19 @@
 		1327112024334D82009005C0 /* Pinny-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				130522AD245D693E000C02C9 /* Auth */,
+				1397BAF32455B15D005B2C75 /* Network */,
+				134356BB245029F800026355 /* Extensions */,
+				1338069924389E3D0014A600 /* Utils */,
+				1327114924335CAE009005C0 /* Views */,
+				1327114824335C93009005C0 /* Services */,
+				1327114724335C7F009005C0 /* Models */,
+				1327114624335C75009005C0 /* VCs */,
+				13FC27B12450444900EB5A0D /* Storyboards */,
 				1327112124334D82009005C0 /* AppDelegate.swift */,
 				1327112324334D82009005C0 /* SceneDelegate.swift */,
-				1327112524334D82009005C0 /* ViewController.swift */,
-				1327112724334D82009005C0 /* Main.storyboard */,
 				1327112D24334D83009005C0 /* Assets.xcassets */,
-				1327112F24334D83009005C0 /* LaunchScreen.storyboard */,
 				1327113224334D83009005C0 /* Info.plist */,
-				1327112A24334D82009005C0 /* Pinny_iOS.xcdatamodeld */,
 			);
 			path = "Pinny-iOS";
 			sourceTree = "<group>";
@@ -102,6 +295,308 @@
 			path = "Pinny-iOSTests";
 			sourceTree = "<group>";
 		};
+		1327114624335C75009005C0 /* VCs */ = {
+			isa = PBXGroup;
+			children = (
+				1365DD9B245EF20700481B9D /* ProfileViewController.swift */,
+				13225252246072D900C56C73 /* StatsViewController.swift */,
+				C8147C0B8A3E5E0916D24CC4 /* Place */,
+				C8147955AF26E77847020050 /* Pin */,
+				C81470B30CE50C15200DB487 /* Achievement */,
+				C8147B4F5BD860C63CD13357 /* LogInSignUp */,
+			);
+			path = VCs;
+			sourceTree = "<group>";
+		};
+		1327114724335C7F009005C0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				13BAE94E24582E3200BE7C99 /* Entity */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1327114824335C93009005C0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				13BAE95324582F1D00BE7C99 /* Managers */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		1327114924335CAE009005C0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				134356B1244EFB6000026355 /* StarsRatingView.swift */,
+				134356B7244EFF0800026355 /* AcceptButtonView.swift */,
+				1365DD96245ECA2D00481B9D /* CollectionViewCells */,
+				13FC27B42451A6B700EB5A0D /* TableViewCells */,
+				C8147E5809247CFDE3D6D882 /* Map markers */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1338069924389E3D0014A600 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1338069A24389E540014A600 /* YandexAPIKey */,
+				13CA803924502B12006ED889 /* UIAlertControllerBuilder.swift */,
+				13FC27B22451A64400EB5A0D /* Globals.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		134356BB245029F800026355 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				134356B9245029EF00026355 /* UIViewControllerExt.swift */,
+				13A56C52245038E000584BDD /* UITextFieldExtension.swift */,
+				C81475AC0CBC8C0FAD7C9203 /* MKMapViewExtension.swift */,
+				C81470BE36D03BC2B9E80F62 /* Notifications.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		135D9300245D64D100D6FAE0 /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				1380D7472458583C0007EBEA /* Rating.swift */,
+				1380D751245861D00007EBEA /* Accept.swift */,
+				1380D757245867780007EBEA /* PlaceImage.swift */,
+				1380D75D24586BDA0007EBEA /* Place.swift */,
+			);
+			path = Place;
+			sourceTree = "<group>";
+		};
+		135D9305245D658500D6FAE0 /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				1380D7492458594A0007EBEA /* RatingManager.swift */,
+				1380D753245863EE0007EBEA /* AcceptManager.swift */,
+				1380D759245867E80007EBEA /* PlaceImagesManager.swift */,
+				1380D75F24586C2B0007EBEA /* PlaceManager.swift */,
+			);
+			path = Place;
+			sourceTree = "<group>";
+		};
+		1365DD96245ECA2D00481B9D /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				1365DD97245ECA4D00481B9D /* PlaceImageCollectionViewCell.swift */,
+			);
+			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
+		1397BAF32455B15D005B2C75 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1397BAF12455A338005B2C75 /* URLRequester.swift */,
+				1397BAF82455B212005B2C75 /* ObjectRequester.swift */,
+				C8147ED827244A39A2392355 /* ObjectGetters */,
+				C8147A6D2A30BC5C665DD28E /* GatewayRequester.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		13B392A5246001E2002FDA9F /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				13B392A6246001F1002FDA9F /* AppleMapsViewController.swift */,
+				13B392A82460024A002FDA9F /* YandexMapsViewController.swift */,
+			);
+			path = Maps;
+			sourceTree = "<group>";
+		};
+		13B392AA24606328002FDA9F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C814791DC2C420C853A17CA2 /* PlaceImagesViewController.swift */,
+				13B392AB24606343002FDA9F /* PlaceImageDetailViewController.swift */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		13BAE94E24582E3200BE7C99 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				13BAE94F24582E4600BE7C99 /* APIEntity.swift */,
+				130522A8245D66E1000C02C9 /* User */,
+				135D9300245D64D100D6FAE0 /* Place */,
+				C8147A82DB422EFEE6203C43 /* Awards */,
+				C8147394E71BBC83AB63987D /* Stats */,
+				C814784E67007B36472C68C2 /* ImageFile.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		13BAE95324582F1D00BE7C99 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				13BAE95124582F1900BE7C99 /* APIEntityManager.swift */,
+				130522B2245D7B0A000C02C9 /* User */,
+				135D9305245D658500D6FAE0 /* Place */,
+				C8147F2F01C1649EB7E15245 /* Awards */,
+				C8147176A0A1D813DA1A710A /* Stats */,
+				C8147631DD881B99E5F080CE /* Media */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		13FC27B12450444900EB5A0D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				13FC27AF2450431A00EB5A0D /* Main.storyboard */,
+				1327112F24334D83009005C0 /* LaunchScreen.storyboard */,
+				1327112724334D82009005C0 /* LogInSignUp.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		13FC27B42451A6B700EB5A0D /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				13FC27B52451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift */,
+				1365DD9F245F0BE100481B9D /* PinTableViewCell.swift */,
+				1365DDA1245F0BEE00481B9D /* AchievementTableViewCell.swift */,
+				132252542460731E00C56C73 /* StatsTableViewCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		65A90629605D3ADB57034631 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				240C9199E2E44AFA0E874D99 /* Pods_Pinny_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8B71001511E1312B7A3DACC5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8EC6DC99C46AC042FE467DAD /* Pods-Pinny-iOS.debug.xcconfig */,
+				6DAC37D220E3F42D78F09681 /* Pods-Pinny-iOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C81470B30CE50C15200DB487 /* Achievement */ = {
+			isa = PBXGroup;
+			children = (
+				C8147108707280032830E3C3 /* AchievementListViewController.swift */,
+				C8147322DEA4532DE4C1AF37 /* AchievementDetailViewController.swift */,
+			);
+			path = Achievement;
+			sourceTree = "<group>";
+		};
+		C8147176A0A1D813DA1A710A /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				C8147B932298EA36335B6D75 /* RequestStatsManager.swift */,
+				C8147630BD2853475FA224B3 /* PlaceStatsManager.swift */,
+				C8147DB25D7E36559FF7A847 /* AcceptStatsManager.swift */,
+				C814778BFE44C32BE396A6D6 /* RatingStatsManager.swift */,
+				C81479E7138A6B17767CCD50 /* AchievementStatsManager.swift */,
+				C814766E020DE99F8E6F576E /* PinPurchaseStatsManager.swift */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		C8147394E71BBC83AB63987D /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				C814754DED8A989A2D4C7BF1 /* RequestStats.swift */,
+				C81473708117BB241281D99A /* PlaceStats.swift */,
+				C8147996E7FD2BDD46A09F4B /* AcceptStats.swift */,
+				C81472B33FF8A0BB747DEA80 /* RatingStats.swift */,
+				C8147EE381B1FE198E5CA587 /* AchievementStats.swift */,
+				C81475A7014A653B886AD9A9 /* PinPurchaseStats.swift */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		C8147631DD881B99E5F080CE /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				C81471084A4E9CFF67E33B98 /* ImageFileManager.swift */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
+		C8147955AF26E77847020050 /* Pin */ = {
+			isa = PBXGroup;
+			children = (
+				C81476BCFDC16DF7BDCC06BB /* PinListViewController.swift */,
+				C8147FFB77182E11B2DEDF15 /* PinDetailViewController.swift */,
+			);
+			path = Pin;
+			sourceTree = "<group>";
+		};
+		C8147A82DB422EFEE6203C43 /* Awards */ = {
+			isa = PBXGroup;
+			children = (
+				C81475BAEF6641B1CA983BDD /* Pin.swift */,
+				C8147C90DE3221C40FDFDEAB /* Achievement.swift */,
+			);
+			path = Awards;
+			sourceTree = "<group>";
+		};
+		C8147B4F5BD860C63CD13357 /* LogInSignUp */ = {
+			isa = PBXGroup;
+			children = (
+				C8147615F6E54DA71041C439 /* SignUpViewController.swift */,
+				C814794F0599A6145C25CD83 /* ChangePasswordViewController.swift */,
+				C81477C2767D580A9A1959A9 /* LogInViewController.swift */,
+			);
+			path = LogInSignUp;
+			sourceTree = "<group>";
+		};
+		C8147C0B8A3E5E0916D24CC4 /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				13B392AA24606328002FDA9F /* Images */,
+				13B392A5246001E2002FDA9F /* Maps */,
+				C81477A0D87BAF2AB2A18BF7 /* PlaceDetailViewController.swift */,
+				C814761E5BE2044DD863398E /* PlacesListViewController.swift */,
+				C814778AE7FED4F526723CDE /* PlacesSearchViewController.swift */,
+				1306622124608C980031CB9B /* CreatePlaceViewController.swift */,
+				13A631B824616835000C9D54 /* EditPlaceViewController.swift */,
+			);
+			path = Place;
+			sourceTree = "<group>";
+		};
+		C8147E5809247CFDE3D6D882 /* Map markers */ = {
+			isa = PBXGroup;
+			children = (
+				C814762EFDF2831D80DFDCBA /* PlaceMapMarker.swift */,
+				C8147AC8743044AE37E1CB69 /* UserMapMarker.swift */,
+			);
+			path = "Map markers";
+			sourceTree = "<group>";
+		};
+		C8147ED827244A39A2392355 /* ObjectGetters */ = {
+			isa = PBXGroup;
+			children = (
+				C814795D1494161ED3B20346 /* ImageGetter.swift */,
+				C814741F2AE09DDE317FF693 /* PinGetter.swift */,
+				C81475A99B120015B1632389 /* AchievementGetter.swift */,
+				C8147C0091241018B5D40A3D /* ProfileGetter.swift */,
+				C8147B4BA888A88B24536A2F /* PlaceGetter.swift */,
+				C81477CDFD77B1BDE6FF0C70 /* RequestStatsGetter.swift */,
+				C8147AD93BB7C01AFBD8DC17 /* AvatarChanger.swift */,
+			);
+			path = ObjectGetters;
+			sourceTree = "<group>";
+		};
+		C8147F2F01C1649EB7E15245 /* Awards */ = {
+			isa = PBXGroup;
+			children = (
+				C8147064CE86025DECCC0F1C /* PinManager.swift */,
+				C814730550786F9A5A3C12BB /* AchievementManager.swift */,
+			);
+			path = Awards;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,15 +604,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1327113524334D83009005C0 /* Build configuration list for PBXNativeTarget "Pinny-iOS" */;
 			buildPhases = (
+				CB3935214FFA2EC5AB63C538 /* [CP] Check Pods Manifest.lock */,
 				1327111A24334D82009005C0 /* Sources */,
 				1327111B24334D82009005C0 /* Frameworks */,
 				1327111C24334D82009005C0 /* Resources */,
+				9F355B2110FC06062E956BA1 /* [CP] Copy Pods Resources */,
+				63159AB92D61FBD69E4821AF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Pinny-iOS";
+			packageProductDependencies = (
+			);
 			productName = "Pinny-iOS";
 			productReference = 1327111E24334D82009005C0 /* Pinny-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -168,6 +668,8 @@
 				Base,
 			);
 			mainGroup = 1327111524334D82009005C0;
+			packageReferences = (
+			);
 			productRefGroup = 1327111F24334D82009005C0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -183,9 +685,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1338069B24389E540014A600 /* YandexAPIKey in Resources */,
 				1327113124334D83009005C0 /* LaunchScreen.storyboard in Resources */,
+				13FC27B02450431A00EB5A0D /* Main.storyboard in Resources */,
 				1327112E24334D83009005C0 /* Assets.xcassets in Resources */,
-				1327112924334D82009005C0 /* Main.storyboard in Resources */,
+				1327112924334D82009005C0 /* LogInSignUp.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,15 +702,149 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		63159AB92D61FBD69E4821AF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F355B2110FC06062E956BA1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pinny-iOS/Pods-Pinny-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CB3935214FFA2EC5AB63C538 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Pinny-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1327111A24334D82009005C0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1327112624334D82009005C0 /* ViewController.swift in Sources */,
+				1380D754245863EE0007EBEA /* AcceptManager.swift in Sources */,
+				134356B2244EFB6000026355 /* StarsRatingView.swift in Sources */,
+				134356BA245029EF00026355 /* UIViewControllerExt.swift in Sources */,
+				1380D74A2458594A0007EBEA /* RatingManager.swift in Sources */,
+				130522AA245D66EB000C02C9 /* User.swift in Sources */,
+				1365DD98245ECA4D00481B9D /* PlaceImageCollectionViewCell.swift in Sources */,
+				1397BAF92455B212005B2C75 /* ObjectRequester.swift in Sources */,
+				13BAE95024582E4600BE7C99 /* APIEntity.swift in Sources */,
+				130522B4245D7B19000C02C9 /* UserManager.swift in Sources */,
+				13CA803A24502B12006ED889 /* UIAlertControllerBuilder.swift in Sources */,
+				1380D752245861D00007EBEA /* Accept.swift in Sources */,
+				1380D75E24586BDA0007EBEA /* Place.swift in Sources */,
 				1327112224334D82009005C0 /* AppDelegate.swift in Sources */,
-				1327112C24334D82009005C0 /* Pinny_iOS.xcdatamodeld in Sources */,
+				1380D76024586C2B0007EBEA /* PlaceManager.swift in Sources */,
+				130522AF245D6947000C02C9 /* Token.swift in Sources */,
+				1380D758245867780007EBEA /* PlaceImage.swift in Sources */,
+				13B392A92460024A002FDA9F /* YandexMapsViewController.swift in Sources */,
+				13B392AC24606343002FDA9F /* PlaceImageDetailViewController.swift in Sources */,
+				13A56C53245038E000584BDD /* UITextFieldExtension.swift in Sources */,
+				13FC27B32451A64400EB5A0D /* Globals.swift in Sources */,
+				1397BAF22455A338005B2C75 /* URLRequester.swift in Sources */,
+				130522B1245D6959000C02C9 /* AuthRequester.swift in Sources */,
+				1380D7482458583C0007EBEA /* Rating.swift in Sources */,
 				1327112424334D82009005C0 /* SceneDelegate.swift in Sources */,
+				13FC27B62451A6DE00EB5A0D /* PlaceSearchTableViewCell.swift in Sources */,
+				13BAE95224582F1900BE7C99 /* APIEntityManager.swift in Sources */,
+				1380D75A245867E80007EBEA /* PlaceImagesManager.swift in Sources */,
+				134356B8244EFF0800026355 /* AcceptButtonView.swift in Sources */,
+				C8147BD62E780C067D660FD7 /* Profile.swift in Sources */,
+				1365DD9C245EF20700481B9D /* ProfileViewController.swift in Sources */,
+				13A631B924616835000C9D54 /* EditPlaceViewController.swift in Sources */,
+				C8147571553134AC0778F237 /* ProfileManager.swift in Sources */,
+				C81478A6AF607C850B84CF49 /* Pin.swift in Sources */,
+				1365DDA0245F0BE100481B9D /* PinTableViewCell.swift in Sources */,
+				C81477D13A36E8F7754FFF37 /* PinManager.swift in Sources */,
+				1306622224608C980031CB9B /* CreatePlaceViewController.swift in Sources */,
+				C81479AE15A8D0B8BD89DFE2 /* Achievement.swift in Sources */,
+				C8147460BBD75D1736BE5F6A /* AchievementManager.swift in Sources */,
+				C81470D13BA9F6D2602C4546 /* RequestStats.swift in Sources */,
+				C8147E142052CCE5FA2EC7C4 /* RequestStatsManager.swift in Sources */,
+				C814725946DC2AC2AEF17C8C /* PlaceStats.swift in Sources */,
+				C8147D84AADEA15C2A24CEDF /* PlaceStatsManager.swift in Sources */,
+				1365DDA2245F0BEE00481B9D /* AchievementTableViewCell.swift in Sources */,
+				C8147645427479ACCE94EED4 /* AcceptStats.swift in Sources */,
+				C81475FA5787DFB2B778A1AC /* AcceptStatsManager.swift in Sources */,
+				C814734AD2572D53F165D0B7 /* RatingStats.swift in Sources */,
+				C81473F6E7639465FF39DAA9 /* RatingStatsManager.swift in Sources */,
+				C814791A6E2A827FAB2E1C38 /* AchievementStatsManager.swift in Sources */,
+				C8147BEB3E0CB641E6E5CF65 /* AchievementStats.swift in Sources */,
+				C8147B461CFF789DA5C37114 /* PinPurchaseStatsManager.swift in Sources */,
+				C8147598D001D68528A02177 /* PinPurchaseStats.swift in Sources */,
+				C8147E7ECF6F7DCF0B28E819 /* ImageFileManager.swift in Sources */,
+				13225253246072D900C56C73 /* StatsViewController.swift in Sources */,
+				C81474ED912BA6952EE15553 /* ImageFile.swift in Sources */,
+				C814727AF23E4AB3D69E90B0 /* PlaceDetailViewController.swift in Sources */,
+				C81474C1AE6B726CD254984F /* PlacesListViewController.swift in Sources */,
+				C8147243879F63CB2EDC400D /* PlacesSearchViewController.swift in Sources */,
+				C81470E15546FDC38F649624 /* PlaceImagesViewController.swift in Sources */,
+				C81474E4ECEC1EB015ABEA5A /* PinListViewController.swift in Sources */,
+				13B392A7246001F1002FDA9F /* AppleMapsViewController.swift in Sources */,
+				C8147A9B613DEC89C7F6F055 /* PinDetailViewController.swift in Sources */,
+				C8147D52679C7E42B31747E2 /* AchievementListViewController.swift in Sources */,
+				C8147C550C3B2F95F16EBF52 /* AchievementDetailViewController.swift in Sources */,
+				C814749C574F8F78056982E1 /* SignUpViewController.swift in Sources */,
+				C81476A4FE18747510421F66 /* ChangePasswordViewController.swift in Sources */,
+				C81473D038E53B3AE3B59851 /* LogInViewController.swift in Sources */,
+				C8147E07E4030801D1F60782 /* MKMapViewExtension.swift in Sources */,
+				C81473E2FD6555A69C4C6AF3 /* PlaceMapMarker.swift in Sources */,
+				C81470ACA755AFA6A565BCDF /* UserMapMarker.swift in Sources */,
+				C8147D3513E5FADFA3FEF910 /* ImageGetter.swift in Sources */,
+				C81470C3736A8D621BA95722 /* PinGetter.swift in Sources */,
+				132252552460731E00C56C73 /* StatsTableViewCell.swift in Sources */,
+				C814749080E0C4CCC889837A /* AchievementGetter.swift in Sources */,
+				C814795B5881D2014FD29831 /* ProfileGetter.swift in Sources */,
+				C8147CD5F690C4E1CCA7EB62 /* PlaceGetter.swift in Sources */,
+				C814767D4E09C4CD1CB143DF /* Notifications.swift in Sources */,
+				C81471A544A116E01B8AFFB4 /* RequestStatsGetter.swift in Sources */,
+				C814763A250BBCF855639541 /* GatewayRequester.swift in Sources */,
+				C81472B74C83A98BCBC34485 /* AvatarChanger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,12 +867,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1327112724334D82009005C0 /* Main.storyboard */ = {
+		1327112724334D82009005C0 /* LogInSignUp.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				1327112824334D82009005C0 /* Base */,
 			);
-			name = Main.storyboard;
+			name = LogInSignUp.storyboard;
 			sourceTree = "<group>";
 		};
 		1327112F24334D83009005C0 /* LaunchScreen.storyboard */ = {
@@ -364,6 +1002,7 @@
 		};
 		1327113624334D83009005C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EC6DC99C46AC042FE467DAD /* Pods-Pinny-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -382,6 +1021,7 @@
 		};
 		1327113724334D83009005C0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DAC37D220E3F42D78F09681 /* Pods-Pinny-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -469,19 +1109,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		1327112A24334D82009005C0 /* Pinny_iOS.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				1327112B24334D82009005C0 /* Pinny_iOS.xcdatamodel */,
-			);
-			currentVersion = 1327112B24334D82009005C0 /* Pinny_iOS.xcdatamodel */;
-			path = Pinny_iOS.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 1327111624334D82009005C0 /* Project object */;
 }
