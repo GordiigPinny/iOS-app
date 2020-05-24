@@ -276,6 +276,7 @@ extension PlaceDetailViewController: AcceptButtonDelegate {
             self.presentDefaultOKAlert(title: "Added accept", msg: "But didn't update profile")
             return
         }
+        Profile.manager.currentProfile = profile!
     }
 
     private func deleteAccept(_ place: Place) {
@@ -310,10 +311,17 @@ extension PlaceDetailViewController: AcceptButtonDelegate {
         acceptButtonVew.isAccepted = false
         place.isAcceptedByMe = false
         self.acceptTypeLabel.text = "\(place.acceptType!)"
-        if profile == nil {
-            self.presentDefaultOKAlert(title: "Deleted accept", msg: "But didn't update profile")
-            return
+//        if profile == nil {
+//            self.presentDefaultOKAlert(title: "Deleted accept", msg: "But didn't update profile")
+//            return
+//        }
+        let p = Profile.manager.currentProfile!
+        p.money += 100
+        p.rating += 50
+        if !p.achievementsId.contains(5) {
+            p.achievementsId.append(5)
         }
+        Profile.manager.currentProfile = p
     }
 
 }

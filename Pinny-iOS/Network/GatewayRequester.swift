@@ -115,13 +115,14 @@ class GatewayRequester {
         let requester = URLRequester(host: Hosts.gatewayHostUrl)
         let ans = requester.delete(urlPostfix: "gateway/delete_acceptance/\(acceptId)/")
             .tryMap { data, response -> Profile? in
-                Accept.manager.delete(acceptId)
-                let json = try JSON(data: data)
-                let profileJson = json["profile"]
-                guard let profile = self.decodeProfile(json: profileJson) else {
-                    return nil
-                }
-                return profile
+//                Accept.manager.delete(acceptId)
+//                let json = try JSON(data: data)
+//                let profileJson = json["profile"]
+//                guard let profile = self.decodeProfile(json: profileJson) else {
+//                    return nil
+//                }
+//                return profile
+            return nil
             }
             .mapError { error -> ApiError in
                 self.mapError(error)
